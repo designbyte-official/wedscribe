@@ -45,64 +45,66 @@ const religions = [
 export const ReligionSelection: React.FC = () => {
   const { t } = useLanguage();
   return (
-    <section className="py-32 bg-white relative">
-      <div className="absolute inset-x-0 top-10 mx-auto max-w-6xl h-[420px] bg-gradient-to-r from-orange-100/40 via-indigo-100/40 to-emerald-100/40 blur-3xl pointer-events-none" />
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
+    <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-white via-slate-50/50 to-white relative overflow-hidden">
+      <div className="absolute inset-x-0 top-20 mx-auto max-w-6xl h-[300px] sm:h-[500px] bg-gradient-to-r from-orange-100/30 via-indigo-100/30 to-emerald-100/30 blur-2xl sm:blur-3xl pointer-events-none animate-blob" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="grid lg:grid-cols-[1fr_1.4fr] gap-12 items-center"
+          className="text-center mb-12 sm:mb-16"
         >
-          <div className="text-left space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 border border-slate-200 text-xs font-semibold uppercase tracking-[0.2em] text-slate-600">
-              <Sparkles size={14} className="text-amber-500" /> Multi-faith ready
-            </div>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-900 leading-tight">
-              {t('home.religion.title')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-500 to-rose-500">{t('home.religion.highlight')}</span>
-            </h2>
-            <p className="text-lg text-slate-600 font-light leading-relaxed max-w-xl">
-              {t('home.religion.desc')}
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <span className="px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-600 text-sm shadow-sm">
-                9 crafted templates
-              </span>
-              <span className="px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-600 text-sm shadow-sm">
-                Cultural typography
-              </span>
-              <span className="px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-600 text-sm shadow-sm">
-                Print-ready layouts
-              </span>
-            </div>
+          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/80 backdrop-blur-sm border border-slate-200 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-slate-600 mb-4 sm:mb-6 shadow-sm">
+            <Sparkles size={12} className="sm:w-[14px] sm:h-[14px] text-amber-500" /> Multi-faith ready
           </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
-            {religions.map((rel, index) => (
-              <motion.div
-                key={rel.name}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                className={`group relative p-6 rounded-2xl border ${rel.accent} hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden shadow-sm hover:shadow-lg bg-white/70 backdrop-blur`}
-              >
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-white/60 to-transparent" />
-                <div className="relative z-10 space-y-3">
-                  <div className="w-10 h-10 rounded-xl bg-white/70 border border-white/60 flex items-center justify-center text-current shadow-sm">
-                    <rel.icon size={18} />
-                  </div>
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="font-semibold text-lg tracking-tight">{rel.name}</span>
-                    <span className="text-[11px] uppercase tracking-[0.2em] text-slate-500">{t('nav.templates')}</span>
-                  </div>
-                  <p className="text-sm text-slate-600 leading-relaxed">{rel.detail}</p>
-                </div>
-              </motion.div>
-            ))}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-slate-900 leading-tight mb-4 sm:mb-6 px-4">
+            {t('home.religion.title')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-500 to-rose-500">{t('home.religion.highlight')}</span>
+          </h2>
+          <p className="text-base sm:text-lg md:text-xl text-slate-600 font-light leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8 px-4">
+            {t('home.religion.desc')}
+          </p>
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 px-4">
+            <span className="px-3 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white border border-slate-200 text-slate-700 text-xs sm:text-sm font-medium shadow-sm hover:shadow-md transition-shadow">
+              30+ Premium Templates
+            </span>
+            <span className="px-3 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white border border-slate-200 text-slate-700 text-xs sm:text-sm font-medium shadow-sm hover:shadow-md transition-shadow">
+              Cultural Typography
+            </span>
+            <span className="px-3 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white border border-slate-200 text-slate-700 text-xs sm:text-sm font-medium shadow-sm hover:shadow-md transition-shadow">
+              A4 Print Ready
+            </span>
+            <span className="px-3 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white border border-slate-200 text-slate-700 text-xs sm:text-sm font-medium shadow-sm hover:shadow-md transition-shadow">
+              Instant Download
+            </span>
           </div>
         </motion.div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+          {religions.map((rel, index) => (
+            <motion.div
+              key={rel.name}
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.08, duration: 0.4 }}
+              whileHover={{ y: -4, scale: 1.02 }}
+              className={`group relative p-4 sm:p-6 rounded-xl sm:rounded-2xl border-2 ${rel.accent} hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden bg-white/80 backdrop-blur-sm`}
+            >
+              <div className={`absolute inset-0 bg-gradient-to-br ${rel.accent.split(' ')[0]}/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+              <div className="relative z-10 space-y-3 sm:space-y-4 text-center">
+                <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl bg-gradient-to-br ${rel.accent.split(' ')[0]}/10 group-hover:${rel.accent.split(' ')[0]}/20 border-2 border-current/20 flex items-center justify-center mx-auto text-current shadow-sm group-hover:scale-110 transition-transform duration-300`}>
+                  <rel.icon size={18} className="sm:w-[22px] sm:h-[22px] text-slate-700" />
+                </div>
+                <div>
+                  <span className="font-bold text-base sm:text-lg tracking-tight text-slate-900 block mb-0.5 sm:mb-1">{rel.name}</span>
+                  <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-slate-500 font-medium">{t('nav.templates')}</span>
+                </div>
+                <p className="text-[10px] sm:text-xs text-slate-600 leading-relaxed line-clamp-2">{rel.detail}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -115,12 +115,79 @@ export const EditorPage: React.FC = () => {
           download(dataUrl, `biodata-${profile.personal.fullName || 'untitled'}.png`);
           toast.success("Image downloaded successfully!");
         } else if (type === 'pdf') {
-          // Use html2canvas and jsPDF directly for better reliability
+          // Use html2canvas with onclone to handle oklch colors
+          // The browser computes oklch to RGB, but html2canvas needs explicit RGB values
           const canvas = await html2canvas(element, {
             scale: 2,
             useCORS: true,
             backgroundColor: '#ffffff',
             logging: false,
+            allowTaint: false,
+            onclone: (clonedDoc, element) => {
+              // Inject CSS to override oklch CSS variables with RGB equivalents
+              const style = clonedDoc.createElement('style');
+              style.textContent = `
+                :root, :root * {
+                  --background: #ffffff !important;
+                  --foreground: #0a0a0a !important;
+                  --card: #fafafa !important;
+                  --card-foreground: #0a0a0a !important;
+                  --popover: #ffffff !important;
+                  --popover-foreground: #0a0a0a !important;
+                  --primary: #6366f1 !important;
+                  --primary-foreground: #ffffff !important;
+                  --secondary: #0a0a0a !important;
+                  --secondary-foreground: #ffffff !important;
+                  --muted: #f4f4f5 !important;
+                  --muted-foreground: #0a0a0a !important;
+                  --accent: #f4f4f5 !important;
+                  --accent-foreground: #6366f1 !important;
+                  --destructive: #ef4444 !important;
+                  --destructive-foreground: #ffffff !important;
+                  --border: #e4e4e7 !important;
+                  --input: #fafafa !important;
+                  --ring: #6366f1 !important;
+                }
+              `;
+              clonedDoc.head.insertBefore(style, clonedDoc.head.firstChild);
+              
+              // Force reflow to apply new styles
+              clonedDoc.body.offsetHeight;
+              
+              // Process all elements and apply computed RGB colors directly
+              const allElements = clonedDoc.querySelectorAll('*');
+              allElements.forEach((el) => {
+                const htmlEl = el as HTMLElement;
+                const originalEl = element.querySelector(
+                  Array.from(element.querySelectorAll('*')).findIndex(e => 
+                    e.tagName === htmlEl.tagName && 
+                    e.className === htmlEl.className
+                  ) !== -1 ? 
+                  `${htmlEl.tagName}.${htmlEl.className}` : 
+                  htmlEl.tagName
+                ) as HTMLElement;
+                
+                if (originalEl) {
+                  const computedStyle = window.getComputedStyle(originalEl);
+                  
+                  // Apply computed RGB colors directly (browser already converted oklch to RGB)
+                  const bgColor = computedStyle.backgroundColor;
+                  if (bgColor && bgColor !== 'rgba(0, 0, 0, 0)' && bgColor !== 'transparent') {
+                    htmlEl.style.setProperty('background-color', bgColor, 'important');
+                  }
+                  
+                  const textColor = computedStyle.color;
+                  if (textColor && textColor !== 'rgba(0, 0, 0, 0)') {
+                    htmlEl.style.setProperty('color', textColor, 'important');
+                  }
+                  
+                  const borderColor = computedStyle.borderColor;
+                  if (borderColor && borderColor !== 'rgba(0, 0, 0, 0)' && borderColor !== 'transparent') {
+                    htmlEl.style.setProperty('border-color', borderColor, 'important');
+                  }
+                }
+              });
+            }
           });
 
           const imgData = canvas.toDataURL('image/png');

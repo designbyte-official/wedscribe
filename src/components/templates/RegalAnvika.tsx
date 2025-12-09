@@ -12,13 +12,13 @@ export const RegalAnvika: React.FC<Props> = ({ profile }) => {
   const { personal, education, family, contact } = profile;
 
   return (
-    <div className="w-full h-full bg-[#3d1024] flex text-[#fdf2f8] font-cormorant relative">
+    <div className="w-full h-full bg-[#3d1024] flex text-[#fdf2f8] font-cormorant relative min-h-full">
          {/* Decorative Border */}
          <div className="absolute inset-3 border border-[#d4af37]/40 pointer-events-none z-20"></div>
          <div className="absolute inset-5 border border-[#d4af37]/20 pointer-events-none z-20"></div>
 
          {/* Left Side - 40% */}
-         <div className="w-[38%] border-r border-[#d4af37]/30 p-5 flex flex-col bg-[#2a0a18] relative">
+         <div className="w-[38%] border-r border-[#d4af37]/30 p-5 flex flex-col bg-[#2a0a18] relative min-h-full">
             {/* Mandala Background */}
             <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle,_var(--tw-gradient-stops))] from-[#d4af37] to-transparent"></div>
             
@@ -64,11 +64,13 @@ export const RegalAnvika: React.FC<Props> = ({ profile }) => {
          </div>
 
          {/* Right Side - 60% */}
-         <div className="w-[62%] p-8 flex flex-col justify-start relative gap-6">
-            <h1 className="text-5xl text-[#d4af37] font-great-vibes leading-tight">{personal.fullName}</h1>
-            <p className="text-xs uppercase tracking-[0.28em] text-[#fbcfe8] opacity-80">{education.occupation}</p>
+         <div className="w-[62%] p-8 flex flex-col justify-start relative gap-6 min-h-full">
+            <div className="shrink-0">
+              <h1 className="text-5xl text-[#d4af37] font-great-vibes leading-tight">{personal.fullName}</h1>
+              <p className="text-xs uppercase tracking-[0.28em] text-[#fbcfe8] opacity-80">{education.occupation}</p>
+            </div>
 
-            <div className="space-y-8">
+            <div className="space-y-8 flex-1 min-h-0">
                 <section>
                     <h3 className="font-cinzel text-xl text-[#d4af37] mb-4 flex items-center gap-2">
                         <span className="h-px w-8 bg-[#d4af37]/50"></span> {t('section.personal')}

@@ -45,9 +45,9 @@ export const Navbar: React.FC = () => {
           : "bg-transparent border-transparent py-4"
       )}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <Logo className="scale-90" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <Logo className="scale-90 sm:scale-100" />
         </div>
 
         {/* Desktop Navigation */}

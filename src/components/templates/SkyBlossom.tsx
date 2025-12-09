@@ -13,12 +13,12 @@ export const SkyBlossom: React.FC<Props> = ({ profile }) => {
   const { personal, education, family, contact } = profile;
   
   return (
-    <div className="w-full h-full bg-white flex flex-row font-lato overflow-hidden">
+    <div className="w-full h-full bg-white flex flex-row font-lato overflow-hidden min-h-full">
       {/* Left Sidebar - 35% */}
-      <div className="w-[35%] bg-sky-900 text-white p-5 flex flex-col relative">
+      <div className="w-[35%] bg-sky-900 text-white p-5 flex flex-col relative min-h-full">
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_left,var(--tw-gradient-stops))] from-sky-800 to-sky-900 opacity-50"></div>
           
-          <div className="relative z-10 w-full flex flex-col h-full gap-3">
+          <div className="relative z-10 w-full flex flex-col h-full gap-3 min-h-full">
               <div className="w-28 h-28 rounded-full border-4 border-sky-400/30 p-1 mx-auto mb-2 shrink-0">
                   {personal.photoUrl ? (
                       <img src={personal.photoUrl} className="w-full h-full rounded-full object-cover shadow-lg" alt="Profile" />
@@ -71,13 +71,13 @@ export const SkyBlossom: React.FC<Props> = ({ profile }) => {
       </div>
 
       {/* Right Content - 65% */}
-      <div className="w-[65%] p-8 flex flex-col gap-6">
-          <div className="border-b-2 border-sky-100 pb-4">
+      <div className="w-[65%] p-8 flex flex-col gap-6 min-h-full">
+          <div className="border-b-2 border-sky-100 pb-4 shrink-0">
               <h1 className="text-4xl font-cinzel text-sky-900 mb-1 uppercase tracking-wide leading-tight">{personal.fullName}</h1>
               <p className="text-base tracking-[0.18em] text-sky-500 uppercase font-bold">{education.occupation}</p>
           </div>
 
-          <div className="space-y-6 grow">
+          <div className="space-y-6 flex-1 min-h-0">
               {/* About Section */}
               {education.aboutMe && (
                   <div className="bg-sky-50 p-4 border-l-4 border-sky-500 rounded-r-lg">
@@ -124,7 +124,7 @@ export const SkyBlossom: React.FC<Props> = ({ profile }) => {
           </div>
           
           {/* Footer */}
-          <div className="mt-auto pt-6 text-center text-xs text-sky-300 uppercase tracking-widest">
+          <div className="mt-auto pt-4 pb-2 text-center text-xs text-sky-300 uppercase tracking-widest shrink-0">
               Biodata • {personal.fullName}
           </div>
       </div>
