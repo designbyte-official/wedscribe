@@ -142,7 +142,8 @@ export const CanvasWorkspace: React.FC<Props> = ({ children }) => {
                     transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
                     transition: isDragging ? 'none' : 'transform 0.2s cubic-bezier(0.1, 0.7, 1.0, 0.1)',
                     width: '210mm', 
-                    height: '297mm',
+                    minHeight: '297mm',
+                    height: 'auto',
                     willChange: 'transform' // Hardware acceleration hint
                 }}
                 className="bg-white shadow-[0_32px_64px_-12px_rgba(0,0,0,0.1)] ring-1 ring-slate-900/5 origin-center pointer-events-auto print:shadow-none print:transform-none"

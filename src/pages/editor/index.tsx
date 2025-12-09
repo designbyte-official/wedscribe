@@ -20,6 +20,7 @@ export const EditorPage: React.FC = () => {
   const [profile, setProfile] = useState<BiodataProfile>(INITIAL_PROFILE);
   const [activeTemplate, setActiveTemplate] = useState<TemplateType>(TemplateType.SKY_BLOSSOM);
   const [isGeneratingBio, setIsGeneratingBio] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
   
   // Desktop Tab State (Sidebar)
   const [desktopTab, setDesktopTab] = useState<'templates' | 'edit'>('templates');
@@ -90,24 +91,44 @@ export const EditorPage: React.FC = () => {
       const element = document.getElementById('canvas-container');
       if (!element) return;
 
-      if (type === 'png') {
-          try {
-              const dataUrl = await htmlToImage.toPng(element, { quality: 1.0, pixelRatio: 2 });
-              download(dataUrl, `biodata-${profile.personal.fullName || 'untitled'}.png`);
-          } catch (error) {
-              console.error('Error generating PNG', error);
-              alert('Failed to generate image. Please try again.');
-          }
-      } else if (type === 'pdf') {
-          const opt = {
-              margin: 0,
-              filename: `biodata-${profile.personal.fullName || 'untitled'}.pdf`,
-              image: { type: 'jpeg' as const, quality: 0.98 },
-              html2canvas: { scale: 2, useCORS: true },
-              jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
-          };
-          html2pdf().set(opt).from(element).save();
-      }
+      setIsDownloading(true);
+
+      // Safety timeout to force-clear loading state if something hangs
+      const safetyTimeout = setTimeout(() => {
+        if (isDownloading) {
+            setIsDownloading(false);
+            alert("Download process timed out. Please try again or check your browser console.");
+        }
+      }, 15000); // 15 seconds max wait
+
+      // Use setTimeout to allow UI to update with loading state before heavy processing
+      setTimeout(async () => {
+        try {
+            if (type === 'png') {
+                const dataUrl = await htmlToImage.toPng(element, { quality: 1.0, pixelRatio: 2 });
+                download(dataUrl, `biodata-${profile.personal.fullName || 'untitled'}.png`);
+            } else if (type === 'pdf') {
+                const opt = {
+                    margin: 0,
+                    filename: `biodata-${profile.personal.fullName || 'untitled'}.pdf`,
+                    image: { type: 'jpeg' as const, quality: 0.98 },
+                    html2canvas: { scale: 2, useCORS: true },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
+                };
+                
+                // Wrap html2pdf in a promise to handle errors better if needed, 
+                // though await should catch standard rejections.
+                // @ts-ignore
+                await html2pdf().set(opt).from(element).save();
+            }
+        } catch (error) {
+            console.error('Error downloading:', error);
+            alert('Failed to download. Please try again.');
+        } finally {
+            clearTimeout(safetyTimeout);
+            setIsDownloading(false);
+        }
+      }, 100);
   };
 
   const resetData = () => {
@@ -212,6 +233,17 @@ export const EditorPage: React.FC = () => {
         </div>
 
       </div>
+        
+      {/* Download Loading Overlay */}
+      {isDownloading && (
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm">
+            <div className="bg-white p-8 rounded-2xl shadow-2xl flex flex-col items-center max-w-sm text-center animate-in zoom-in-95 duration-300">
+                <div className="w-16 h-16 border-4 border-indigo-100 border-t-indigo-600 rounded-full animate-spin mb-6"></div>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Generating Files...</h3>
+                <p className="text-slate-500">Please wait while we prepare your high-quality download. This may take a moment.</p>
+            </div>
+        </div>
+      )}
     </div>
   );
 };

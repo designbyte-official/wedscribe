@@ -80,7 +80,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         
         {/* Header Area */}
         <div className="px-8 pt-8 pb-4">
-            <h1 className="text-2xl font-serif font-bold text-slate-900 mb-6">Editor</h1>
+            {/* Header Removed as per request */}
             
             {/* Minimal Tabs */}
             <div className="flex items-center gap-6 border-b border-slate-100">

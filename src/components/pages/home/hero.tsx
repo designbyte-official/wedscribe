@@ -3,8 +3,43 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Shield, ArrowRight, PenTool, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '@/context/LanguageContext';
+import { useEffect, useState } from 'react';
+
+const slidess = [
+  "/hero-biodata.png",
+  "/hero-biodata.png", // Duplicate for demo
+  "/hero-biodata.png", // Duplicate for demo
+];
+
+const HeroSlider = () => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % slidess.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="relative w-full h-auto aspect-[3/4] overflow-hidden rounded-xl shadow-inner bg-slate-50">
+      <AnimatePresence mode="popLayout">
+        <motion.img
+          key={index}
+          src={slidess[index]}
+          alt="Biodata Template Preview"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -20 }}
+          transition={{ duration: 0.5 }}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      </AnimatePresence>
+    </div>
+  );
+};
 
 export const Hero: React.FC = () => {
   const navigate = useNavigate();
@@ -77,14 +112,11 @@ export const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative h-[500px] lg:h-[650px] hidden lg:flex items-center justify-center perspective-1000"
         >
-            {/* Main Template Card Visual - Replaced with Image */}
+            {/* Main Template Card Visual - Slider */}
             <div className="relative z-10 w-full max-w-md transform rotate-y-[-5deg] rotate-x-[2deg] hover:rotate-0 transition-transform duration-700 ease-out">
                 <div className="relative rounded-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)] bg-white p-3 border border-border/50 backdrop-blur-sm">
-                    <img 
-                        src="/hero-biodata.png"
-                        alt="Biodata Template Preview" 
-                        className="w-full h-auto rounded-xl shadow-inner"
-                    />
+                    
+                   <HeroSlider />
                     
                     {/* Floating Badge 1 */}
                     <motion.div 
@@ -112,6 +144,15 @@ export const Hero: React.FC = () => {
                         <div>
                             <div className="font-bold text-foreground text-xs">{t('home.hero.feature')}</div>
                         </div>
+                    </motion.div>
+
+                     {/* Floating Logo Badge - NEW */}
+                     <motion.div 
+                        animate={{ y: [0, -10, 0] }}
+                        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                        className="absolute top-1/2 -right-16 w-16 h-16 bg-white p-2 rounded-full shadow-2xl border border-border z-30 flex items-center justify-center"
+                    >
+                        <img src="/wedscribe-logo.png" alt="WedScribe" className="w-full h-full object-contain" />
                     </motion.div>
                 </div>
             </div>
