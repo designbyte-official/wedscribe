@@ -14,10 +14,10 @@ export const ModernSlate: React.FC<Props> = ({ profile }) => {
   return (
     <div className="w-full h-full bg-slate-950 text-slate-50 font-inter">
       <div className="grid grid-cols-[0.34fr_0.66fr] h-full">
-        <div className="p-8 border-r border-slate-800 space-y-6">
+        <div className="p-6 border-r border-slate-800 space-y-4">
           <div className="space-y-1">
-            <p className="text-[11px] uppercase tracking-[0.3em] text-slate-400">{t('common.marriageBiodata')}</p>
-            <h1 className="text-3xl font-bold leading-tight">{personal.fullName}</h1>
+            <p className="text-[10px] uppercase tracking-[0.3em] text-slate-400">{t('common.marriageBiodata')}</p>
+            <h1 className="text-2xl font-bold leading-tight">{personal.fullName}</h1>
             <p className="text-xs uppercase tracking-[0.2em] text-slate-400">{education.occupation}</p>
           </div>
 
@@ -29,8 +29,19 @@ export const ModernSlate: React.FC<Props> = ({ profile }) => {
             )}
           </div>
 
-          <div className="space-y-2 text-sm text-slate-200">
-            <p className="font-semibold">{contact.contactNumber}</p>
+          <div className="rounded-lg border border-slate-700 bg-slate-800/60 p-4 space-y-2">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-semibold">{t('section.astrology')}</p>
+            <div className="space-y-1.5 text-xs text-slate-200">
+              <div className="flex justify-between"><span className="text-slate-400">{t('field.rashi')}</span><span>{personal.rashi}</span></div>
+              <div className="flex justify-between"><span className="text-slate-400">{t('field.nakshatra')}</span><span>{personal.nakshatra}</span></div>
+              <div className="flex justify-between"><span className="text-slate-400">{t('field.gothra')}</span><span>{personal.gothra}</span></div>
+              <div className="flex justify-between"><span className="text-slate-400">{t('field.manglik')}</span><span>{personal.manglik}</span></div>
+            </div>
+          </div>
+
+          <div className="space-y-2 text-xs">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-semibold">{t('section.contact')}</p>
+            <p className="font-semibold text-slate-200">{contact.contactNumber}</p>
             <p className="text-slate-300 break-words">{contact.email}</p>
             <p className="text-slate-400 whitespace-pre-line leading-relaxed">{contact.address}</p>
           </div>

@@ -18,34 +18,45 @@ export const RegalAnvika: React.FC<Props> = ({ profile }) => {
          <div className="absolute inset-5 border border-[#d4af37]/20 pointer-events-none z-20"></div>
 
          {/* Left Side - 40% */}
-         <div className="w-[38%] border-r border-[#d4af37]/30 p-6 flex flex-col items-center bg-[#2a0a18] relative">
+         <div className="w-[38%] border-r border-[#d4af37]/30 p-5 flex flex-col bg-[#2a0a18] relative">
             {/* Mandala Background */}
             <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle,_var(--tw-gradient-stops))] from-[#d4af37] to-transparent"></div>
             
-            <div className="relative z-10 flex flex-col items-center w-full h-full gap-4">
-                <div className="w-40 h-48 border-2 border-[#d4af37] p-2 mt-2 rotate-1 shadow-2xl bg-[#3d1024]">
+            <div className="relative z-10 flex flex-col w-full h-full gap-3">
+                <div className="w-36 h-44 border-2 border-[#d4af37] p-2 mx-auto rotate-1 shadow-2xl bg-[#3d1024]">
                      <div className="w-full h-full border border-[#d4af37]/50 bg-[#3d1024] overflow-hidden">
                         {personal.photoUrl ? <img src={personal.photoUrl} className="w-full h-full object-cover" alt="Profile" /> : <PlaceholderImage className="w-full h-full bg-[#3d1024] text-[#d4af37]" />}
                      </div>
                 </div>
 
-                <div className="w-full space-y-4 text-center text-sm leading-relaxed">
+                <div className="w-full space-y-3 text-left text-xs leading-relaxed">
                     <div>
-                        <h3 className="text-[#d4af37] uppercase tracking-[0.2em] text-xs mb-3 border-b border-[#d4af37]/30 inline-block pb-1">{t('section.astrology')}</h3>
-                        <div className="space-y-1 text-base leading-relaxed">
-                            <p><span className="text-[#d4af37]/60 text-sm block">{t('field.rashi')}</span> {personal.rashi}</p>
-                            <p><span className="text-[#d4af37]/60 text-sm block">{t('field.nakshatra')}</span> {personal.nakshatra}</p>
-                            <p><span className="text-[#d4af37]/60 text-sm block">{t('field.gothra')}</span> {personal.gothra}</p>
-                            <p><span className="text-[#d4af37]/60 text-sm block">{t('field.manglik')}</span> {personal.manglik}</p>
+                        <h3 className="text-[#d4af37] uppercase tracking-[0.2em] text-[10px] mb-2 border-b border-[#d4af37]/30 pb-1">{t('section.astrology')}</h3>
+                        <div className="space-y-1 text-sm">
+                            {personal.rashi && <p><span className="text-[#d4af37]/60">{t('field.rashi')}: </span>{personal.rashi}</p>}
+                            {personal.nakshatra && <p><span className="text-[#d4af37]/60">{t('field.nakshatra')}: </span>{personal.nakshatra}</p>}
+                            {personal.gothra && <p><span className="text-[#d4af37]/60">{t('field.gothra')}: </span>{personal.gothra}</p>}
+                            {personal.manglik && <p><span className="text-[#d4af37]/60">{t('field.manglik')}: </span>{personal.manglik}</p>}
                         </div>
                     </div>
 
                     <div>
-                        <h3 className="text-[#d4af37] uppercase tracking-[0.2em] text-xs mb-3 border-b border-[#d4af37]/30 inline-block pb-1">{t('section.contact')}</h3>
-                        <div className="space-y-2 text-sm font-sans tracking-wide opacity-90 px-2">
-                            <p className="break-words">{contact.contactNumber}</p>
-                            <p className="break-words">{contact.email}</p>
-                            <p className="opacity-70 whitespace-pre-line leading-relaxed">{contact.address}</p>
+                        <h3 className="text-[#d4af37] uppercase tracking-[0.2em] text-[10px] mb-2 border-b border-[#d4af37]/30 pb-1">Quick Info</h3>
+                        <div className="space-y-1 text-sm">
+                            {personal.height && <p><span className="text-[#d4af37]/60">{t('field.height')}: </span>{personal.height}</p>}
+                            {personal.weight && <p><span className="text-[#d4af37]/60">{t('field.weight')}: </span>{personal.weight}</p>}
+                            {personal.bloodGroup && <p><span className="text-[#d4af37]/60">{t('field.bloodGroup')}: </span>{personal.bloodGroup}</p>}
+                            {personal.complexion && <p><span className="text-[#d4af37]/60">{t('field.complexion')}: </span>{personal.complexion}</p>}
+                            {personal.maritalStatus && <p><span className="text-[#d4af37]/60">{t('field.maritalStatus')}: </span>{personal.maritalStatus}</p>}
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 className="text-[#d4af37] uppercase tracking-[0.2em] text-[10px] mb-2 border-b border-[#d4af37]/30 pb-1">{t('section.contact')}</h3>
+                        <div className="space-y-1.5 text-xs font-sans tracking-wide opacity-90">
+                            {contact.contactNumber && <p className="break-words">{contact.contactNumber}</p>}
+                            {contact.email && <p className="break-words">{contact.email}</p>}
+                            {contact.address && <p className="opacity-70 whitespace-pre-line leading-relaxed">{contact.address}</p>}
                         </div>
                     </div>
                 </div>
@@ -66,15 +77,10 @@ export const RegalAnvika: React.FC<Props> = ({ profile }) => {
                          <div className="flex flex-col"><span className="text-[#d4af37] text-sm uppercase opacity-70">{t('field.dob')}</span> {personal.dateOfBirth}</div>
                          <div className="flex flex-col"><span className="text-[#d4af37] text-sm uppercase opacity-70">{t('field.tob')}</span> {personal.timeOfBirth}</div>
                          <div className="flex flex-col"><span className="text-[#d4af37] text-sm uppercase opacity-70">{t('field.pob')}</span> {personal.placeOfBirth}</div>
-                         <div className="flex flex-col"><span className="text-[#d4af37] text-sm uppercase opacity-70">{t('field.height')}</span> {personal.height}</div>
-                         <div className="flex flex-col"><span className="text-[#d4af37] text-sm uppercase opacity-70">{t('field.weight')}</span> {personal.weight}</div>
-                         <div className="flex flex-col"><span className="text-[#d4af37] text-sm uppercase opacity-70">{t('field.bloodGroup')}</span> {personal.bloodGroup}</div>
-                         <div className="flex flex-col"><span className="text-[#d4af37] text-sm uppercase opacity-70">{t('field.complexion')}</span> {personal.complexion}</div>
-                         <div className="flex flex-col"><span className="text-[#d4af37] text-sm uppercase opacity-70">{t('field.maritalStatus')}</span> {personal.maritalStatus}</div>
-                         <div className="flex flex-col"><span className="text-[#d4af37] text-sm uppercase opacity-70">{t('field.caste')}</span> {personal.caste}, {personal.subCaste}</div>
+                         <div className="flex flex-col"><span className="text-[#d4af37] text-sm uppercase opacity-70">{t('field.caste')}</span> {personal.caste}{personal.subCaste ? `, ${personal.subCaste}` : ''}</div>
                          <div className="flex flex-col col-span-2"><span className="text-[#d4af37] text-xs uppercase opacity-70">{t('field.education')}</span> {education.education}</div>
-                         <div className="flex flex-col col-span-2"><span className="text-[#d4af37] text-xs uppercase opacity-70">{t('field.company')}</span> {education.company} ({education.income})</div>
-                         <div className="flex flex-col col-span-2"><span className="text-[#d4af37] text-xs uppercase opacity-70">{t('field.aboutMe')}</span> <span className="text-sm italic normal-case opacity-90 leading-relaxed">{education.aboutMe}</span></div>
+                         <div className="flex flex-col col-span-2"><span className="text-[#d4af37] text-xs uppercase opacity-70">{t('field.company')}</span> {education.company}{education.income ? ` (${education.income})` : ''}</div>
+                         {education.aboutMe && <div className="flex flex-col col-span-2"><span className="text-[#d4af37] text-xs uppercase opacity-70">{t('field.aboutMe')}</span> <span className="text-sm italic normal-case opacity-90 leading-relaxed">{education.aboutMe}</span></div>}
                     </div>
                 </section>
 

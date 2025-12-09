@@ -20,22 +20,48 @@ export const MintBlossom: React.FC<Props> = ({ profile }) => {
 
       <div className="w-full h-full bg-white/80 backdrop-blur-sm rounded-xl shadow-xl border border-white flex overflow-hidden relative z-10">
           {/* Left Side - 40% */}
-          <div className="w-[40%] bg-green-50/50 p-8 flex flex-col border-r border-green-100">
-              <h1 className="font-playfair text-3xl text-green-900 font-bold mb-1 leading-tight">{personal.fullName}</h1>
-              <p className="text-green-600 text-xs font-bold uppercase tracking-widest mb-4">{education.occupation}</p>
+          <div className="w-[40%] bg-green-50/50 p-5 flex flex-col border-r border-green-100 gap-3">
+              <div>
+                  <h1 className="font-playfair text-xl text-green-900 font-bold mb-0.5 leading-tight">{personal.fullName}</h1>
+                  <p className="text-green-600 text-xs font-bold uppercase tracking-widest">{education.occupation}</p>
+              </div>
               
-              <div className="w-full aspect-[3/4] bg-white p-2 shadow-md rounded-lg mb-4 rotate-1">
+              <div className="w-full aspect-[3/4] bg-white p-2 shadow-md rounded-lg rotate-1">
                    {personal.photoUrl ? <img src={personal.photoUrl} className="w-full h-full object-cover rounded" alt="Profile" /> : <PlaceholderImage className="w-full h-full rounded" />}
               </div>
 
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-green-100 mt-auto">
-                  <h3 className="text-green-800 font-bold uppercase tracking-wider text-xs mb-4 flex items-center gap-2">
+              <div className="bg-white p-3 rounded-xl shadow-sm border border-green-100">
+                  <h3 className="text-green-800 font-bold uppercase tracking-wider text-[10px] mb-2 flex items-center gap-1.5">
+                      <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div> {t('section.astrology')}
+                  </h3>
+                  <div className="space-y-1 text-xs text-green-900">
+                      {personal.rashi && <div className="flex justify-between"><span className="text-green-600">{t('field.rashi')}</span><span className="font-medium">{personal.rashi}</span></div>}
+                      {personal.nakshatra && <div className="flex justify-between"><span className="text-green-600">{t('field.nakshatra')}</span><span className="font-medium">{personal.nakshatra}</span></div>}
+                      {personal.gothra && <div className="flex justify-between"><span className="text-green-600">{t('field.gothra')}</span><span className="font-medium">{personal.gothra}</span></div>}
+                      {personal.manglik && <div className="flex justify-between"><span className="text-green-600">{t('field.manglik')}</span><span className="font-medium">{personal.manglik}</span></div>}
+                  </div>
+              </div>
+
+              <div className="bg-white p-3 rounded-xl shadow-sm border border-green-100">
+                  <h3 className="text-green-800 font-bold uppercase tracking-wider text-[10px] mb-2 flex items-center gap-1.5">
+                      <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div> Quick Info
+                  </h3>
+                  <div className="space-y-1 text-xs text-green-900">
+                      {personal.height && <div className="flex justify-between"><span className="text-green-600">{t('field.height')}</span><span className="font-medium">{personal.height}</span></div>}
+                      {personal.weight && <div className="flex justify-between"><span className="text-green-600">{t('field.weight')}</span><span className="font-medium">{personal.weight}</span></div>}
+                      {personal.bloodGroup && <div className="flex justify-between"><span className="text-green-600">{t('field.bloodGroup')}</span><span className="font-medium">{personal.bloodGroup}</span></div>}
+                      {personal.maritalStatus && <div className="flex justify-between"><span className="text-green-600">{t('field.maritalStatus')}</span><span className="font-medium">{personal.maritalStatus}</span></div>}
+                  </div>
+              </div>
+
+              <div className="bg-white p-3 rounded-xl shadow-sm border border-green-100">
+                  <h3 className="text-green-800 font-bold uppercase tracking-wider text-[10px] mb-2 flex items-center gap-1.5">
                       <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div> {t('section.contact')}
                   </h3>
-                  <div className="space-y-3 text-sm text-green-900">
-                      <div className="flex items-center gap-3"><Phone size={14} className="text-green-500"/> {contact.contactNumber}</div>
-                      <div className="flex items-center gap-3"><Mail size={14} className="text-green-500"/> {contact.email}</div>
-                      <div className="flex items-start gap-3"><MapPin size={14} className="text-green-500 mt-1"/> <span className="whitespace-pre-line">{contact.address}</span></div>
+                  <div className="space-y-1.5 text-xs text-green-900">
+                      {contact.contactNumber && <div className="flex items-center gap-2"><Phone size={12} className="text-green-500"/> {contact.contactNumber}</div>}
+                      {contact.email && <div className="flex items-center gap-2"><Mail size={12} className="text-green-500"/> {contact.email}</div>}
+                      {contact.address && <div className="flex items-start gap-2"><MapPin size={12} className="text-green-500 mt-0.5"/> <span className="whitespace-pre-line leading-relaxed">{contact.address}</span></div>}
                   </div>
               </div>
           </div>
@@ -58,17 +84,10 @@ export const MintBlossom: React.FC<Props> = ({ profile }) => {
                            <DetailItem label={t('field.dob')} value={personal.dateOfBirth} labelClass="text-green-600" />
                            <DetailItem label={t('field.tob')} value={personal.timeOfBirth} labelClass="text-green-600" />
                            <DetailItem label={t('field.pob')} value={personal.placeOfBirth} labelClass="text-green-600" />
-                           <DetailItem label={t('field.height')} value={personal.height} labelClass="text-green-600" />
-                           <DetailItem label={t('field.weight')} value={personal.weight} labelClass="text-green-600" />
-                           <DetailItem label={t('field.bloodGroup')} value={personal.bloodGroup} labelClass="text-green-600" />
                            <DetailItem label={t('field.complexion')} value={personal.complexion} labelClass="text-green-600" />
-                           <DetailItem label={t('field.maritalStatus')} value={personal.maritalStatus} labelClass="text-green-600" />
                            <DetailItem label={t('field.religion')} value={personal.religion} labelClass="text-green-600" />
-                           <DetailItem label={t('field.caste')} value={`${personal.caste}, ${personal.subCaste}`} labelClass="text-green-600" />
+                           <DetailItem label={t('field.caste')} value={personal.caste && personal.subCaste ? `${personal.caste}, ${personal.subCaste}` : personal.caste || personal.subCaste} labelClass="text-green-600" />
                            <DetailItem label={t('field.gothra')} value={personal.gothra} labelClass="text-green-600" />
-                           <DetailItem label={t('field.rashi')} value={personal.rashi} labelClass="text-green-600" />
-                           <DetailItem label={t('field.nakshatra')} value={personal.nakshatra} labelClass="text-green-600" />
-                           <DetailItem label={t('field.manglik')} value={personal.manglik} labelClass="text-green-600" />
                       </div>
                   </div>
 

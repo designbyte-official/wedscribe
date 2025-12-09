@@ -14,10 +14,10 @@ export const EmeraldLeaf: React.FC<Props> = ({ profile }) => {
   return (
     <div className="w-full h-full bg-gradient-to-br from-emerald-50 via-white to-emerald-100 text-emerald-950 font-serif">
       <div className="grid grid-cols-[0.35fr_0.65fr] h-full">
-        <div className="p-8 border-r border-emerald-100 space-y-6">
-          <div className="space-y-2">
-            <p className="text-[11px] uppercase tracking-[0.3em] text-emerald-600 font-semibold">{t('common.marriageBiodata')}</p>
-            <h1 className="text-3xl font-bold leading-tight">{personal.fullName}</h1>
+        <div className="p-6 border-r border-emerald-100 space-y-4">
+          <div className="space-y-1.5">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-emerald-600 font-semibold">{t('common.marriageBiodata')}</p>
+            <h1 className="text-2xl font-bold leading-tight">{personal.fullName}</h1>
             <p className="text-xs uppercase tracking-[0.2em] text-emerald-500">{education.occupation}</p>
           </div>
           <div className="w-full aspect-[3/4] rounded-xl overflow-hidden border border-emerald-100 shadow-sm bg-white">
@@ -27,10 +27,20 @@ export const EmeraldLeaf: React.FC<Props> = ({ profile }) => {
               <PlaceholderImage className="w-full h-full text-emerald-200" />
             )}
           </div>
-          <div className="space-y-2 text-sm">
-            <p className="font-semibold text-emerald-800">{contact.contactNumber}</p>
-            <p className="text-emerald-700 break-words">{contact.email}</p>
-            <p className="text-emerald-700 whitespace-pre-line leading-relaxed">{contact.address}</p>
+          <div className="rounded-lg border border-emerald-100 bg-emerald-50/50 p-4 space-y-2">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-emerald-600 font-semibold">{t('section.astrology')}</p>
+            <div className="space-y-1.5 text-xs text-emerald-800">
+              {personal.rashi && <div className="flex justify-between"><span className="text-emerald-600">{t('field.rashi')}</span><span>{personal.rashi}</span></div>}
+              {personal.nakshatra && <div className="flex justify-between"><span className="text-emerald-600">{t('field.nakshatra')}</span><span>{personal.nakshatra}</span></div>}
+              {personal.gothra && <div className="flex justify-between"><span className="text-emerald-600">{t('field.gothra')}</span><span>{personal.gothra}</span></div>}
+              {personal.manglik && <div className="flex justify-between"><span className="text-emerald-600">{t('field.manglik')}</span><span>{personal.manglik}</span></div>}
+            </div>
+          </div>
+          <div className="space-y-2 text-xs">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-emerald-600 font-semibold">{t('section.contact')}</p>
+            {contact.contactNumber && <p className="font-semibold text-emerald-800">{contact.contactNumber}</p>}
+            {contact.email && <p className="text-emerald-700 break-words">{contact.email}</p>}
+            {contact.address && <p className="text-emerald-700 whitespace-pre-line leading-relaxed">{contact.address}</p>}
           </div>
         </div>
 
@@ -67,8 +77,8 @@ export const EmeraldLeaf: React.FC<Props> = ({ profile }) => {
           <div className="bg-white/80 border border-emerald-100 rounded-2xl p-6">
             <SectionTitle title={t('section.family')} lineClass="bg-emerald-200" />
             <div className="grid grid-cols-2 gap-4 text-sm">
-              <DetailItem label={t('field.fatherName')} value={`${family.fatherName} (${family.fatherOccupation})`} />
-              <DetailItem label={t('field.motherName')} value={`${family.motherName} (${family.motherOccupation})`} />
+              <DetailItem label={t('field.fatherName')} value={family.fatherName && family.fatherOccupation ? `${family.fatherName} (${family.fatherOccupation})` : family.fatherName || family.fatherOccupation} />
+              <DetailItem label={t('field.motherName')} value={family.motherName && family.motherOccupation ? `${family.motherName} (${family.motherOccupation})` : family.motherName || family.motherOccupation} />
               <DetailItem label={t('field.familyType')} value={family.familyType} />
               <DetailItem label={t('field.values')} value={family.familyValues} />
               <DetailItem label={t('field.siblings')} value={family.siblings} className="col-span-2" />

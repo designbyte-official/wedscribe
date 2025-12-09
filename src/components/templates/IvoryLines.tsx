@@ -14,44 +14,44 @@ export const IvoryLines: React.FC<Props> = ({ profile }) => {
   return (
     <div className="w-full h-full bg-white flex text-stone-800 font-montserrat">
       {/* Left Sidebar - 30% */}
-      <div className="w-[30%] bg-stone-100 p-8 flex flex-col border-r border-stone-200">
-          <div className="w-full aspect-square bg-stone-200 mb-4 overflow-hidden grayscale border border-stone-300">
+      <div className="w-[30%] bg-stone-100 p-5 flex flex-col border-r border-stone-200">
+          <div className="w-full aspect-square bg-stone-200 mb-3 overflow-hidden grayscale border-2 border-stone-300 shadow-sm">
               {personal.photoUrl ? <img src={personal.photoUrl} className="w-full h-full object-cover" alt="Profile" /> : <PlaceholderImage className="w-full h-full" />}
           </div>
 
-          <div className="space-y-5">
+          <div className="space-y-3">
               <div>
-                  <h4 className="text-xs font-bold uppercase tracking-widest text-stone-500 mb-4 border-b border-stone-300 pb-2">Details</h4>
-                  <div className="space-y-3 text-sm font-medium">
-                      <div className="flex justify-between"><span>{t('field.dob')}</span> <span>{personal.dateOfBirth}</span></div>
-                      <div className="flex justify-between"><span>{t('field.tob')}</span> <span>{personal.timeOfBirth}</span></div>
-                      <div className="flex justify-between"><span>{t('field.pob')}</span> <span>{personal.placeOfBirth}</span></div>
-                      <div className="flex justify-between"><span>{t('field.height')}</span> <span>{personal.height}</span></div>
-                      <div className="flex justify-between"><span>{t('field.weight')}</span> <span>{personal.weight}</span></div>
-                      <div className="flex justify-between"><span>{t('field.bloodGroup')}</span> <span>{personal.bloodGroup}</span></div>
-                      <div className="flex justify-between"><span>{t('field.complexion')}</span> <span>{personal.complexion}</span></div>
-                      <div className="flex justify-between"><span>{t('field.maritalStatus')}</span> <span>{personal.maritalStatus}</span></div>
+                  <h4 className="text-[10px] font-bold uppercase tracking-widest text-stone-500 mb-2 border-b border-stone-300 pb-1.5">Personal</h4>
+                  <div className="space-y-1.5 text-xs font-medium">
+                      {personal.dateOfBirth && <div className="flex justify-between"><span className="text-stone-500">{t('field.dob')}</span> <span>{personal.dateOfBirth}</span></div>}
+                      {personal.timeOfBirth && <div className="flex justify-between"><span className="text-stone-500">{t('field.tob')}</span> <span>{personal.timeOfBirth}</span></div>}
+                      {personal.placeOfBirth && <div className="flex justify-between"><span className="text-stone-500">{t('field.pob')}</span> <span>{personal.placeOfBirth}</span></div>}
+                      {personal.height && <div className="flex justify-between"><span className="text-stone-500">{t('field.height')}</span> <span>{personal.height}</span></div>}
+                      {personal.weight && <div className="flex justify-between"><span className="text-stone-500">{t('field.weight')}</span> <span>{personal.weight}</span></div>}
+                      {personal.bloodGroup && <div className="flex justify-between"><span className="text-stone-500">{t('field.bloodGroup')}</span> <span>{personal.bloodGroup}</span></div>}
+                      {personal.complexion && <div className="flex justify-between"><span className="text-stone-500">{t('field.complexion')}</span> <span>{personal.complexion}</span></div>}
+                      {personal.maritalStatus && <div className="flex justify-between"><span className="text-stone-500">{t('field.maritalStatus')}</span> <span>{personal.maritalStatus}</span></div>}
                   </div>
               </div>
 
               <div>
-                  <h4 className="text-xs font-bold uppercase tracking-widest text-stone-500 mb-4 border-b border-stone-300 pb-2">Social</h4>
-                  <div className="space-y-3 text-sm font-medium">
-                      <div className="flex justify-between"><span>{t('field.religion')}</span> <span>{personal.religion}</span></div>
-                      <div className="flex justify-between"><span>{t('field.caste')}</span> <span>{personal.caste}, {personal.subCaste}</span></div>
-                      <div className="flex justify-between"><span>{t('field.gothra')}</span> <span>{personal.gothra}</span></div>
-                      <div className="flex justify-between"><span>{t('field.rashi')}</span> <span>{personal.rashi}</span></div>
-                      <div className="flex justify-between"><span>{t('field.nakshatra')}</span> <span>{personal.nakshatra}</span></div>
-                      <div className="flex justify-between"><span>{t('field.manglik')}</span> <span>{personal.manglik}</span></div>
+                  <h4 className="text-[10px] font-bold uppercase tracking-widest text-stone-500 mb-2 border-b border-stone-300 pb-1.5">{t('section.astrology')}</h4>
+                  <div className="space-y-1.5 text-xs font-medium">
+                      {personal.religion && <div className="flex justify-between"><span className="text-stone-500">{t('field.religion')}</span> <span>{personal.religion}</span></div>}
+                      {personal.caste && <div className="flex justify-between"><span className="text-stone-500">{t('field.caste')}</span> <span>{personal.caste}{personal.subCaste ? `, ${personal.subCaste}` : ''}</span></div>}
+                      {personal.gothra && <div className="flex justify-between"><span className="text-stone-500">{t('field.gothra')}</span> <span>{personal.gothra}</span></div>}
+                      {personal.rashi && <div className="flex justify-between"><span className="text-stone-500">{t('field.rashi')}</span> <span>{personal.rashi}</span></div>}
+                      {personal.nakshatra && <div className="flex justify-between"><span className="text-stone-500">{t('field.nakshatra')}</span> <span>{personal.nakshatra}</span></div>}
+                      {personal.manglik && <div className="flex justify-between"><span className="text-stone-500">{t('field.manglik')}</span> <span>{personal.manglik}</span></div>}
                   </div>
               </div>
 
               <div className="mt-auto">
-                  <h4 className="text-xs font-bold uppercase tracking-widest text-stone-500 mb-4 border-b border-stone-300 pb-2">{t('section.contact')}</h4>
-                  <div className="text-sm space-y-2 break-all">
-                      <p className="font-bold">{contact.contactNumber}</p>
-                      <p>{contact.email}</p>
-                      <p className="text-stone-500 text-xs mt-2 whitespace-pre-line leading-relaxed">{contact.address}</p>
+                  <h4 className="text-[10px] font-bold uppercase tracking-widest text-stone-500 mb-2 border-b border-stone-300 pb-1.5">{t('section.contact')}</h4>
+                  <div className="text-xs space-y-1.5 break-all">
+                      {contact.contactNumber && <p className="font-bold text-stone-800">{contact.contactNumber}</p>}
+                      {contact.email && <p className="text-stone-700">{contact.email}</p>}
+                      {contact.address && <p className="text-stone-500 text-[10px] mt-1 whitespace-pre-line leading-relaxed">{contact.address}</p>}
                   </div>
               </div>
           </div>

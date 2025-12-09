@@ -36,7 +36,7 @@ interface Props {
   template: TemplateType;
 }
 
-export const TemplateRenderer: React.FC<Props> = ({ profile, template }) => {
+export const TemplateRenderer: React.FC<Props> = React.memo(({ profile, template }) => {
   switch (template) {
     case TemplateType.SKY_BLOSSOM:
       return <SkyBlossom profile={profile} />;
@@ -101,4 +101,6 @@ export const TemplateRenderer: React.FC<Props> = ({ profile, template }) => {
     default:
       return <div className="p-10 text-center text-gray-500">Select a template</div>;
   }
-};
+});
+
+TemplateRenderer.displayName = 'TemplateRenderer';

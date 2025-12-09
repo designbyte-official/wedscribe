@@ -14,10 +14,10 @@ export const DesertSands: React.FC<Props> = ({ profile }) => {
   return (
     <div className="w-full h-full bg-gradient-to-br from-amber-100 via-white to-amber-50 text-amber-900 font-serif">
       <div className="grid grid-cols-[0.34fr_0.66fr] h-full">
-        <div className="p-8 border-r border-amber-200 space-y-6">
-          <div className="space-y-2">
-            <p className="text-[11px] uppercase tracking-[0.3em] text-amber-700 font-semibold">{t('common.marriageBiodata')}</p>
-            <h1 className="text-3xl font-bold leading-tight">{personal.fullName}</h1>
+        <div className="p-6 border-r border-amber-200 space-y-4">
+          <div className="space-y-1.5">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-amber-700 font-semibold">{t('common.marriageBiodata')}</p>
+            <h1 className="text-2xl font-bold leading-tight">{personal.fullName}</h1>
             <p className="text-xs uppercase tracking-[0.2em] text-amber-700">{education.occupation}</p>
           </div>
           <div className="w-full aspect-[3/4] rounded-xl overflow-hidden border border-amber-200 shadow-sm bg-white">
@@ -27,10 +27,20 @@ export const DesertSands: React.FC<Props> = ({ profile }) => {
               <PlaceholderImage className="w-full h-full text-amber-300" />
             )}
           </div>
-          <div className="space-y-2 text-sm">
-            <p className="font-semibold text-amber-800">{contact.contactNumber}</p>
-            <p className="text-amber-800 break-words">{contact.email}</p>
-            <p className="text-amber-700 whitespace-pre-line leading-relaxed">{contact.address}</p>
+          <div className="rounded-lg border border-amber-200 bg-amber-50/50 p-4 space-y-2">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-amber-700 font-semibold">{t('section.astrology')}</p>
+            <div className="space-y-1.5 text-xs text-amber-800">
+              {personal.rashi && <div className="flex justify-between"><span className="text-amber-700">{t('field.rashi')}</span><span>{personal.rashi}</span></div>}
+              {personal.nakshatra && <div className="flex justify-between"><span className="text-amber-700">{t('field.nakshatra')}</span><span>{personal.nakshatra}</span></div>}
+              {personal.gothra && <div className="flex justify-between"><span className="text-amber-700">{t('field.gothra')}</span><span>{personal.gothra}</span></div>}
+              {personal.manglik && <div className="flex justify-between"><span className="text-amber-700">{t('field.manglik')}</span><span>{personal.manglik}</span></div>}
+            </div>
+          </div>
+          <div className="space-y-2 text-xs">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-amber-700 font-semibold">{t('section.contact')}</p>
+            {contact.contactNumber && <p className="font-semibold text-amber-800">{contact.contactNumber}</p>}
+            {contact.email && <p className="text-amber-800 break-words">{contact.email}</p>}
+            {contact.address && <p className="text-amber-700 whitespace-pre-line leading-relaxed">{contact.address}</p>}
           </div>
         </div>
 

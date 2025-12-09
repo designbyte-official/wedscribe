@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { INITIAL_PROFILE, BiodataProfile, TemplateType } from '../../types';
+import { Helmet } from 'react-helmet-async';
+import { TemplateType } from '../../types';
 import { TemplateRenderer } from '../../components/common/TemplateRenderer';
 import { generateProfessionalBio } from '../../services/geminiService';
 import { CanvasWorkspace } from '../../components/common/CanvasWorkspace';
@@ -11,16 +12,31 @@ import { EditorContent } from '../../components/pages/editor/editor-content';
 import { Heart } from 'lucide-react';
 import * as htmlToImage from 'html-to-image';
 import download from 'downloadjs';
-// @ts-ignore
-import html2pdf from 'html2pdf.js';
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
+import { toast } from 'sonner';
+import { useProfileStore } from '../../store/profileStore';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 
 export const EditorPage: React.FC = () => {
   const navigate = useNavigate();
   const handleBack = () => navigate('/');
-  const [profile, setProfile] = useState<BiodataProfile>(INITIAL_PROFILE);
+  const profile = useProfileStore((state) => state.profile);
+  const updateSection = useProfileStore((state) => state.updateSection);
   const [activeTemplate, setActiveTemplate] = useState<TemplateType>(TemplateType.SKY_BLOSSOM);
   const [isGeneratingBio, setIsGeneratingBio] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [showResetDialog, setShowResetDialog] = useState(false);
+  const downloadTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
   // Desktop Tab State (Sidebar)
   const [desktopTab, setDesktopTab] = useState<'templates' | 'edit'>('templates');
@@ -29,55 +45,30 @@ export const EditorPage: React.FC = () => {
   // 'designs' | 'edit' | 'preview'
   const [mobileTab, setMobileTab] = useState<'designs' | 'edit' | 'preview'>('preview');
 
-  // Load from local storage on mount
-  useEffect(() => {
-    const saved = localStorage.getItem('weds_profile');
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        if(parsed && parsed.personal) {
-            setProfile(parsed);
-        }
-      } catch (e) {
-        console.error("Failed to load profile", e);
-      }
-    }
-  }, []);
-
-  // Save to local storage on change
-  useEffect(() => {
-    localStorage.setItem('weds_profile', JSON.stringify(profile));
-  }, [profile]);
-
-  const updateSection = (section: keyof BiodataProfile, field: string, value: string) => {
-    setProfile(prev => ({
-      ...prev,
-      [section]: {
-        ...prev[section],
-        [field]: value
-      }
-    }));
-  };
-
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const url = URL.createObjectURL(file);
-      updateSection('personal', 'photoUrl', url);
+      useProfileStore.getState().updateSection('personal', 'photoUrl', url);
     }
   };
 
   const handleGenerateBio = async () => {
     if (!process.env.API_KEY) {
-        alert("API Key missing. Cannot generate bio.");
+        toast.error("API Key missing", {
+          description: "Cannot generate bio without API key."
+        });
         return;
     }
     setIsGeneratingBio(true);
     try {
       const bio = await generateProfessionalBio(profile);
       updateSection('education', 'aboutMe', bio);
+      toast.success("Bio generated successfully!");
     } catch (error) {
-      alert("Failed to generate bio. Please check your internet connection or API key.");
+      toast.error("Failed to generate bio", {
+        description: "Please check your internet connection or API key."
+      });
     } finally {
       setIsGeneratingBio(false);
     }
@@ -89,52 +80,92 @@ export const EditorPage: React.FC = () => {
 
   const handleDownload = async (type: 'png' | 'pdf') => {
       const element = document.getElementById('canvas-container');
-      if (!element) return;
+      if (!element) {
+        toast.error("Canvas not found", {
+          description: "Please refresh the page and try again."
+        });
+        return;
+      }
 
       setIsDownloading(true);
 
-      // Safety timeout to force-clear loading state if something hangs
-      const safetyTimeout = setTimeout(() => {
-        if (isDownloading) {
-            setIsDownloading(false);
-            alert("Download process timed out. Please try again or check your browser console.");
-        }
-      }, 15000); // 15 seconds max wait
+      // Clear any existing timeout
+      if (downloadTimeoutRef.current) {
+        clearTimeout(downloadTimeoutRef.current);
+      }
 
-      // Use setTimeout to allow UI to update with loading state before heavy processing
-      setTimeout(async () => {
-        try {
-            if (type === 'png') {
-                const dataUrl = await htmlToImage.toPng(element, { quality: 1.0, pixelRatio: 2 });
-                download(dataUrl, `biodata-${profile.personal.fullName || 'untitled'}.png`);
-            } else if (type === 'pdf') {
-                const opt = {
-                    margin: 0,
-                    filename: `biodata-${profile.personal.fullName || 'untitled'}.pdf`,
-                    image: { type: 'jpeg' as const, quality: 0.98 },
-                    html2canvas: { scale: 2, useCORS: true },
-                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
-                };
-                
-                // Wrap html2pdf in a promise to handle errors better if needed, 
-                // though await should catch standard rejections.
-                // @ts-ignore
-                await html2pdf().set(opt).from(element).save();
-            }
-        } catch (error) {
-            console.error('Error downloading:', error);
-            alert('Failed to download. Please try again.');
-        } finally {
-            clearTimeout(safetyTimeout);
-            setIsDownloading(false);
+      // Safety timeout to force-clear loading state if something hangs
+      downloadTimeoutRef.current = setTimeout(() => {
+        setIsDownloading(false);
+        toast.error("Download timed out", {
+          description: "The download process took too long. Please try again."
+        });
+      }, 30000); // 30 seconds max wait
+
+      try {
+        // Use setTimeout to allow UI to update with loading state before heavy processing
+        await new Promise(resolve => setTimeout(resolve, 100));
+
+        if (type === 'png') {
+          const dataUrl = await htmlToImage.toPng(element, { 
+            quality: 1.0, 
+            pixelRatio: 2,
+            backgroundColor: '#ffffff'
+          });
+          download(dataUrl, `biodata-${profile.personal.fullName || 'untitled'}.png`);
+          toast.success("Image downloaded successfully!");
+        } else if (type === 'pdf') {
+          // Use html2canvas and jsPDF directly for better reliability
+          const canvas = await html2canvas(element, {
+            scale: 2,
+            useCORS: true,
+            backgroundColor: '#ffffff',
+            logging: false,
+          });
+
+          const imgData = canvas.toDataURL('image/png');
+          const pdf = new jsPDF({
+            orientation: 'portrait',
+            unit: 'mm',
+            format: 'a4'
+          });
+
+          const pdfWidth = pdf.internal.pageSize.getWidth();
+          const pdfHeight = pdf.internal.pageSize.getHeight();
+          const imgWidth = canvas.width;
+          const imgHeight = canvas.height;
+          const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+          const imgX = (pdfWidth - imgWidth * ratio) / 2;
+          const imgY = 0;
+
+          pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
+          pdf.save(`biodata-${profile.personal.fullName || 'untitled'}.pdf`);
+          toast.success("PDF downloaded successfully!");
         }
-      }, 100);
+      } catch (error) {
+        console.error('Error downloading:', error);
+        toast.error("Download failed", {
+          description: error instanceof Error ? error.message : "Please try again or check your browser console."
+        });
+      } finally {
+        if (downloadTimeoutRef.current) {
+          clearTimeout(downloadTimeoutRef.current);
+          downloadTimeoutRef.current = null;
+        }
+        setIsDownloading(false);
+      }
   };
 
   const resetData = () => {
-      if(window.confirm("This will reset all details to the sample data. Continue?")) {
-        setProfile(INITIAL_PROFILE);
-      }
+      setShowResetDialog(true);
+  };
+
+  const handleResetConfirm = () => {
+      useProfileStore.getState().resetProfile();
+      setShowResetDialog(false);
+      toast.success("Data reset successfully", {
+        description: "All details have been reset to sample data."
+      });
   };
 
   const TemplateCard = ({ type, name, colorClass, badge }: { type: TemplateType, name: string, colorClass: string, badge?: string }) => (
@@ -205,7 +236,17 @@ export const EditorPage: React.FC = () => {
   );
 
   return (
-    <div className="h-screen bg-slate-50 flex flex-col font-sans overflow-hidden text-slate-800">
+    <>
+      <Helmet>
+        <title>Create Biodata - WedScribe Editor | Premium Biodata Maker</title>
+        <meta name="description" content="Create and customize your wedding biodata with WedScribe editor. Choose from 30+ premium templates, edit details, and download as PDF or PNG instantly." />
+        <meta name="robots" content="noindex, nofollow" />
+        <meta property="og:title" content="Create Biodata - WedScribe Editor" />
+        <meta property="og:description" content="Create and customize your wedding biodata with WedScribe editor. Choose from 30+ premium templates and download instantly." />
+        <meta property="og:url" content="https://studio.designbyte.dev/editor" />
+        <link rel="canonical" href="https://studio.designbyte.dev/editor" />
+      </Helmet>
+      <div className="h-screen bg-slate-50 flex flex-col font-sans overflow-hidden text-slate-800">
       
       <div className="no-print">
         <Header onBack={handleBack} onReset={resetData} onPrint={handlePrint} onDownload={handleDownload} />
@@ -219,8 +260,6 @@ export const EditorPage: React.FC = () => {
               setDesktopTab={setDesktopTab} 
               activeTemplate={activeTemplate} 
               setActiveTemplate={setActiveTemplate}
-              profile={profile}
-              setProfile={setProfile}
               onGenerateBio={handleGenerateBio}
               isGeneratingBio={isGeneratingBio}
               handleImageUpload={handleImageUpload}
@@ -248,8 +287,6 @@ export const EditorPage: React.FC = () => {
             <div className="md:hidden absolute inset-0 bg-white z-20 overflow-y-auto p-4 pb-24 animate-in slide-in-from-bottom-4 no-print">
                 <h2 className="text-lg font-bold font-serif mb-6 px-1">Edit Biodata</h2>
                 <EditorContent 
-                    profile={profile} 
-                    setProfile={setProfile} 
                     onGenerateBio={handleGenerateBio} 
                     isGeneratingBio={isGeneratingBio}
                     handleImageUpload={handleImageUpload}
@@ -265,14 +302,59 @@ export const EditorPage: React.FC = () => {
         
       {/* Download Loading Overlay */}
       {isDownloading && (
-        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm">
+        <div 
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm"
+          onClick={(e) => {
+            // Allow clicking to close if user wants to cancel
+            if (e.target === e.currentTarget) {
+              setIsDownloading(false);
+              if (downloadTimeoutRef.current) {
+                clearTimeout(downloadTimeoutRef.current);
+                downloadTimeoutRef.current = null;
+              }
+              toast.info("Download cancelled");
+            }
+          }}
+        >
             <div className="bg-white p-8 rounded-2xl shadow-2xl flex flex-col items-center max-w-sm text-center animate-in zoom-in-95 duration-300">
                 <div className="w-16 h-16 border-4 border-indigo-100 border-t-indigo-600 rounded-full animate-spin mb-6"></div>
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Generating Files...</h3>
-                <p className="text-slate-500">Please wait while we prepare your high-quality download. This may take a moment.</p>
+                <p className="text-slate-500 mb-4">Please wait while we prepare your high-quality download. This may take a moment.</p>
+                <button
+                  onClick={() => {
+                    setIsDownloading(false);
+                    if (downloadTimeoutRef.current) {
+                      clearTimeout(downloadTimeoutRef.current);
+                      downloadTimeoutRef.current = null;
+                    }
+                    toast.info("Download cancelled");
+                  }}
+                  className="text-sm text-slate-500 hover:text-slate-700 underline"
+                >
+                  Cancel
+                </button>
             </div>
         </div>
       )}
+
+      {/* Reset Confirmation Dialog */}
+      <AlertDialog open={showResetDialog} onOpenChange={setShowResetDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Reset All Data?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This will reset all details to the sample data. This action cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleResetConfirm} className="bg-red-600 hover:bg-red-700">
+              Reset
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
+    </>
   );
 };

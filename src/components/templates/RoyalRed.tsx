@@ -32,35 +32,35 @@ export const RoyalRed: React.FC<Props> = ({ profile }) => {
                   <div className="w-1/2 flex flex-col items-end text-right gap-8 pt-4">
                       <div>
                            <h3 className="text-[#fcd34d] font-bold uppercase tracking-widest text-sm mb-3 border-b border-[#fcd34d]/30 pb-1 inline-block">{t('section.personal')}</h3>
-                           <div className="space-y-1">
-                               <p>{personal.dateOfBirth}, {personal.timeOfBirth}</p>
-                               <p>{personal.placeOfBirth}</p>
-                               <p>{personal.height}, {personal.weight}</p>
-                               <p>{personal.bloodGroup}, {personal.complexion}</p>
-                               <p>{personal.maritalStatus}</p>
-                               <p>{personal.religion}, {personal.caste}, {personal.subCaste}</p>
-                               <p>{personal.gothra}</p>
-                               <p>{personal.rashi}, {personal.nakshatra}</p>
+                           <div className="space-y-1 text-sm">
+                               {personal.dateOfBirth && <p>{personal.dateOfBirth}{personal.timeOfBirth ? `, ${personal.timeOfBirth}` : ''}</p>}
+                               {personal.placeOfBirth && <p>{personal.placeOfBirth}</p>}
+                               {personal.height && personal.weight && <p>{personal.height}, {personal.weight}</p>}
+                               {personal.bloodGroup && personal.complexion && <p>{personal.bloodGroup}, {personal.complexion}</p>}
+                               {personal.maritalStatus && <p>{personal.maritalStatus}</p>}
+                               {personal.religion && <p>{personal.religion}{personal.caste ? `, ${personal.caste}` : ''}{personal.subCaste ? `, ${personal.subCaste}` : ''}</p>}
+                               {personal.gothra && <p>{personal.gothra}</p>}
+                               {personal.rashi && personal.nakshatra && <p>{personal.rashi}, {personal.nakshatra}</p>}
                                {personal.manglik === 'Yes' && <p>{t('field.manglik')}</p>}
                            </div>
                       </div>
                       <div>
                            <h3 className="text-[#fcd34d] font-bold uppercase tracking-widest text-sm mb-3 border-b border-[#fcd34d]/30 pb-1 inline-block">{t('section.education')}</h3>
-                           <div className="space-y-1">
-                               <p className="font-bold whitespace-pre-line">{education.education}</p>
-                               <p>{education.occupation}</p>
-                               <p>{education.company}</p>
-                               <p>{education.income}</p>
+                           <div className="space-y-1 text-sm">
+                               {education.education && <p className="font-bold whitespace-pre-line">{education.education}</p>}
+                               {education.occupation && <p>{education.occupation}</p>}
+                               {education.company && <p>{education.company}</p>}
+                               {education.income && <p>{education.income}</p>}
                            </div>
                       </div>
                       <div>
                            <h3 className="text-[#fcd34d] font-bold uppercase tracking-widest text-sm mb-3 border-b border-[#fcd34d]/30 pb-1 inline-block">{t('section.family')}</h3>
-                           <div className="space-y-1">
-                               <p>{t('field.fatherName')}: {family.fatherName} ({family.fatherOccupation})</p>
-                               <p>{t('field.motherName')}: {family.motherName} ({family.motherOccupation})</p>
-                               <p>{family.nativePlace}, {family.familyType}</p>
-                               <p>{family.familyValues}</p>
-                               <p className="whitespace-pre-line">{family.siblings}</p>
+                           <div className="space-y-1 text-sm">
+                               {family.fatherName && <p>{t('field.fatherName')}: {family.fatherName}{family.fatherOccupation ? ` (${family.fatherOccupation})` : ''}</p>}
+                               {family.motherName && <p>{t('field.motherName')}: {family.motherName}{family.motherOccupation ? ` (${family.motherOccupation})` : ''}</p>}
+                               {family.nativePlace && family.familyType && <p>{family.nativePlace}, {family.familyType}</p>}
+                               {family.familyValues && <p>{family.familyValues}</p>}
+                               {family.siblings && <p className="whitespace-pre-line">{family.siblings}</p>}
                            </div>
                       </div>
                   </div>
@@ -76,10 +76,10 @@ export const RoyalRed: React.FC<Props> = ({ profile }) => {
 
                        <div>
                            <h3 className="text-[#fcd34d] font-bold uppercase tracking-widest text-sm mb-3 border-b border-[#fcd34d]/30 pb-1 inline-block">{t('section.contact')}</h3>
-                           <div className="space-y-1 text-left">
-                              <p>{contact.contactNumber}</p>
-                              <p>{contact.email}</p>
-                              <p className="text-sm opacity-80 mt-2 max-w-[200px] whitespace-pre-line">{contact.address}</p>
+                           <div className="space-y-1 text-left text-sm">
+                              {contact.contactNumber && <p>{contact.contactNumber}</p>}
+                              {contact.email && <p>{contact.email}</p>}
+                              {contact.address && <p className="opacity-80 mt-2 max-w-[200px] whitespace-pre-line">{contact.address}</p>}
                            </div>
                        </div>
                   </div>

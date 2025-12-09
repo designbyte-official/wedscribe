@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { UserCircle, PenTool, GraduationCap, Users, Phone, Wand2 } from 'lucide-react';
 import { BiodataProfile } from '@/types';
 import { FormSection } from '@/components/common/FormSection';
@@ -8,51 +8,71 @@ import { Textarea } from '@/components/ui/Textarea';
 import { Select } from '@/components/ui/Select';
 import { motion } from 'motion/react';
 import { useLanguage } from '@/context/LanguageContext';
+import { useProfileStore } from '@/store/profileStore';
 
 interface EditorContentProps {
-  profile: BiodataProfile;
-  setProfile: React.Dispatch<React.SetStateAction<BiodataProfile>>;
   onGenerateBio: () => void;
   isGeneratingBio: boolean;
   handleImageUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
+interface InputGroupProps {
+  label: string;
+  value: string;
+  section: keyof BiodataProfile;
+  field: string;
+  type?: 'text' | 'textarea' | 'select' | 'date' | 'time';
+  placeholder?: string;
+  options?: string[];
+}
+
+// Move InputGroup outside to prevent recreation on every render
+const InputGroup: React.FC<InputGroupProps> = React.memo(({ 
+  label, 
+  value, 
+  section, 
+  field, 
+  type = "text", 
+  placeholder = "", 
+  options = [] 
+}) => {
+  const updateSection = useProfileStore((state) => state.updateSection);
+  
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    updateSection(section, field, e.target.value);
+  }, [section, field, updateSection]);
+
+  const commonProps = {
+    label,
+    value: value || '',
+    placeholder,
+    onChange: handleChange,
+  };
+
+  if (type === 'select') {
+    return <Select {...commonProps} options={options} />;
+  } else if (type === 'textarea') {
+    return <Textarea {...commonProps} className="h-24" />;
+  } else {
+    return <Input {...commonProps} type={type} />;
+  }
+});
+
+InputGroup.displayName = 'InputGroup';
+
 export const EditorContent: React.FC<EditorContentProps> = ({ 
-  profile, 
-  setProfile, 
   onGenerateBio, 
   isGeneratingBio,
   handleImageUpload
 }) => {
-
-  const updateSection = (section: keyof BiodataProfile, field: string, value: string) => {
-    setProfile(prev => ({
-      ...prev,
-      [section]: {
-        ...prev[section],
-        [field]: value
-      }
-    }));
-  };
-
-  const InputGroup = ({ label, value, section, field, type = "text", placeholder = "", options = [] as string[] }: any) => {
-    const commonProps = {
-      label,
-      value,
-      placeholder,
-      onChange: (e: any) => updateSection(section as any, field, e.target.value),
-    };
-
-    if (type === 'select') {
-      return <Select {...commonProps} options={options} />;
-    } else if (type === 'textarea') {
-      return <Textarea {...commonProps} className="h-24" />;
-    } else {
-      return <Input {...commonProps} type={type} />;
-    }
-  };
+  const profile = useProfileStore((state) => state.profile);
+  const updateSection = useProfileStore((state) => state.updateSection);
 
   const { t } = useLanguage();
+
+  const handleAboutMeChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    updateSection('education', 'aboutMe', e.target.value);
+  }, [updateSection]);
 
   return (
       <div className="space-y-4 pb-20 md:pb-0">
@@ -123,7 +143,7 @@ export const EditorContent: React.FC<EditorContentProps> = ({
                     </div>
                     <Textarea
                     value={profile.education.aboutMe}
-                    onChange={(e) => updateSection('education', 'aboutMe', e.target.value)}
+                    onChange={handleAboutMeChange}
                     className="h-32 leading-relaxed"
                     placeholder={t('placeholder.summary')}
                     />

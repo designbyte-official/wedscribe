@@ -1,7 +1,6 @@
 import React from 'react';
 import { LayoutGrid, PenTool, Heart, ChevronRight } from 'lucide-react';
 import { TemplateType } from '@/types';
-import { BiodataProfile } from '@/types';
 import { EditorContent } from './editor-content';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -10,8 +9,6 @@ interface SidebarProps {
   setDesktopTab: (tab: 'templates' | 'edit') => void;
   activeTemplate: TemplateType;
   setActiveTemplate: (type: TemplateType) => void;
-  profile: BiodataProfile;
-  setProfile: React.Dispatch<React.SetStateAction<BiodataProfile>>;
   onGenerateBio: () => void;
   isGeneratingBio: boolean;
   handleImageUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -22,8 +19,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
   setDesktopTab, 
   activeTemplate, 
   setActiveTemplate,
-  profile,
-  setProfile,
   onGenerateBio,
   isGeneratingBio,
   handleImageUpload
@@ -162,8 +157,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
                         transition={{ duration: 0.2 }}
                     >
                          <EditorContent 
-                            profile={profile} 
-                            setProfile={setProfile} 
                             onGenerateBio={onGenerateBio} 
                             isGeneratingBio={isGeneratingBio}
                             handleImageUpload={handleImageUpload}

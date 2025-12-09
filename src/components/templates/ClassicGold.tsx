@@ -14,11 +14,11 @@ export const ClassicGold: React.FC<Props> = ({ profile }) => {
   return (
     <div className="w-full h-full bg-gradient-to-br from-amber-50 to-white text-slate-900 font-serif">
       <div className="h-full grid grid-cols-[0.38fr_0.62fr]">
-        <div className="bg-white/80 border-r border-amber-100 p-8 flex flex-col gap-6">
-          <div className="space-y-2 text-left">
-            <p className="text-xs uppercase tracking-[0.25em] text-amber-500 font-semibold">{t('common.marriageBiodata')}</p>
-            <h1 className="text-3xl font-bold leading-tight text-amber-800">{personal.fullName}</h1>
-            <p className="text-sm uppercase tracking-[0.2em] text-amber-600">{education.occupation}</p>
+        <div className="bg-white/80 border-r border-amber-100 p-6 flex flex-col gap-4">
+          <div className="space-y-1.5 text-left">
+            <p className="text-[10px] uppercase tracking-[0.25em] text-amber-500 font-semibold">{t('common.marriageBiodata')}</p>
+            <h1 className="text-2xl font-bold leading-tight text-amber-800">{personal.fullName}</h1>
+            <p className="text-xs uppercase tracking-[0.2em] text-amber-600">{education.occupation}</p>
           </div>
 
           <div className="w-full aspect-[3/4] rounded-xl border border-amber-100 overflow-hidden shadow-sm">
@@ -29,7 +29,18 @@ export const ClassicGold: React.FC<Props> = ({ profile }) => {
             )}
           </div>
 
-          <div className="space-y-3 text-sm">
+          <div className="rounded-lg border border-amber-100 bg-amber-50/50 p-4 space-y-2">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-amber-600 font-semibold">{t('section.astrology')}</p>
+            <div className="space-y-1.5 text-xs text-slate-700">
+              <div className="flex justify-between"><span className="text-amber-600">{t('field.rashi')}</span><span className="font-medium">{personal.rashi}</span></div>
+              <div className="flex justify-between"><span className="text-amber-600">{t('field.nakshatra')}</span><span className="font-medium">{personal.nakshatra}</span></div>
+              <div className="flex justify-between"><span className="text-amber-600">{t('field.gothra')}</span><span className="font-medium">{personal.gothra}</span></div>
+              <div className="flex justify-between"><span className="text-amber-600">{t('field.manglik')}</span><span className="font-medium">{personal.manglik}</span></div>
+            </div>
+          </div>
+
+          <div className="space-y-2 text-xs">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-amber-600 font-semibold">{t('section.contact')}</p>
             <p className="font-semibold text-amber-700">{contact.contactNumber}</p>
             <p className="text-slate-600 break-words">{contact.email}</p>
             <p className="text-slate-500 whitespace-pre-line leading-relaxed">{contact.address}</p>

@@ -20,13 +20,13 @@ export const NoorCrescent: React.FC<Props> = ({ profile }) => {
 
       <div className="relative z-10 grid grid-cols-[0.45fr_0.55fr] h-full">
         {/* Left */}
-        <div className="border-r border-emerald-400/20 p-10 flex flex-col items-center gap-8">
-          <div className="w-full flex items-center justify-between text-sm uppercase tracking-[0.25em] font-semibold text-emerald-200">
+        <div className="border-r border-emerald-400/20 p-6 flex flex-col gap-4">
+          <div className="w-full flex items-center justify-between text-xs uppercase tracking-[0.25em] font-semibold text-emerald-200">
             <span>{t('common.marriageBiodata')}</span>
-            <Moon size={20} className="text-emerald-100" />
+            <Moon size={16} className="text-emerald-100" />
           </div>
 
-          <div className="w-48 h-56 rounded-2xl overflow-hidden border-2 border-emerald-300/30 shadow-[0_12px_45px_-10px_rgba(0,0,0,0.4)]">
+          <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden border-2 border-emerald-300/30 shadow-[0_12px_45px_-10px_rgba(0,0,0,0.4)]">
             {personal.photoUrl ? (
               <img src={personal.photoUrl} alt="Profile" className="w-full h-full object-cover" />
             ) : (
@@ -34,17 +34,29 @@ export const NoorCrescent: React.FC<Props> = ({ profile }) => {
             )}
           </div>
 
-          <div className="space-y-3 text-center">
-            <h1 className="text-4xl font-semibold tracking-wide">{personal.fullName}</h1>
+          <div className="space-y-1.5 text-left">
+            <h1 className="text-2xl font-semibold tracking-wide">{personal.fullName}</h1>
             <p className="text-emerald-200/80 uppercase tracking-[0.2em] text-xs">{education.occupation}</p>
-            <p className="text-emerald-200/70 text-sm">{education.company}</p>
+            {education.company && <p className="text-emerald-200/70 text-xs">{education.company}</p>}
           </div>
 
-          <div className="w-full rounded-2xl border border-emerald-400/20 bg-emerald-900/40 p-6 space-y-3">
-            <h3 className="text-emerald-100 uppercase tracking-[0.2em] text-xs font-semibold mb-2">{t('section.contact')}</h3>
-            <ContactRow icon={Phone} value={contact.contactNumber} />
-            <ContactRow icon={Mail} value={contact.email} />
-            <ContactRow icon={MapPin} value={contact.address} />
+          <div className="w-full rounded-2xl border border-emerald-400/20 bg-emerald-900/40 p-4 space-y-2">
+            <h3 className="text-emerald-100 uppercase tracking-[0.2em] text-[10px] font-semibold mb-1.5">{t('section.astrology')}</h3>
+            <div className="space-y-1.5 text-xs text-emerald-50/90">
+              {personal.rashi && <div className="flex justify-between"><span className="text-emerald-200">{t('field.rashi')}</span><span>{personal.rashi}</span></div>}
+              {personal.nakshatra && <div className="flex justify-between"><span className="text-emerald-200">{t('field.nakshatra')}</span><span>{personal.nakshatra}</span></div>}
+              {personal.gothra && <div className="flex justify-between"><span className="text-emerald-200">{t('field.gothra')}</span><span>{personal.gothra}</span></div>}
+              {personal.manglik && <div className="flex justify-between"><span className="text-emerald-200">{t('field.manglik')}</span><span>{personal.manglik}</span></div>}
+            </div>
+          </div>
+
+          <div className="w-full rounded-2xl border border-emerald-400/20 bg-emerald-900/40 p-4 space-y-2">
+            <h3 className="text-emerald-100 uppercase tracking-[0.2em] text-[10px] font-semibold mb-1.5">{t('section.contact')}</h3>
+            <div className="space-y-2">
+              <ContactRow icon={Phone} value={contact.contactNumber} />
+              <ContactRow icon={Mail} value={contact.email} />
+              <ContactRow icon={MapPin} value={contact.address} />
+            </div>
           </div>
         </div>
 
@@ -85,8 +97,8 @@ export const NoorCrescent: React.FC<Props> = ({ profile }) => {
             <div className="rounded-2xl bg-emerald-900/30 border border-emerald-400/20 p-6 space-y-4 shadow-inner">
               <SectionTitle title={t('section.family')} lineClass="bg-emerald-400/40" className="items-center" />
               <div className="space-y-3">
-                <DetailItem label={t('field.fatherName')} value={`${family.fatherName} (${family.fatherOccupation})`} />
-                <DetailItem label={t('field.motherName')} value={`${family.motherName} (${family.motherOccupation})`} />
+                <DetailItem label={t('field.fatherName')} value={family.fatherName && family.fatherOccupation ? `${family.fatherName} (${family.fatherOccupation})` : family.fatherName || family.fatherOccupation} />
+                <DetailItem label={t('field.motherName')} value={family.motherName && family.motherOccupation ? `${family.motherName} (${family.motherOccupation})` : family.motherName || family.motherOccupation} />
                 <DetailItem label={t('field.familyType')} value={family.familyType} />
                 <DetailItem label={t('field.values')} value={family.familyValues} />
                 <DetailItem label={t('field.siblings')} value={family.siblings} />

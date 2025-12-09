@@ -15,38 +15,55 @@ export const SkyBlossom: React.FC<Props> = ({ profile }) => {
   return (
     <div className="w-full h-full bg-white flex flex-row font-lato overflow-hidden">
       {/* Left Sidebar - 35% */}
-      <div className="w-[35%] bg-sky-900 text-white p-7 flex flex-col items-center text-center relative gap-4">
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_left,_var(--tw-gradient-stops))] from-sky-800 to-sky-900 opacity-50"></div>
+      <div className="w-[35%] bg-sky-900 text-white p-5 flex flex-col relative">
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_left,var(--tw-gradient-stops))] from-sky-800 to-sky-900 opacity-50"></div>
           
-          <div className="relative z-10 w-full flex flex-col items-center h-full">
-              <div className="w-32 h-32 rounded-full border-4 border-sky-400/30 p-1 mt-2 mb-3 shrink-0">
+          <div className="relative z-10 w-full flex flex-col h-full gap-3">
+              <div className="w-28 h-28 rounded-full border-4 border-sky-400/30 p-1 mx-auto mb-2 shrink-0">
                   {personal.photoUrl ? (
                       <img src={personal.photoUrl} className="w-full h-full rounded-full object-cover shadow-lg" alt="Profile" />
                   ) : <PlaceholderImage className="w-full h-full rounded-full bg-sky-800 text-sky-400/50" />}
               </div>
 
-              <div className="w-full space-y-3 grow flex flex-col justify-start">
+              <div className="w-full space-y-2.5 grow flex flex-col">
                   <div>
-                      <h2 className="text-lg font-cinzel font-bold text-sky-100 mb-3 border-b border-sky-700 pb-2 w-full">{t('section.contact')}</h2>
-                      <div className="w-full space-y-2 text-left px-2 text-sm">
+                      <h2 className="text-sm font-cinzel font-bold text-sky-100 mb-2 border-b border-sky-700 pb-1.5">{t('section.contact')}</h2>
+                      <div className="w-full space-y-1.5 text-left text-xs">
                           <ContactRow icon={Phone} value={contact.contactNumber} />
                           <ContactRow icon={Mail} value={contact.email} />
                           <ContactRow icon={MapPin} value={contact.address} />
                       </div>
                   </div>
 
-                  <div className="w-full text-left px-2">
-                      <h2 className="text-base font-cinzel font-bold text-sky-100 mb-2 flex items-center gap-2">
-                          <Star size={16} className="text-sky-400"/> {t('section.habits')}
+                  <div>
+                      <h2 className="text-sm font-cinzel font-bold text-sky-100 mb-2 border-b border-sky-700 pb-1.5 flex items-center gap-1.5">
+                          <Star size={14} className="text-sky-400"/> {t('section.astrology')}
                       </h2>
-                      <div className="space-y-1.5 text-xs text-sky-100/80 leading-relaxed">
-                          <p>• {t('field.rashi')}: {personal.rashi}</p>
-                          <p>• {t('field.nakshatra')}: {personal.nakshatra}</p>
-                          {personal.manglik === 'Yes' && <p>• {t('field.manglik')}</p>}
-                          <p>• {profile.family.familyValues} {t('field.values')}</p>
-                          <p>• {profile.family.familyType} {t('field.familyType')}</p>
-                          <p>• {personal.religion}, {personal.caste}, {personal.subCaste}</p>
-                          <p>• <span className="inline-block">{t('field.maritalStatus')}: {personal.maritalStatus}</span></p>
+                      <div className="space-y-1 text-xs text-sky-100/80">
+                          {personal.rashi && <p>• {t('field.rashi')}: {personal.rashi}</p>}
+                          {personal.nakshatra && <p>• {t('field.nakshatra')}: {personal.nakshatra}</p>}
+                          {personal.gothra && <p>• {t('field.gothra')}: {personal.gothra}</p>}
+                          {personal.manglik && <p>• {t('field.manglik')}: {personal.manglik}</p>}
+                      </div>
+                  </div>
+
+                  <div>
+                      <h2 className="text-sm font-cinzel font-bold text-sky-100 mb-2 border-b border-sky-700 pb-1.5">{t('section.habits')}</h2>
+                      <div className="space-y-1 text-xs text-sky-100/80">
+                          {personal.maritalStatus && <p>• {t('field.maritalStatus')}: {personal.maritalStatus}</p>}
+                          {family.familyValues && <p>• {family.familyValues} {t('field.values')}</p>}
+                          {family.familyType && <p>• {family.familyType} {t('field.familyType')}</p>}
+                          {personal.religion && <p>• {personal.religion}{personal.caste ? `, ${personal.caste}` : ''}{personal.subCaste ? `, ${personal.subCaste}` : ''}</p>}
+                      </div>
+                  </div>
+
+                  <div>
+                      <h2 className="text-sm font-cinzel font-bold text-sky-100 mb-2 border-b border-sky-700 pb-1.5">Quick Info</h2>
+                      <div className="space-y-1 text-xs text-sky-100/80">
+                          {personal.height && <p>• {t('field.height')}: {personal.height}</p>}
+                          {personal.weight && <p>• {t('field.weight')}: {personal.weight}</p>}
+                          {personal.bloodGroup && <p>• {t('field.bloodGroup')}: {personal.bloodGroup}</p>}
+                          {personal.complexion && <p>• {t('field.complexion')}: {personal.complexion}</p>}
                       </div>
                   </div>
               </div>
@@ -75,10 +92,6 @@ export const SkyBlossom: React.FC<Props> = ({ profile }) => {
                       <DetailItem label={t('field.dob')} value={`${personal.dateOfBirth}`} icon={Calendar} />
                       <DetailItem label={t('field.tob')} value={personal.timeOfBirth} icon={Clock} />
                       <DetailItem label={t('field.pob')} value={personal.placeOfBirth} icon={MapPin} />
-                      <DetailItem label={t('field.height')} value={personal.height} icon={Ruler} />
-                      <DetailItem label={t('field.weight')} value={personal.weight} icon={Ruler} />
-                      <DetailItem label={t('field.bloodGroup')} value={personal.bloodGroup} icon={Activity} />
-                      <DetailItem label={t('field.complexion')} value={personal.complexion} icon={User} />
                       <DetailItem label={t('field.religion')} value={personal.religion} icon={Star} />
                       <DetailItem label={t('field.caste')} value={personal.caste} icon={Users} />
                       <DetailItem label={t('field.gothra')} value={personal.gothra} icon={User} />

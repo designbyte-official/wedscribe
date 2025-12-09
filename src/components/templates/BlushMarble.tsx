@@ -14,10 +14,10 @@ export const BlushMarble: React.FC<Props> = ({ profile }) => {
   return (
     <div className="w-full h-full bg-gradient-to-br from-white via-rose-50 to-rose-100 text-rose-900 font-serif">
       <div className="grid grid-cols-[0.36fr_0.64fr] h-full">
-        <div className="p-8 border-r border-rose-100 space-y-6">
-          <div className="space-y-2">
-            <p className="text-[11px] uppercase tracking-[0.3em] text-rose-500 font-semibold">{t('common.marriageBiodata')}</p>
-            <h1 className="text-3xl font-bold leading-tight">{personal.fullName}</h1>
+        <div className="p-6 border-r border-rose-100 space-y-4">
+          <div className="space-y-1.5">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-rose-500 font-semibold">{t('common.marriageBiodata')}</p>
+            <h1 className="text-2xl font-bold leading-tight">{personal.fullName}</h1>
             <p className="text-xs uppercase tracking-[0.2em] text-rose-500">{education.occupation}</p>
           </div>
           <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden border border-rose-100 shadow-sm bg-white/60">
@@ -27,10 +27,20 @@ export const BlushMarble: React.FC<Props> = ({ profile }) => {
               <PlaceholderImage className="w-full h-full text-rose-200" />
             )}
           </div>
-          <div className="space-y-2 text-sm">
-            <p className="font-semibold text-rose-700">{contact.contactNumber}</p>
-            <p className="text-rose-700 break-words">{contact.email}</p>
-            <p className="text-rose-700/80 whitespace-pre-line leading-relaxed">{contact.address}</p>
+          <div className="rounded-xl border border-rose-100 bg-rose-50/50 p-4 space-y-2">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-rose-600 font-semibold">{t('section.astrology')}</p>
+            <div className="space-y-1.5 text-xs text-rose-800">
+              {personal.rashi && <div className="flex justify-between"><span className="text-rose-600">{t('field.rashi')}</span><span>{personal.rashi}</span></div>}
+              {personal.nakshatra && <div className="flex justify-between"><span className="text-rose-600">{t('field.nakshatra')}</span><span>{personal.nakshatra}</span></div>}
+              {personal.gothra && <div className="flex justify-between"><span className="text-rose-600">{t('field.gothra')}</span><span>{personal.gothra}</span></div>}
+              {personal.manglik && <div className="flex justify-between"><span className="text-rose-600">{t('field.manglik')}</span><span>{personal.manglik}</span></div>}
+            </div>
+          </div>
+          <div className="space-y-2 text-xs">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-rose-600 font-semibold">{t('section.contact')}</p>
+            {contact.contactNumber && <p className="font-semibold text-rose-700">{contact.contactNumber}</p>}
+            {contact.email && <p className="text-rose-700 break-words">{contact.email}</p>}
+            {contact.address && <p className="text-rose-700/80 whitespace-pre-line leading-relaxed">{contact.address}</p>}
           </div>
         </div>
 

@@ -14,10 +14,10 @@ export const NavyMinimal: React.FC<Props> = ({ profile }) => {
   return (
     <div className="w-full h-full bg-white text-slate-900 font-sans">
       <div className="grid grid-cols-[0.32fr_0.68fr] h-full">
-        <div className="bg-slate-900 text-white p-8 flex flex-col gap-6">
+        <div className="bg-slate-900 text-white p-6 flex flex-col gap-4">
           <div className="space-y-1">
-            <p className="text-[11px] uppercase tracking-[0.32em] text-slate-300">{t('common.marriageBiodata')}</p>
-            <h1 className="text-3xl font-extrabold leading-tight">{personal.fullName}</h1>
+            <p className="text-[10px] uppercase tracking-[0.32em] text-slate-300">{t('common.marriageBiodata')}</p>
+            <h1 className="text-2xl font-extrabold leading-tight">{personal.fullName}</h1>
             <p className="text-xs uppercase tracking-[0.2em] text-slate-400">{education.occupation}</p>
           </div>
           <div className="w-full aspect-[3/4] rounded-xl overflow-hidden border border-slate-700 bg-slate-800">
@@ -27,7 +27,17 @@ export const NavyMinimal: React.FC<Props> = ({ profile }) => {
               <PlaceholderImage className="w-full h-full text-slate-600" />
             )}
           </div>
-          <div className="space-y-2 text-sm">
+          <div className="rounded-lg border border-slate-700 bg-slate-800/60 p-4 space-y-2">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-slate-300 font-semibold">{t('section.astrology')}</p>
+            <div className="space-y-1.5 text-xs text-slate-200">
+              <div className="flex justify-between"><span className="text-slate-400">{t('field.rashi')}</span><span>{personal.rashi}</span></div>
+              <div className="flex justify-between"><span className="text-slate-400">{t('field.nakshatra')}</span><span>{personal.nakshatra}</span></div>
+              <div className="flex justify-between"><span className="text-slate-400">{t('field.gothra')}</span><span>{personal.gothra}</span></div>
+              <div className="flex justify-between"><span className="text-slate-400">{t('field.manglik')}</span><span>{personal.manglik}</span></div>
+            </div>
+          </div>
+          <div className="space-y-2 text-xs">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-slate-300 font-semibold">{t('section.contact')}</p>
             <p className="font-semibold">{contact.contactNumber}</p>
             <p className="text-slate-200 break-words">{contact.email}</p>
             <p className="text-slate-300 whitespace-pre-line leading-relaxed">{contact.address}</p>

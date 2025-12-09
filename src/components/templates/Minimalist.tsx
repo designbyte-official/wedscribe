@@ -28,11 +28,11 @@ export const Minimalist: React.FC<Props> = ({ profile }) => {
       <div className="flex grow gap-16">
           {/* Left Column 25% - Photo & Metrics */}
           <div className="w-[25%] flex flex-col">
-               <div className="w-full aspect-square bg-gray-100 mb-8 grayscale contrast-125">
+               <div className="w-full aspect-square bg-gray-100 mb-6 grayscale contrast-125">
                    {personal.photoUrl ? <img src={personal.photoUrl} className="w-full h-full object-cover" alt="Profile" /> : <PlaceholderImage className="w-full h-full" />}
                </div>
 
-               <div className="space-y-6">
+               <div className="space-y-4">
                   <div className="border-l-4 border-black pl-4">
                       <span className="block text-xs font-black uppercase tracking-widest text-gray-400 mb-1">{t('field.height')}</span>
                       <span className="text-xl font-bold">{personal.height}</span>
@@ -60,6 +60,14 @@ export const Minimalist: React.FC<Props> = ({ profile }) => {
                    <div className="border-l-4 border-black pl-4">
                        <span className="block text-xs font-black uppercase tracking-widest text-gray-400 mb-1">{t('field.rashi')}</span>
                        <span className="text-lg font-bold">{personal.rashi}</span>
+                   </div>
+                   <div className="border-l-4 border-black pl-4">
+                       <span className="block text-xs font-black uppercase tracking-widest text-gray-400 mb-1">{t('field.religion')}</span>
+                       <span className="text-lg font-bold">{personal.religion}</span>
+                   </div>
+                   <div className="border-l-4 border-black pl-4">
+                       <span className="block text-xs font-black uppercase tracking-widest text-gray-400 mb-1">{t('field.caste')}</span>
+                       <span className="text-lg font-bold">{personal.caste}</span>
                    </div>
                </div>
           </div>

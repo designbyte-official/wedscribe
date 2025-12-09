@@ -15,7 +15,7 @@ export const SectionTitle = ({ title, className = "", lineClass = "bg-gray-200" 
 );
 
 export const DetailItem = ({ label, value, icon: Icon, className = "", labelClass = "", valueClass = "" }: any) => {
-    if (!value) return null;
+    if (!value || value === 'undefined' || value === 'null' || (typeof value === 'string' && value.trim() === '')) return null;
     return (
         <div className={`flex flex-col ${className}`}>
             <div className="flex items-center gap-1.5 mb-1 opacity-70">

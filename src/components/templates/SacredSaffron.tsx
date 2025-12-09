@@ -32,7 +32,7 @@ export const SacredSaffron: React.FC<Props> = ({ profile }) => {
             </div>
           </div>
 
-          <div className="p-6 flex flex-col gap-6">
+          <div className="p-6 flex flex-col gap-4">
             <div className="w-full aspect-[3/4] overflow-hidden rounded-xl border border-amber-100 shadow-sm bg-amber-50">
               {personal.photoUrl ? (
                 <img src={personal.photoUrl} className="w-full h-full object-cover" alt="Profile" />
@@ -41,14 +41,26 @@ export const SacredSaffron: React.FC<Props> = ({ profile }) => {
               )}
             </div>
 
-            <div className="rounded-xl border border-amber-100 bg-amber-50/50 p-4 space-y-3 text-sm">
-              <div className="flex items-center gap-2 font-semibold text-amber-800">
+            <div className="rounded-xl border border-amber-100 bg-amber-50/50 p-4 space-y-2.5 text-xs">
+              <div className="flex items-center gap-2 font-semibold text-amber-800 mb-2">
+                <Sun size={14} className="text-amber-600" /> {t('section.astrology')}
+              </div>
+              <div className="space-y-1.5 text-amber-900/80">
+                <div className="flex justify-between"><span className="text-amber-600">{t('field.rashi')}</span><span className="font-medium">{personal.rashi}</span></div>
+                <div className="flex justify-between"><span className="text-amber-600">{t('field.nakshatra')}</span><span className="font-medium">{personal.nakshatra}</span></div>
+                <div className="flex justify-between"><span className="text-amber-600">{t('field.gothra')}</span><span className="font-medium">{personal.gothra}</span></div>
+                <div className="flex justify-between"><span className="text-amber-600">{t('field.manglik')}</span><span className="font-medium">{personal.manglik}</span></div>
+              </div>
+            </div>
+
+            <div className="rounded-xl border border-amber-100 bg-amber-50/50 p-4 space-y-2.5 text-xs">
+              <div className="flex items-center gap-2 font-semibold text-amber-800 mb-2">
                 <Heart size={14} /> {t('section.contact')}
               </div>
               <div className="space-y-2 text-amber-900/80">
-                <div className="flex items-center gap-2"><Phone size={14} className="text-amber-600" /> {contact.contactNumber}</div>
-                <div className="flex items-center gap-2"><Mail size={14} className="text-amber-600" /> {contact.email}</div>
-                <div className="flex items-start gap-2"><MapPin size={14} className="text-amber-600 mt-1" /> <span className="whitespace-pre-line leading-relaxed">{contact.address}</span></div>
+                <div className="flex items-center gap-2"><Phone size={12} className="text-amber-600" /> {contact.contactNumber}</div>
+                <div className="flex items-center gap-2"><Mail size={12} className="text-amber-600" /> {contact.email}</div>
+                <div className="flex items-start gap-2"><MapPin size={12} className="text-amber-600 mt-0.5" /> <span className="whitespace-pre-line leading-relaxed">{contact.address}</span></div>
               </div>
             </div>
           </div>
