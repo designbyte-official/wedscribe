@@ -19,16 +19,16 @@ export const SkyBlossom: React.FC<Props> = ({ profile }) => {
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_left,_var(--tw-gradient-stops))] from-sky-800 to-sky-900 opacity-50"></div>
           
           <div className="relative z-10 w-full flex flex-col items-center h-full">
-              <div className="w-32 h-32 rounded-full border-4 border-sky-400/30 p-1 mt-4 mb-4 shrink-0">
+              <div className="w-32 h-32 rounded-full border-4 border-sky-400/30 p-1 mt-2 mb-3 shrink-0">
                   {personal.photoUrl ? (
                       <img src={personal.photoUrl} className="w-full h-full rounded-full object-cover shadow-lg" alt="Profile" />
                   ) : <PlaceholderImage className="w-full h-full rounded-full bg-sky-800 text-sky-400/50" />}
               </div>
 
-              <div className="w-full space-y-6 grow flex flex-col justify-center">
+              <div className="w-full space-y-3 grow flex flex-col justify-start">
                   <div>
-                      <h2 className="text-xl font-cinzel font-bold text-sky-100 mb-4 border-b border-sky-700 pb-3 w-full">{t('section.contact')}</h2>
-                      <div className="w-full space-y-3 text-left px-2 text-sm">
+                      <h2 className="text-lg font-cinzel font-bold text-sky-100 mb-3 border-b border-sky-700 pb-2 w-full">{t('section.contact')}</h2>
+                      <div className="w-full space-y-2 text-left px-2 text-sm">
                           <ContactRow icon={Phone} value={contact.contactNumber} />
                           <ContactRow icon={Mail} value={contact.email} />
                           <ContactRow icon={MapPin} value={contact.address} />
@@ -36,17 +36,17 @@ export const SkyBlossom: React.FC<Props> = ({ profile }) => {
                   </div>
 
                   <div className="w-full text-left px-2">
-                      <h2 className="text-lg font-cinzel font-bold text-sky-100 mb-3 flex items-center gap-2">
-                          <Star size={18} className="text-sky-400"/> {t('section.habits')}
+                      <h2 className="text-base font-cinzel font-bold text-sky-100 mb-2 flex items-center gap-2">
+                          <Star size={16} className="text-sky-400"/> {t('section.habits')}
                       </h2>
-                      <div className="space-y-3 text-sm text-sky-100/80">
+                      <div className="space-y-1.5 text-xs text-sky-100/80 leading-relaxed">
                           <p>• {t('field.rashi')}: {personal.rashi}</p>
                           <p>• {t('field.nakshatra')}: {personal.nakshatra}</p>
                           {personal.manglik === 'Yes' && <p>• {t('field.manglik')}</p>}
                           <p>• {profile.family.familyValues} {t('field.values')}</p>
                           <p>• {profile.family.familyType} {t('field.familyType')}</p>
                           <p>• {personal.religion}, {personal.caste}, {personal.subCaste}</p>
-                          <p>• {t('field.maritalStatus')}: {personal.maritalStatus}</p>
+                          <p>• <span className="inline-block">{t('field.maritalStatus')}: {personal.maritalStatus}</span></p>
                       </div>
                   </div>
               </div>

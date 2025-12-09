@@ -12,7 +12,7 @@ export const RangoliFestive: React.FC<Props> = ({ profile }) => {
   return (
     <div className="w-full h-full bg-gradient-to-br from-pink-50 via-white to-amber-50 text-rose-900 font-serif">
       <div className="grid grid-cols-[0.35fr_0.65fr] h-full">
-        <div className="p-8 border-r border-pink-100 space-y-6">
+        <div className="p-8 border-r border-pink-100 space-y-4">
           <div className="space-y-2">
             <p className="text-[11px] uppercase tracking-[0.3em] text-pink-600 font-semibold">{t('common.marriageBiodata')}</p>
             <h1 className="text-3xl font-bold leading-tight">{personal.fullName}</h1>

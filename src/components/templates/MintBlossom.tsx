@@ -22,9 +22,9 @@ export const MintBlossom: React.FC<Props> = ({ profile }) => {
           {/* Left Side - 40% */}
           <div className="w-[40%] bg-green-50/50 p-8 flex flex-col border-r border-green-100">
               <h1 className="font-playfair text-3xl text-green-900 font-bold mb-1 leading-tight">{personal.fullName}</h1>
-              <p className="text-green-600 text-xs font-bold uppercase tracking-widest mb-8">{education.occupation}</p>
+              <p className="text-green-600 text-xs font-bold uppercase tracking-widest mb-4">{education.occupation}</p>
               
-              <div className="w-full aspect-[3/4] bg-white p-2 shadow-md rounded-lg mb-8 rotate-1">
+              <div className="w-full aspect-[3/4] bg-white p-2 shadow-md rounded-lg mb-4 rotate-1">
                    {personal.photoUrl ? <img src={personal.photoUrl} className="w-full h-full object-cover rounded" alt="Profile" /> : <PlaceholderImage className="w-full h-full rounded" />}
               </div>
 

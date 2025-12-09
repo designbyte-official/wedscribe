@@ -22,14 +22,14 @@ export const RegalAnvika: React.FC<Props> = ({ profile }) => {
             {/* Mandala Background */}
             <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle,_var(--tw-gradient-stops))] from-[#d4af37] to-transparent"></div>
             
-            <div className="relative z-10 flex flex-col items-center w-full h-full gap-6">
-                <div className="w-40 h-48 border-2 border-[#d4af37] p-2 mt-4 rotate-1 shadow-2xl bg-[#3d1024]">
+            <div className="relative z-10 flex flex-col items-center w-full h-full gap-4">
+                <div className="w-40 h-48 border-2 border-[#d4af37] p-2 mt-2 rotate-1 shadow-2xl bg-[#3d1024]">
                      <div className="w-full h-full border border-[#d4af37]/50 bg-[#3d1024] overflow-hidden">
                         {personal.photoUrl ? <img src={personal.photoUrl} className="w-full h-full object-cover" alt="Profile" /> : <PlaceholderImage className="w-full h-full bg-[#3d1024] text-[#d4af37]" />}
                      </div>
                 </div>
 
-                <div className="w-full space-y-6 text-center text-sm leading-relaxed">
+                <div className="w-full space-y-4 text-center text-sm leading-relaxed">
                     <div>
                         <h3 className="text-[#d4af37] uppercase tracking-[0.2em] text-xs mb-3 border-b border-[#d4af37]/30 inline-block pb-1">{t('section.astrology')}</h3>
                         <div className="space-y-1 text-base leading-relaxed">

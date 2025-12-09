@@ -15,11 +15,11 @@ export const IvoryLines: React.FC<Props> = ({ profile }) => {
     <div className="w-full h-full bg-white flex text-stone-800 font-montserrat">
       {/* Left Sidebar - 30% */}
       <div className="w-[30%] bg-stone-100 p-8 flex flex-col border-r border-stone-200">
-          <div className="w-full aspect-square bg-stone-200 mb-8 overflow-hidden grayscale border border-stone-300">
+          <div className="w-full aspect-square bg-stone-200 mb-4 overflow-hidden grayscale border border-stone-300">
               {personal.photoUrl ? <img src={personal.photoUrl} className="w-full h-full object-cover" alt="Profile" /> : <PlaceholderImage className="w-full h-full" />}
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-5">
               <div>
                   <h4 className="text-xs font-bold uppercase tracking-widest text-stone-500 mb-4 border-b border-stone-300 pb-2">Details</h4>
                   <div className="space-y-3 text-sm font-medium">
