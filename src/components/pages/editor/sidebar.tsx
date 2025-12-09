@@ -75,6 +75,18 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <TemplateCard type={TemplateType.SACRED_SAFFRON} name="Sacred Saffron" colorClass="bg-amber-50 text-amber-700" />
         <TemplateCard type={TemplateType.NOOR_CRESCENT} name="Noor Crescent" colorClass="bg-emerald-50 text-emerald-700" />
         <TemplateCard type={TemplateType.GRACEFUL_LILY} name="Graceful Lily" colorClass="bg-indigo-50 text-indigo-700" />
+        <TemplateCard type={TemplateType.CLASSIC_GOLD} name="Classic Gold" colorClass="bg-yellow-50 text-amber-800" />
+        <TemplateCard type={TemplateType.MODERN_SLATE} name="Modern Slate" colorClass="bg-slate-100 text-slate-700" />
+        <TemplateCard type={TemplateType.PASTEL_PEONY} name="Pastel Peony" colorClass="bg-rose-50 text-rose-700" />
+        <TemplateCard type={TemplateType.NAVY_MINIMAL} name="Navy Minimal" colorClass="bg-slate-900 text-slate-50" />
+        <TemplateCard type={TemplateType.RUSTIC_KRAFT} name="Rustic Kraft" colorClass="bg-amber-100 text-amber-800" />
+        <TemplateCard type={TemplateType.EMERALD_LEAF} name="Emerald Leaf" colorClass="bg-emerald-50 text-emerald-700" />
+        <TemplateCard type={TemplateType.BLUSH_MARBLE} name="Blush Marble" colorClass="bg-rose-100 text-rose-800" />
+        <TemplateCard type={TemplateType.DESERT_SANDS} name="Desert Sands" colorClass="bg-amber-200 text-amber-900" />
+        <TemplateCard type={TemplateType.LAVENDER_MIST} name="Lavender Mist" colorClass="bg-purple-50 text-purple-700" />
+        <TemplateCard type={TemplateType.NOIR_ELEGANT} name="Noir Elegant" colorClass="bg-neutral-900 text-neutral-50" />
+        <TemplateCard type={TemplateType.AQUA_GLASS} name="Aqua Glass" colorClass="bg-cyan-50 text-cyan-700" />
+        <TemplateCard type={TemplateType.IVORY_MODERN} name="Ivory Modern" colorClass="bg-gray-50 text-gray-800" />
     </div>
   );
 
@@ -122,7 +134,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                          <div className="mb-8 flex items-end justify-between">
                              <div>
                                 <h2 className="text-base font-bold text-slate-900 mb-1">Choose Design</h2>
-                                <p className="text-sm text-slate-500">Nine premium layouts available.</p>
+                                <p className="text-sm text-slate-500">21 premium layouts available.</p>
                              </div>
                              <span className="text-xs font-medium text-slate-400 bg-slate-50 px-2 py-1 rounded">V 1.0</span>
                          </div>

@@ -9,6 +9,18 @@ import { Minimalist } from '@/components/templates/Minimalist';
 import { SacredSaffron } from '@/components/templates/SacredSaffron';
 import { NoorCrescent } from '@/components/templates/NoorCrescent';
 import { GracefulLily } from '@/components/templates/GracefulLily';
+import { ClassicGold } from '@/components/templates/ClassicGold';
+import { ModernSlate } from '@/components/templates/ModernSlate';
+import { PastelPeony } from '@/components/templates/PastelPeony';
+import { NavyMinimal } from '@/components/templates/NavyMinimal';
+import { RusticKraft } from '@/components/templates/RusticKraft';
+import { EmeraldLeaf } from '@/components/templates/EmeraldLeaf';
+import { BlushMarble } from '@/components/templates/BlushMarble';
+import { DesertSands } from '@/components/templates/DesertSands';
+import { LavenderMist } from '@/components/templates/LavenderMist';
+import { NoirElegant } from '@/components/templates/NoirElegant';
+import { AquaGlass } from '@/components/templates/AquaGlass';
+import { IvoryModern } from '@/components/templates/IvoryModern';
 
 interface Props {
   profile: BiodataProfile;
@@ -35,6 +47,30 @@ export const TemplateRenderer: React.FC<Props> = ({ profile, template }) => {
       return <NoorCrescent profile={profile} />;
     case TemplateType.GRACEFUL_LILY:
       return <GracefulLily profile={profile} />;
+    case TemplateType.CLASSIC_GOLD:
+      return <ClassicGold profile={profile} />;
+    case TemplateType.MODERN_SLATE:
+      return <ModernSlate profile={profile} />;
+    case TemplateType.PASTEL_PEONY:
+      return <PastelPeony profile={profile} />;
+    case TemplateType.NAVY_MINIMAL:
+      return <NavyMinimal profile={profile} />;
+    case TemplateType.RUSTIC_KRAFT:
+      return <RusticKraft profile={profile} />;
+    case TemplateType.EMERALD_LEAF:
+      return <EmeraldLeaf profile={profile} />;
+    case TemplateType.BLUSH_MARBLE:
+      return <BlushMarble profile={profile} />;
+    case TemplateType.DESERT_SANDS:
+      return <DesertSands profile={profile} />;
+    case TemplateType.LAVENDER_MIST:
+      return <LavenderMist profile={profile} />;
+    case TemplateType.NOIR_ELEGANT:
+      return <NoirElegant profile={profile} />;
+    case TemplateType.AQUA_GLASS:
+      return <AquaGlass profile={profile} />;
+    case TemplateType.IVORY_MODERN:
+      return <IvoryModern profile={profile} />;
     default:
       return <div className="p-10 text-center text-gray-500">Select a template</div>;
   }

@@ -1,0 +1,99 @@
+import React from 'react';
+import { BiodataProfile } from '@/types';
+import { DetailItem, SectionTitle, PlaceholderImage } from './shared';
+import { useLanguage } from '@/context/LanguageContext';
+
+interface Props {
+  profile: BiodataProfile;
+}
+
+export const ClassicGold: React.FC<Props> = ({ profile }) => {
+  const { t } = useLanguage();
+  const { personal, education, family, contact } = profile;
+
+  return (
+    <div className="w-full h-full bg-gradient-to-br from-amber-50 to-white text-slate-900 font-serif">
+      <div className="h-full grid grid-cols-[0.38fr_0.62fr]">
+        <div className="bg-white/80 border-r border-amber-100 p-8 flex flex-col gap-6">
+          <div className="space-y-2 text-left">
+            <p className="text-xs uppercase tracking-[0.25em] text-amber-500 font-semibold">{t('common.marriageBiodata')}</p>
+            <h1 className="text-3xl font-bold leading-tight text-amber-800">{personal.fullName}</h1>
+            <p className="text-sm uppercase tracking-[0.2em] text-amber-600">{education.occupation}</p>
+          </div>
+
+          <div className="w-full aspect-[3/4] rounded-xl border border-amber-100 overflow-hidden shadow-sm">
+            {personal.photoUrl ? (
+              <img src={personal.photoUrl} alt="Profile" className="w-full h-full object-cover" />
+            ) : (
+              <PlaceholderImage className="w-full h-full" />
+            )}
+          </div>
+
+          <div className="space-y-3 text-sm">
+            <p className="font-semibold text-amber-700">{contact.contactNumber}</p>
+            <p className="text-slate-600 break-words">{contact.email}</p>
+            <p className="text-slate-500 whitespace-pre-line leading-relaxed">{contact.address}</p>
+          </div>
+        </div>
+
+        <div className="p-8 space-y-8">
+          <div className="grid grid-cols-2 gap-6">
+            <div>
+              <SectionTitle title={t('section.personal')} lineClass="bg-amber-200" />
+              <div className="grid grid-cols-2 gap-3 text-sm">
+                <DetailItem label={t('field.dob')} value={personal.dateOfBirth} />
+                <DetailItem label={t('field.tob')} value={personal.timeOfBirth} />
+                <DetailItem label={t('field.pob')} value={personal.placeOfBirth} />
+                <DetailItem label={t('field.height')} value={personal.height} />
+                <DetailItem label={t('field.weight')} value={personal.weight} />
+                <DetailItem label={t('field.bloodGroup')} value={personal.bloodGroup} />
+                <DetailItem label={t('field.complexion')} value={personal.complexion} />
+                <DetailItem label={t('field.maritalStatus')} value={personal.maritalStatus} />
+              </div>
+            </div>
+            <div>
+              <SectionTitle title={t('section.astrology')} lineClass="bg-amber-200" />
+              <div className="grid grid-cols-1 gap-2 text-sm">
+                <DetailItem label={t('field.religion')} value={personal.religion} />
+                <DetailItem label={t('field.caste')} value={`${personal.caste}${personal.subCaste ? `, ${personal.subCaste}` : ''}`} />
+                <DetailItem label={t('field.gothra')} value={personal.gothra} />
+                <DetailItem label={t('field.rashi')} value={personal.rashi} />
+                <DetailItem label={t('field.nakshatra')} value={personal.nakshatra} />
+                <DetailItem label={t('field.manglik')} value={personal.manglik} />
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-6">
+            <div className="space-y-3">
+              <SectionTitle title={t('section.education')} lineClass="bg-amber-200" />
+              <DetailItem label={t('field.education')} value={education.education} />
+              <DetailItem label={t('field.occupation')} value={education.occupation} />
+              <DetailItem label={t('field.company')} value={education.company} />
+              <DetailItem label={t('field.income')} value={education.income} />
+            </div>
+            <div className="space-y-3">
+              <SectionTitle title={t('field.aboutMe')} lineClass="bg-amber-200" />
+              <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-line">
+                {education.aboutMe}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <SectionTitle title={t('section.family')} lineClass="bg-amber-200" />
+            <div className="grid grid-cols-2 gap-4 text-sm">
+              <DetailItem label={t('field.fatherName')} value={`${family.fatherName} (${family.fatherOccupation})`} />
+              <DetailItem label={t('field.motherName')} value={`${family.motherName} (${family.motherOccupation})`} />
+              <DetailItem label={t('field.familyType')} value={family.familyType} />
+              <DetailItem label={t('field.values')} value={family.familyValues} />
+              <DetailItem label={t('field.siblings')} value={family.siblings} className="col-span-2" />
+              <DetailItem label={t('field.nativePlace')} value={family.nativePlace} className="col-span-2" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
