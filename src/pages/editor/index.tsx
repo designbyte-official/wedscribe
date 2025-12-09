@@ -137,7 +137,7 @@ export const EditorPage: React.FC = () => {
       }
   };
 
-  const TemplateCard = ({ type, name, colorClass }: { type: TemplateType, name: string, colorClass: string }) => (
+  const TemplateCard = ({ type, name, colorClass, badge }: { type: TemplateType, name: string, colorClass: string, badge?: string }) => (
     <button 
         onClick={() => {
             setActiveTemplate(type);
@@ -146,7 +146,7 @@ export const EditorPage: React.FC = () => {
         }}
         className="group flex flex-col text-left transition-all duration-300 w-full"
     >
-        <div className={`w-full aspect-[1/1.4] rounded-lg border-2 mb-3 overflow-hidden relative transition-all shadow-sm group-hover:shadow-md ${activeTemplate === type ? 'border-primary ring-2 ring-primary/10' : 'border-slate-100 group-hover:border-primary/30'}`}>
+        <div className={`w-full aspect-[1/1.4] rounded-lg border-2 mb-2 overflow-hidden relative transition-all shadow-sm group-hover:shadow-md ${activeTemplate === type ? 'border-primary ring-2 ring-primary/10' : 'border-slate-100 group-hover:border-primary/30'}`}>
              <div className={`w-full h-full ${colorClass} p-3 flex flex-col`}>
                  <div className="w-full h-1/4 bg-current opacity-10 rounded-sm mb-2" />
                  <div className="flex gap-2 mb-2 grow">
@@ -159,34 +159,48 @@ export const EditorPage: React.FC = () => {
                      <Heart size={10} fill="currentColor" />
                  </div>
              )}
+             {badge && (
+                <div className="absolute bottom-2 left-2 bg-white/90 text-[10px] font-semibold text-slate-600 px-2 py-1 rounded-full shadow-sm border border-slate-100">
+                  {badge}
+                </div>
+             )}
         </div>
         <span className={`text-xs font-bold uppercase tracking-wider text-center transition-colors ${activeTemplate === type ? 'text-primary' : 'text-slate-500 group-hover:text-slate-700'}`}>{name}</span>
     </button>
   );
 
   const TemplatesGrid = () => (
-    <div className="grid grid-cols-2 gap-x-4 gap-y-8 pb-20 md:pb-0">
-        <TemplateCard type={TemplateType.SKY_BLOSSOM} name="Sky Blossom" colorClass="bg-sky-50 text-sky-600" />
-        <TemplateCard type={TemplateType.REGAL_ANVIKA} name="Regal Anvika" colorClass="bg-regal-bg text-regal-gold" />
-        <TemplateCard type={TemplateType.IVORY_LINES} name="Ivory Lines" colorClass="bg-stone-50 text-stone-600" />
-        <TemplateCard type={TemplateType.MINT_BLOSSOM} name="Mint Blossom" colorClass="bg-mint-bg text-mint-dark" />
-        <TemplateCard type={TemplateType.ROYAL_RED} name="Royal Red" colorClass="bg-red-50 text-red-900" />
-        <TemplateCard type={TemplateType.MINIMALIST} name="Minimalist" colorClass="bg-white text-slate-900 border border-slate-100" />
-        <TemplateCard type={TemplateType.SACRED_SAFFRON} name="Sacred Saffron" colorClass="bg-amber-50 text-amber-700" />
-        <TemplateCard type={TemplateType.NOOR_CRESCENT} name="Noor Crescent" colorClass="bg-emerald-50 text-emerald-700" />
-        <TemplateCard type={TemplateType.GRACEFUL_LILY} name="Graceful Lily" colorClass="bg-indigo-50 text-indigo-700" />
-        <TemplateCard type={TemplateType.CLASSIC_GOLD} name="Classic Gold" colorClass="bg-yellow-50 text-amber-800" />
-        <TemplateCard type={TemplateType.MODERN_SLATE} name="Modern Slate" colorClass="bg-slate-100 text-slate-700" />
-        <TemplateCard type={TemplateType.PASTEL_PEONY} name="Pastel Peony" colorClass="bg-rose-50 text-rose-700" />
-        <TemplateCard type={TemplateType.NAVY_MINIMAL} name="Navy Minimal" colorClass="bg-slate-900 text-slate-50" />
-        <TemplateCard type={TemplateType.RUSTIC_KRAFT} name="Rustic Kraft" colorClass="bg-amber-100 text-amber-800" />
-        <TemplateCard type={TemplateType.EMERALD_LEAF} name="Emerald Leaf" colorClass="bg-emerald-50 text-emerald-700" />
-        <TemplateCard type={TemplateType.BLUSH_MARBLE} name="Blush Marble" colorClass="bg-rose-100 text-rose-800" />
-        <TemplateCard type={TemplateType.DESERT_SANDS} name="Desert Sands" colorClass="bg-amber-200 text-amber-900" />
-        <TemplateCard type={TemplateType.LAVENDER_MIST} name="Lavender Mist" colorClass="bg-purple-50 text-purple-700" />
-        <TemplateCard type={TemplateType.NOIR_ELEGANT} name="Noir Elegant" colorClass="bg-neutral-900 text-neutral-50" />
-        <TemplateCard type={TemplateType.AQUA_GLASS} name="Aqua Glass" colorClass="bg-cyan-50 text-cyan-700" />
-        <TemplateCard type={TemplateType.IVORY_MODERN} name="Ivory Modern" colorClass="bg-gray-50 text-gray-800" />
+    <div className="grid grid-cols-2 gap-x-4 gap-y-8 pb-20 md:pb-0 max-h-[calc(100vh-220px)] overflow-y-auto pr-1">
+        <TemplateCard type={TemplateType.SKY_BLOSSOM} name="Sky Blossom" colorClass="bg-sky-50 text-sky-600" badge="Modern" />
+        <TemplateCard type={TemplateType.REGAL_ANVIKA} name="Regal Anvika" colorClass="bg-regal-bg text-regal-gold" badge="Royal" />
+        <TemplateCard type={TemplateType.IVORY_LINES} name="Ivory Lines" colorClass="bg-stone-50 text-stone-600" badge="Minimal" />
+        <TemplateCard type={TemplateType.MINT_BLOSSOM} name="Mint Blossom" colorClass="bg-mint-bg text-mint-dark" badge="Floral" />
+        <TemplateCard type={TemplateType.ROYAL_RED} name="Royal Red" colorClass="bg-red-50 text-red-900" badge="Festive" />
+        <TemplateCard type={TemplateType.MINIMALIST} name="Minimalist" colorClass="bg-white text-slate-900 border border-slate-100" badge="Clean" />
+        <TemplateCard type={TemplateType.SACRED_SAFFRON} name="Sacred Saffron" colorClass="bg-amber-50 text-amber-700" badge="Hindu" />
+        <TemplateCard type={TemplateType.NOOR_CRESCENT} name="Noor Crescent" colorClass="bg-emerald-50 text-emerald-700" badge="Muslim" />
+        <TemplateCard type={TemplateType.GRACEFUL_LILY} name="Graceful Lily" colorClass="bg-indigo-50 text-indigo-700" badge="Christian" />
+        <TemplateCard type={TemplateType.CLASSIC_GOLD} name="Classic Gold" colorClass="bg-yellow-50 text-amber-800" badge="Classic" />
+        <TemplateCard type={TemplateType.MODERN_SLATE} name="Modern Slate" colorClass="bg-slate-100 text-slate-700" badge="Modern" />
+        <TemplateCard type={TemplateType.PASTEL_PEONY} name="Pastel Peony" colorClass="bg-rose-50 text-rose-700" badge="Floral" />
+        <TemplateCard type={TemplateType.NAVY_MINIMAL} name="Navy Minimal" colorClass="bg-slate-900 text-slate-50" badge="Minimal" />
+        <TemplateCard type={TemplateType.RUSTIC_KRAFT} name="Rustic Kraft" colorClass="bg-amber-100 text-amber-800" badge="Rustic" />
+        <TemplateCard type={TemplateType.EMERALD_LEAF} name="Emerald Leaf" colorClass="bg-emerald-50 text-emerald-700" badge="Nature" />
+        <TemplateCard type={TemplateType.BLUSH_MARBLE} name="Blush Marble" colorClass="bg-rose-100 text-rose-800" badge="Elegant" />
+        <TemplateCard type={TemplateType.DESERT_SANDS} name="Desert Sands" colorClass="bg-amber-200 text-amber-900" badge="Warm" />
+        <TemplateCard type={TemplateType.LAVENDER_MIST} name="Lavender Mist" colorClass="bg-purple-50 text-purple-700" badge="Calm" />
+        <TemplateCard type={TemplateType.NOIR_ELEGANT} name="Noir Elegant" colorClass="bg-neutral-900 text-neutral-50" badge="Luxury" />
+        <TemplateCard type={TemplateType.AQUA_GLASS} name="Aqua Glass" colorClass="bg-cyan-50 text-cyan-700" badge="Fresh" />
+        <TemplateCard type={TemplateType.IVORY_MODERN} name="Ivory Modern" colorClass="bg-gray-50 text-gray-800" badge="Minimal" />
+        <TemplateCard type={TemplateType.KALYAN_MANDAP} name="Kalyan Mandap" colorClass="bg-orange-50 text-orange-800" badge="Hindu" />
+        <TemplateCard type={TemplateType.ZEHRA_CRESCENT} name="Zehra Crescent" colorClass="bg-emerald-900 text-emerald-50" badge="Muslim" />
+        <TemplateCard type={TemplateType.GRACE_CHAPEL} name="Grace Chapel" colorClass="bg-indigo-50 text-indigo-800" badge="Christian" />
+        <TemplateCard type={TemplateType.KHALSA_HERITAGE} name="Khalsa Heritage" colorClass="bg-amber-50 text-amber-800" badge="Sikh" />
+        <TemplateCard type={TemplateType.SHANTI_JAIN} name="Shanti Jain" colorClass="bg-rose-50 text-rose-700" badge="Jain" />
+        <TemplateCard type={TemplateType.LOTUS_SERENITY} name="Lotus Serenity" colorClass="bg-emerald-50 text-emerald-800" badge="Buddhist" />
+        <TemplateCard type={TemplateType.RANGOLI_FESTIVE} name="Rangoli Festive" colorClass="bg-pink-100 text-pink-900" badge="Festive" />
+        <TemplateCard type={TemplateType.HERITAGE_PEACOCK} name="Heritage Peacock" colorClass="bg-blue-50 text-blue-800" badge="Heritage" />
+        <TemplateCard type={TemplateType.MONSOON_TEAL} name="Monsoon Teal" colorClass="bg-teal-50 text-teal-800" badge="Monsoon" />
     </div>
   );
 

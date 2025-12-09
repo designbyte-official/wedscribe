@@ -38,3 +38,14 @@ export const ContactRow = ({ icon: Icon, value }: any) => {
         </div>
     )
 };
+
+export const QuickFacts = ({ personal, education }: any) => (
+    <div className="space-y-1 text-sm">
+        <p className="text-[10px] uppercase tracking-[0.2em] font-semibold text-slate-500">Highlights</p>
+        <div className="text-slate-700 space-y-1">
+            <div><span className="font-semibold">Religion:</span> {personal?.religion}</div>
+            <div><span className="font-semibold">Status:</span> {personal?.maritalStatus}</div>
+            <div><span className="font-semibold">Income:</span> {education?.income}</div>
+        </div>
+    </div>
+);

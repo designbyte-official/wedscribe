@@ -87,6 +87,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <TemplateCard type={TemplateType.NOIR_ELEGANT} name="Noir Elegant" colorClass="bg-neutral-900 text-neutral-50" />
         <TemplateCard type={TemplateType.AQUA_GLASS} name="Aqua Glass" colorClass="bg-cyan-50 text-cyan-700" />
         <TemplateCard type={TemplateType.IVORY_MODERN} name="Ivory Modern" colorClass="bg-gray-50 text-gray-800" />
+        <TemplateCard type={TemplateType.KALYAN_MANDAP} name="Kalyan Mandap" colorClass="bg-orange-50 text-orange-800" />
+        <TemplateCard type={TemplateType.ZEHRA_CRESCENT} name="Zehra Crescent" colorClass="bg-emerald-900 text-emerald-50" />
+        <TemplateCard type={TemplateType.GRACE_CHAPEL} name="Grace Chapel" colorClass="bg-indigo-50 text-indigo-800" />
+        <TemplateCard type={TemplateType.KHALSA_HERITAGE} name="Khalsa Heritage" colorClass="bg-amber-50 text-amber-800" />
+        <TemplateCard type={TemplateType.SHANTI_JAIN} name="Shanti Jain" colorClass="bg-rose-50 text-rose-700" />
+        <TemplateCard type={TemplateType.LOTUS_SERENITY} name="Lotus Serenity" colorClass="bg-emerald-50 text-emerald-800" />
+        <TemplateCard type={TemplateType.RANGOLI_FESTIVE} name="Rangoli Festive" colorClass="bg-pink-100 text-pink-900" />
+        <TemplateCard type={TemplateType.HERITAGE_PEACOCK} name="Heritage Peacock" colorClass="bg-blue-50 text-blue-800" />
+        <TemplateCard type={TemplateType.MONSOON_TEAL} name="Monsoon Teal" colorClass="bg-teal-50 text-teal-800" />
     </div>
   );
 
@@ -134,7 +143,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                          <div className="mb-8 flex items-end justify-between">
                              <div>
                                 <h2 className="text-base font-bold text-slate-900 mb-1">Choose Design</h2>
-                                <p className="text-sm text-slate-500">21 premium layouts available.</p>
+                                <p className="text-sm text-slate-500">30 premium layouts available.</p>
                              </div>
                              <span className="text-xs font-medium text-slate-400 bg-slate-50 px-2 py-1 rounded">V 1.0</span>
                          </div>

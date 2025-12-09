@@ -21,6 +21,15 @@ import { LavenderMist } from '@/components/templates/LavenderMist';
 import { NoirElegant } from '@/components/templates/NoirElegant';
 import { AquaGlass } from '@/components/templates/AquaGlass';
 import { IvoryModern } from '@/components/templates/IvoryModern';
+import { KalyanMandap } from '@/components/templates/KalyanMandap';
+import { ZehraCrescent } from '@/components/templates/ZehraCrescent';
+import { GraceChapel } from '@/components/templates/GraceChapel';
+import { KhalsaHeritage } from '@/components/templates/KhalsaHeritage';
+import { ShantiJain } from '@/components/templates/ShantiJain';
+import { LotusSerenity } from '@/components/templates/LotusSerenity';
+import { RangoliFestive } from '@/components/templates/RangoliFestive';
+import { HeritagePeacock } from '@/components/templates/HeritagePeacock';
+import { MonsoonTeal } from '@/components/templates/MonsoonTeal';
 
 interface Props {
   profile: BiodataProfile;
@@ -71,6 +80,24 @@ export const TemplateRenderer: React.FC<Props> = ({ profile, template }) => {
       return <AquaGlass profile={profile} />;
     case TemplateType.IVORY_MODERN:
       return <IvoryModern profile={profile} />;
+    case TemplateType.KALYAN_MANDAP:
+      return <KalyanMandap profile={profile} />;
+    case TemplateType.ZEHRA_CRESCENT:
+      return <ZehraCrescent profile={profile} />;
+    case TemplateType.GRACE_CHAPEL:
+      return <GraceChapel profile={profile} />;
+    case TemplateType.KHALSA_HERITAGE:
+      return <KhalsaHeritage profile={profile} />;
+    case TemplateType.SHANTI_JAIN:
+      return <ShantiJain profile={profile} />;
+    case TemplateType.LOTUS_SERENITY:
+      return <LotusSerenity profile={profile} />;
+    case TemplateType.RANGOLI_FESTIVE:
+      return <RangoliFestive profile={profile} />;
+    case TemplateType.HERITAGE_PEACOCK:
+      return <HeritagePeacock profile={profile} />;
+    case TemplateType.MONSOON_TEAL:
+      return <MonsoonTeal profile={profile} />;
     default:
       return <div className="p-10 text-center text-gray-500">Select a template</div>;
   }
