@@ -6,7 +6,10 @@ import { useLanguage } from '@/context/LanguageContext';
 export const Footer: React.FC = () => {
   const { t } = useLanguage();
   return (
-    <footer className="bg-slate-950 text-slate-300 py-24 border-t border-slate-800">
+    <footer className="bg-slate-950 text-slate-300 py-32 border-t border-slate-800/50 relative overflow-hidden">
+        {/* Decorative glow */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[128px] pointer-events-none"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-[128px] pointer-events-none"></div>
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12">
         
         {/* Brand Column */}
@@ -34,10 +37,9 @@ export const Footer: React.FC = () => {
         <div>
             <h3 className="text-white font-bold mb-6 tracking-wide uppercase text-xs">{t('footer.col.product')}</h3>
             <ul className="space-y-4 text-sm font-light">
-                <li><a href="#" className="hover:text-white transition-colors">{t('nav.templates')}</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">AI Assistant</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Showcase</a></li>
+                <li><a href="#" className="text-slate-400 hover:text-white transition-colors duration-300">{t('nav.templates')}</a></li>
+                <li><a href="#" className="text-slate-400 hover:text-white transition-colors duration-300">Pricing</a></li>
+                <li><a href="#" className="text-slate-400 hover:text-white transition-colors duration-300">Showcase</a></li>
             </ul>
         </div>
 
@@ -45,10 +47,10 @@ export const Footer: React.FC = () => {
         <div>
             <h3 className="text-white font-bold mb-6 tracking-wide uppercase text-xs">{t('footer.col.company')}</h3>
             <ul className="space-y-4 text-sm font-light">
-                <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
+                <li><a href="#" className="text-slate-400 hover:text-white transition-colors duration-300">About Us</a></li>
+                <li><a href="#" className="text-slate-400 hover:text-white transition-colors duration-300">Blog</a></li>
+                <li><a href="#" className="text-slate-400 hover:text-white transition-colors duration-300">Privacy Policy</a></li>
+                <li><a href="#" className="text-slate-400 hover:text-white transition-colors duration-300">Terms of Service</a></li>
             </ul>
         </div>
         
@@ -61,10 +63,10 @@ export const Footer: React.FC = () => {
 
       </div>
       
-      <div className="max-w-7xl mx-auto px-6 mt-20 pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center text-xs text-slate-600">
+      <div className="max-w-7xl mx-auto px-6 mt-24 pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center text-xs text-slate-600 font-medium tracking-wide">
           <p>© 2024 WedScribe. {t('footer.rights')}</p>
-          <div className="flex items-center gap-2 mt-4 md:mt-0">
-              Made with <Heart size={12} className="text-rose-600 fill-rose-600" /> in India
+          <div className="flex items-center gap-2 mt-4 md:mt-0 opacity-70 hover:opacity-100 transition-opacity">
+              Made with <Heart size={12} className="text-rose-600 fill-rose-600 animate-pulse" /> in India
           </div>
       </div>
     </footer>

@@ -3,7 +3,6 @@ import { Navbar } from '../../components/pages/home/navbar';
 import { Hero } from '../../components/pages/home/hero';
 import { Features } from '../../components/pages/home/features';
 import { ReligionSelection } from '../../components/pages/home/religion-selection';
-import { AISection } from '../../components/pages/home/ai-section';
 import { FAQ } from '../../components/pages/home/faq';
 import { Footer } from '../../components/pages/home/footer';
 
@@ -13,8 +12,9 @@ export const LandingPage: React.FC = () => {
       <Navbar />
       <Hero />
       <Features />
-      <ReligionSelection />
-      <AISection />
+      <div id="templates">
+        <ReligionSelection />
+      </div>
       <FAQ />
       <Footer />
     </div>

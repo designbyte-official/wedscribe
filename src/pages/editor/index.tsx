@@ -9,6 +9,10 @@ import { Sidebar } from '../../components/pages/editor/sidebar';
 import { MobileNav } from '../../components/pages/editor/mobile-nav';
 import { EditorContent } from '../../components/pages/editor/editor-content';
 import { Heart } from 'lucide-react';
+import * as htmlToImage from 'html-to-image';
+import download from 'downloadjs';
+// @ts-ignore
+import html2pdf from 'html2pdf.js';
 
 export const EditorPage: React.FC = () => {
   const navigate = useNavigate();
@@ -82,6 +86,30 @@ export const EditorPage: React.FC = () => {
     window.print();
   };
 
+  const handleDownload = async (type: 'png' | 'pdf') => {
+      const element = document.getElementById('canvas-container');
+      if (!element) return;
+
+      if (type === 'png') {
+          try {
+              const dataUrl = await htmlToImage.toPng(element, { quality: 1.0, pixelRatio: 2 });
+              download(dataUrl, `biodata-${profile.personal.fullName || 'untitled'}.png`);
+          } catch (error) {
+              console.error('Error generating PNG', error);
+              alert('Failed to generate image. Please try again.');
+          }
+      } else if (type === 'pdf') {
+          const opt = {
+              margin: 0,
+              filename: `biodata-${profile.personal.fullName || 'untitled'}.pdf`,
+              image: { type: 'jpeg' as const, quality: 0.98 },
+              html2canvas: { scale: 2, useCORS: true },
+              jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
+          };
+          html2pdf().set(opt).from(element).save();
+      }
+  };
+
   const resetData = () => {
       if(window.confirm("This will reset all details to the sample data. Continue?")) {
         setProfile(INITIAL_PROFILE);
@@ -129,21 +157,25 @@ export const EditorPage: React.FC = () => {
   return (
     <div className="h-screen bg-slate-50 flex flex-col font-sans overflow-hidden text-slate-800">
       
-      <Header onBack={handleBack} onReset={resetData} onPrint={handlePrint} />
+      <div className="no-print">
+        <Header onBack={handleBack} onReset={resetData} onPrint={handlePrint} onDownload={handleDownload} />
+      </div>
 
       <div className="flex flex-1 overflow-hidden relative">
         
-        <Sidebar 
-            desktopTab={desktopTab} 
-            setDesktopTab={setDesktopTab} 
-            activeTemplate={activeTemplate} 
-            setActiveTemplate={setActiveTemplate}
-            profile={profile}
-            setProfile={setProfile}
-            onGenerateBio={handleGenerateBio}
-            isGeneratingBio={isGeneratingBio}
-            handleImageUpload={handleImageUpload}
-        />
+        <div className="no-print h-full shrink-0">
+          <Sidebar 
+              desktopTab={desktopTab} 
+              setDesktopTab={setDesktopTab} 
+              activeTemplate={activeTemplate} 
+              setActiveTemplate={setActiveTemplate}
+              profile={profile}
+              setProfile={setProfile}
+              onGenerateBio={handleGenerateBio}
+              isGeneratingBio={isGeneratingBio}
+              handleImageUpload={handleImageUpload}
+          />
+        </div>
 
         {/* MAIN CANVAS AREA (Desktop: Always Visible | Mobile: Conditional) */}
         <main 
@@ -156,14 +188,14 @@ export const EditorPage: React.FC = () => {
 
         {/* MOBILE CONTENT AREAS */}
         {mobileTab === 'designs' && (
-            <div className="md:hidden absolute inset-0 bg-white z-20 overflow-y-auto p-6 pb-24 animate-in slide-in-from-bottom-4">
+            <div className="md:hidden absolute inset-0 bg-white z-20 overflow-y-auto p-6 pb-24 animate-in slide-in-from-bottom-4 no-print">
                  <h2 className="text-lg font-bold font-serif mb-6">Choose Template</h2>
                  <TemplatesGrid />
             </div>
         )}
 
         {mobileTab === 'edit' && (
-            <div className="md:hidden absolute inset-0 bg-white z-20 overflow-y-auto p-4 pb-24 animate-in slide-in-from-bottom-4">
+            <div className="md:hidden absolute inset-0 bg-white z-20 overflow-y-auto p-4 pb-24 animate-in slide-in-from-bottom-4 no-print">
                 <h2 className="text-lg font-bold font-serif mb-6 px-1">Edit Biodata</h2>
                 <EditorContent 
                     profile={profile} 
@@ -175,7 +207,9 @@ export const EditorPage: React.FC = () => {
             </div>
         )}
 
-        <MobileNav mobileTab={mobileTab} setMobileTab={setMobileTab} />
+        <div className="no-print">
+          <MobileNav mobileTab={mobileTab} setMobileTab={setMobileTab} />
+        </div>
 
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Shield, Layout, Printer, Heart, Clock, Sparkles } from 'lucide-react';
 import { motion } from 'motion/react';
+import { cn } from '@/lib/utils';
 import {
   Card,
   CardContent,
@@ -9,25 +10,27 @@ import {
 } from "@/components/ui/card";
 import { useLanguage } from '@/context/LanguageContext';
 
+// FeatureCard Component
 const FeatureCard = ({ icon, title, description, delay, className = "" }: { icon: React.ReactNode, title: string, description: string, delay: number, className?: string }) => (
   <motion.div 
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-100px" }}
-    transition={{ duration: 0.6, delay, ease: "easeOut" }}
-    className={className}
+    viewport={{ once: true, margin: "-50px" }}
+    transition={{ duration: 0.5, delay, ease: "easeOut" }}
+    className={cn("h-full", className)}
   >
-    <Card className="h-full border-0 shadow-lg bg-white/50 backdrop-blur-sm hover:bg-white hover:shadow-xl transition-all duration-500 group overflow-hidden relative">
-      <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-700 ease-out" />
+    <Card className="h-full border-0 shadow-lg bg-white/40 backdrop-blur-md hover:bg-white/60 hover:shadow-2xl transition-all duration-300 group overflow-hidden relative ring-1 ring-white/50">
+      <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-700 ease-out blur-2xl" />
       
       <CardHeader className="relative z-10 pt-8 px-8">
-        <div className="mb-6 w-12 h-12 rounded-2xl flex items-center justify-center bg-white shadow-sm border border-slate-100 group-hover:scale-110 transition-transform duration-500 text-primary">
-            {icon}
+        <div className="mb-6 w-14 h-14 rounded-2xl flex items-center justify-center bg-gradient-to-br from-white to-slate-50 shadow-sm border border-white/50 group-hover:scale-110 group-hover:shadow-md transition-all duration-300 text-primary">
+            {React.cloneElement(icon as React.ReactElement, { size: 28, strokeWidth: 1.5 })}
         </div>
-        <CardTitle className="text-2xl font-bold text-slate-900 font-serif mb-2 tracking-tight">{title}</CardTitle>
+        <CardTitle className="text-2xl font-bold text-slate-900 font-serif mb-3 tracking-tight group-hover:text-primary transition-colors">{title}</CardTitle>
       </CardHeader>
       <CardContent className="relative z-10 px-8 pb-8">
-        <p className="text-slate-500 leading-relaxed font-light text-base">{description}</p>
+        <p className="text-slate-600 leading-relaxed font-light text-base group-hover:text-slate-900 transition-colors">{description}</p>
       </CardContent>
     </Card>
   </motion.div>
@@ -110,7 +113,7 @@ export const Features: React.FC = () => {
             title="Instant Preview"
             description="See changes in real-time as you type. No loading screens or complicated editors. Just click and type."
             delay={0.5}
-            className="md:col-span-2"
+            className="md:col-span-2 md:row-span-1"
           />
         </div>
       </div>

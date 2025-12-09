@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Sparkles, ArrowRight, PenTool } from 'lucide-react';
+import { Shield, ArrowRight, PenTool, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { motion } from 'motion/react';
@@ -17,9 +17,11 @@ export const Hero: React.FC = () => {
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-background pt-32 pb-24">
       {/* Background Elements */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-primary/5 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3"></div>
-          <div className="absolute bottom-0 left-0 w-[40%] h-[40%] bg-accent/20 rounded-full blur-[100px] -translate-x-1/4 translate-y-1/4"></div>
+      {/* Background Elements */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-[-10%] right-[-5%] w-[60%] h-[60%] bg-primary/10 rounded-full blur-[120px] mix-blend-multiply animate-blob"></div>
+          <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-amber-100/40 rounded-full blur-[100px] mix-blend-multiply animate-blob animation-delay-2000"></div>
+          <div className="absolute top-[20%] left-[20%] w-[40%] h-[40%] bg-rose-100/30 rounded-full blur-[100px] mix-blend-multiply animate-blob animation-delay-4000"></div>
       </div>
 
       <div className="container relative z-10 mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
@@ -36,9 +38,9 @@ export const Hero: React.FC = () => {
                 <span className="tracking-wide text-[10px] md:text-xs font-bold uppercase">{t('home.hero.badge')}</span>
             </Badge>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-serif text-foreground leading-[1.1] mb-8 tracking-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-serif text-foreground leading-[1.05] mb-8 tracking-tight">
                 {t('home.hero.title.prefix')} <br className="hidden md:block" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-amber-500 italic pr-2">{t('home.hero.title.highlight')}</span> 
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-amber-500 italic pr-2 animate-gradient bg-300%">{t('home.hero.title.highlight')}</span> 
                 {t('home.hero.title.suffix')}
             </h1>
 
@@ -77,11 +79,11 @@ export const Hero: React.FC = () => {
         >
             {/* Main Template Card Visual - Replaced with Image */}
             <div className="relative z-10 w-full max-w-md transform rotate-y-[-5deg] rotate-x-[2deg] hover:rotate-0 transition-transform duration-700 ease-out">
-                <div className="relative rounded-2xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] bg-white p-2 border border-border/50">
+                <div className="relative rounded-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)] bg-white p-3 border border-border/50 backdrop-blur-sm">
                     <img 
                         src="/hero-biodata.png"
                         alt="Biodata Template Preview" 
-                        className="w-full h-auto rounded-xl"
+                        className="w-full h-auto rounded-xl shadow-inner"
                     />
                     
                     {/* Floating Badge 1 */}
@@ -98,14 +100,14 @@ export const Hero: React.FC = () => {
                         </div>
                     </motion.div>
 
-                    {/* Floating Badge 2 */}
+                    {/* Floating Badge 2 - Privacy */}
                     <motion.div 
                         animate={{ y: [0, 15, 0] }}
                         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                         className="absolute -bottom-8 -left-8 w-auto bg-white p-3 rounded-xl shadow-xl border border-border z-20 flex items-center gap-3"
                     >
                         <div className="p-2 bg-amber-50 rounded-lg text-amber-600">
-                            <Sparkles size={18} />
+                            <Shield size={18} />
                         </div>
                         <div>
                             <div className="font-bold text-foreground text-xs">{t('home.hero.feature')}</div>

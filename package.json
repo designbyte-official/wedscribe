@@ -19,6 +19,9 @@
     "@tailwindcss/vite": "^4.1.17",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "downloadjs": "^1.4.7",
+    "html-to-image": "^1.11.13",
+    "html2pdf.js": "^0.12.1",
     "lucide-react": "^0.556.0",
     "motion": "^12.23.25",
     "react": "^19.2.1",
@@ -29,6 +32,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.17",
+    "@types/html2pdf.js": "^0.10.0",
     "@types/node": "^22.14.0",
     "@vitejs/plugin-react": "^5.0.0",
     "autoprefixer": "^10.4.22",

@@ -1,12 +1,14 @@
 import React from 'react';
 import { BiodataProfile } from '@/types';
 import { PlaceholderImage, DetailItem } from './shared';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface Props {
   profile: BiodataProfile;
 }
 
 export const IvoryLines: React.FC<Props> = ({ profile }) => {
+  const { t } = useLanguage();
   const { personal, education, family, contact } = profile;
 
   return (
@@ -21,24 +23,31 @@ export const IvoryLines: React.FC<Props> = ({ profile }) => {
               <div>
                   <h4 className="text-xs font-bold uppercase tracking-widest text-stone-500 mb-4 border-b border-stone-300 pb-2">Details</h4>
                   <div className="space-y-3 text-sm font-medium">
-                      <div className="flex justify-between"><span>DOB</span> <span>{personal.dateOfBirth}</span></div>
-                      <div className="flex justify-between"><span>Height</span> <span>{personal.height}</span></div>
-                      <div className="flex justify-between"><span>Weight</span> <span>{personal.weight}</span></div>
-                      <div className="flex justify-between"><span>Blood</span> <span>{personal.bloodGroup}</span></div>
+                      <div className="flex justify-between"><span>{t('field.dob')}</span> <span>{personal.dateOfBirth}</span></div>
+                      <div className="flex justify-between"><span>{t('field.tob')}</span> <span>{personal.timeOfBirth}</span></div>
+                      <div className="flex justify-between"><span>{t('field.pob')}</span> <span>{personal.placeOfBirth}</span></div>
+                      <div className="flex justify-between"><span>{t('field.height')}</span> <span>{personal.height}</span></div>
+                      <div className="flex justify-between"><span>{t('field.weight')}</span> <span>{personal.weight}</span></div>
+                      <div className="flex justify-between"><span>{t('field.bloodGroup')}</span> <span>{personal.bloodGroup}</span></div>
+                      <div className="flex justify-between"><span>{t('field.complexion')}</span> <span>{personal.complexion}</span></div>
+                      <div className="flex justify-between"><span>{t('field.maritalStatus')}</span> <span>{personal.maritalStatus}</span></div>
                   </div>
               </div>
 
               <div>
                   <h4 className="text-xs font-bold uppercase tracking-widest text-stone-500 mb-4 border-b border-stone-300 pb-2">Social</h4>
                   <div className="space-y-3 text-sm font-medium">
-                      <div className="flex justify-between"><span>Religion</span> <span>{personal.religion}</span></div>
-                      <div className="flex justify-between"><span>Caste</span> <span>{personal.caste}</span></div>
-                      <div className="flex justify-between"><span>Manglik</span> <span>{personal.manglik}</span></div>
+                      <div className="flex justify-between"><span>{t('field.religion')}</span> <span>{personal.religion}</span></div>
+                      <div className="flex justify-between"><span>{t('field.caste')}</span> <span>{personal.caste}, {personal.subCaste}</span></div>
+                      <div className="flex justify-between"><span>{t('field.gothra')}</span> <span>{personal.gothra}</span></div>
+                      <div className="flex justify-between"><span>{t('field.rashi')}</span> <span>{personal.rashi}</span></div>
+                      <div className="flex justify-between"><span>{t('field.nakshatra')}</span> <span>{personal.nakshatra}</span></div>
+                      <div className="flex justify-between"><span>{t('field.manglik')}</span> <span>{personal.manglik}</span></div>
                   </div>
               </div>
 
               <div className="mt-auto">
-                  <h4 className="text-xs font-bold uppercase tracking-widest text-stone-500 mb-4 border-b border-stone-300 pb-2">Contact</h4>
+                  <h4 className="text-xs font-bold uppercase tracking-widest text-stone-500 mb-4 border-b border-stone-300 pb-2">{t('section.contact')}</h4>
                   <div className="text-sm space-y-2 break-all">
                       <p className="font-bold">{contact.contactNumber}</p>
                       <p>{contact.email}</p>
@@ -58,7 +67,7 @@ export const IvoryLines: React.FC<Props> = ({ profile }) => {
           <div className="space-y-10 grow">
               <section>
                   <h3 className="font-playfair font-bold text-xl mb-4 flex items-center gap-2">
-                      <span className="w-2 h-2 bg-stone-800 rotate-45"></span> Profile
+                      <span className="w-2 h-2 bg-stone-800 rotate-45"></span> {t('section.personal')}
                   </h3>
                   <p className="text-sm leading-7 text-stone-600 border-l-2 border-stone-200 pl-4 whitespace-pre-line">
                       {education.aboutMe || "Brief summary about the profile..."}
@@ -67,30 +76,32 @@ export const IvoryLines: React.FC<Props> = ({ profile }) => {
 
               <section>
                   <h3 className="font-playfair font-bold text-xl mb-6 flex items-center gap-2">
-                      <span className="w-2 h-2 bg-stone-800 rotate-45"></span> Professional Info
+                      <span className="w-2 h-2 bg-stone-800 rotate-45"></span> {t('section.education')}
                   </h3>
                   <div className="grid grid-cols-2 gap-6 align-top">
-                      <DetailItem label="Qualification" value={education.education} labelClass="text-stone-400" />
-                      <DetailItem label="Occupation" value={education.occupation} labelClass="text-stone-400" />
-                      <DetailItem label="Employer" value={education.company} labelClass="text-stone-400" />
-                      <DetailItem label="Annual Income" value={education.income} labelClass="text-stone-400" />
+                      <DetailItem label={t('field.education')} value={education.education} labelClass="text-stone-400" />
+                      <DetailItem label={t('field.occupation')} value={education.occupation} labelClass="text-stone-400" />
+                      <DetailItem label={t('field.company')} value={education.company} labelClass="text-stone-400" />
+                      <DetailItem label={t('field.income')} value={education.income} labelClass="text-stone-400" />
                   </div>
               </section>
 
               <section>
                   <h3 className="font-playfair font-bold text-xl mb-6 flex items-center gap-2">
-                      <span className="w-2 h-2 bg-stone-800 rotate-45"></span> Family Background
+                      <span className="w-2 h-2 bg-stone-800 rotate-45"></span> {t('section.family')}
                   </h3>
                   <div className="bg-stone-50 p-6 border border-stone-100 grid grid-cols-2 gap-y-6 gap-x-8">
-                       <DetailItem label="Father" value={family.fatherName} valueClass="font-bold" />
+                       <DetailItem label={t('field.fatherName')} value={family.fatherName} valueClass="font-bold" />
                        <DetailItem label="Job" value={family.fatherOccupation} />
-                       <DetailItem label="Mother" value={family.motherName} valueClass="font-bold" />
+                       <DetailItem label={t('field.motherName')} value={family.motherName} valueClass="font-bold" />
                        <DetailItem label="Job" value={family.motherOccupation} />
+                       <DetailItem label={t('field.familyType')} value={family.familyType} />
+                       <DetailItem label={t('field.values')} value={family.familyValues} />
                        <div className="col-span-2 pt-2 border-t border-stone-200 mt-2">
-                          <DetailItem label="Siblings" value={family.siblings} />
+                          <DetailItem label={t('field.siblings')} value={family.siblings} />
                        </div>
                        <div className="col-span-2">
-                           <DetailItem label="Native Place" value={family.nativePlace} />
+                           <DetailItem label={t('field.nativePlace')} value={family.nativePlace} />
                        </div>
                   </div>
               </section>

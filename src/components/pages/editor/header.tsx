@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, Printer, RotateCcw, Languages } from 'lucide-react';
+import { ArrowLeft, Printer, RotateCcw, Languages, Download, FileImage, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
 import {
@@ -13,9 +13,10 @@ interface HeaderProps {
   onBack: () => void;
   onReset: () => void;
   onPrint: () => void;
+  onDownload: (type: 'png' | 'pdf') => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onBack, onReset, onPrint }) => {
+export const Header: React.FC<HeaderProps> = ({ onBack, onReset, onPrint, onDownload }) => {
   const { language, setLanguage, t } = useLanguage();
 
   return (
@@ -51,11 +52,29 @@ export const Header: React.FC<HeaderProps> = ({ onBack, onReset, onPrint }) => {
             <RotateCcw size={16} />
             {t('editor.reset')}
         </Button>
-        <Button onClick={onPrint} size="sm" className="gap-2 shadow-lg shadow-primary/20">
-            <Printer size={16} />
-            <span className="hidden sm:inline">{t('editor.print')}</span>
-            <span className="sm:hidden">Print</span>
-        </Button>
+
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <Button size="sm" className="gap-2 shadow-lg shadow-primary/20">
+                    <Download size={16} />
+                    <span className="hidden sm:inline">Download</span>
+                </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => onDownload('png')} className="gap-2 cursor-pointer">
+                    <FileImage size={16} className="text-blue-500" />
+                    <span>Download Image (PNG)</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => onDownload('pdf')} className="gap-2 cursor-pointer">
+                    <FileText size={16} className="text-red-500" />
+                    <span>Download PDF</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={onPrint} className="gap-2 cursor-pointer">
+                    <Printer size={16} className="text-slate-500" />
+                    <span>Print Ready</span>
+                </DropdownMenuItem>
+            </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </header>
   );

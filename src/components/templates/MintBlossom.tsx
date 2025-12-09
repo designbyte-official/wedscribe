@@ -2,12 +2,14 @@ import React from 'react';
 import { BiodataProfile } from '@/types';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { PlaceholderImage, DetailItem } from './shared';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface Props {
   profile: BiodataProfile;
 }
 
 export const MintBlossom: React.FC<Props> = ({ profile }) => {
+  const { t } = useLanguage();
   const { personal, education, family, contact } = profile;
 
   return (
@@ -28,7 +30,7 @@ export const MintBlossom: React.FC<Props> = ({ profile }) => {
 
               <div className="bg-white p-6 rounded-xl shadow-sm border border-green-100 mt-auto">
                   <h3 className="text-green-800 font-bold uppercase tracking-wider text-xs mb-4 flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div> Contact
+                      <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div> {t('section.contact')}
                   </h3>
                   <div className="space-y-3 text-sm text-green-900">
                       <div className="flex items-center gap-3"><Phone size={14} className="text-green-500"/> {contact.contactNumber}</div>
@@ -51,37 +53,47 @@ export const MintBlossom: React.FC<Props> = ({ profile }) => {
 
               <div className="space-y-8">
                   <div>
-                      <h2 className="text-lg font-bold text-green-800 border-b-2 border-green-100 pb-2 mb-4 inline-block pr-8">Personal Information</h2>
+                      <h2 className="text-lg font-bold text-green-800 border-b-2 border-green-100 pb-2 mb-4 inline-block pr-8">{t('section.personal')}</h2>
                       <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-                           <DetailItem label="Date of Birth" value={personal.dateOfBirth} labelClass="text-green-600" />
-                           <DetailItem label="Time of Birth" value={personal.timeOfBirth} labelClass="text-green-600" />
-                           <DetailItem label="Height" value={personal.height} labelClass="text-green-600" />
-                           <DetailItem label="Complexion" value={personal.complexion} labelClass="text-green-600" />
-                           <DetailItem label="Rashi" value={personal.rashi} labelClass="text-green-600" />
-                           <DetailItem label="Manglik" value={personal.manglik} labelClass="text-green-600" />
+                           <DetailItem label={t('field.dob')} value={personal.dateOfBirth} labelClass="text-green-600" />
+                           <DetailItem label={t('field.tob')} value={personal.timeOfBirth} labelClass="text-green-600" />
+                           <DetailItem label={t('field.pob')} value={personal.placeOfBirth} labelClass="text-green-600" />
+                           <DetailItem label={t('field.height')} value={personal.height} labelClass="text-green-600" />
+                           <DetailItem label={t('field.weight')} value={personal.weight} labelClass="text-green-600" />
+                           <DetailItem label={t('field.bloodGroup')} value={personal.bloodGroup} labelClass="text-green-600" />
+                           <DetailItem label={t('field.complexion')} value={personal.complexion} labelClass="text-green-600" />
+                           <DetailItem label={t('field.maritalStatus')} value={personal.maritalStatus} labelClass="text-green-600" />
+                           <DetailItem label={t('field.religion')} value={personal.religion} labelClass="text-green-600" />
+                           <DetailItem label={t('field.caste')} value={`${personal.caste}, ${personal.subCaste}`} labelClass="text-green-600" />
+                           <DetailItem label={t('field.gothra')} value={personal.gothra} labelClass="text-green-600" />
+                           <DetailItem label={t('field.rashi')} value={personal.rashi} labelClass="text-green-600" />
+                           <DetailItem label={t('field.nakshatra')} value={personal.nakshatra} labelClass="text-green-600" />
+                           <DetailItem label={t('field.manglik')} value={personal.manglik} labelClass="text-green-600" />
                       </div>
                   </div>
 
                   <div>
-                      <h2 className="text-lg font-bold text-green-800 border-b-2 border-green-100 pb-2 mb-4 inline-block pr-8">Education & Career</h2>
+                      <h2 className="text-lg font-bold text-green-800 border-b-2 border-green-100 pb-2 mb-4 inline-block pr-8">{t('section.education')}</h2>
                       <div className="grid grid-cols-1 gap-y-4">
-                           <DetailItem label="Highest Degree" value={education.education} labelClass="text-green-600" />
-                           <DetailItem label="Occupation" value={`${education.occupation} at ${education.company}`} labelClass="text-green-600" />
-                           <DetailItem label="Income" value={education.income} labelClass="text-green-600" />
+                           <DetailItem label={t('field.education')} value={education.education} labelClass="text-green-600" />
+                           <DetailItem label={t('field.occupation')} value={`${education.occupation} at ${education.company}`} labelClass="text-green-600" />
+                           <DetailItem label={t('field.income')} value={education.income} labelClass="text-green-600" />
                       </div>
                   </div>
 
                   <div>
-                      <h2 className="text-lg font-bold text-green-800 border-b-2 border-green-100 pb-2 mb-4 inline-block pr-8">Family Details</h2>
+                      <h2 className="text-lg font-bold text-green-800 border-b-2 border-green-100 pb-2 mb-4 inline-block pr-8">{t('section.family')}</h2>
                       <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-                           <DetailItem label="Father" value={family.fatherName} labelClass="text-green-600" />
-                           <DetailItem label="Mother" value={family.motherName} labelClass="text-green-600" />
+                           <DetailItem label={t('field.fatherName')} value={family.fatherName} labelClass="text-green-600" />
+                           <DetailItem label={t('field.motherName')} value={family.motherName} labelClass="text-green-600" />
                            <div className="col-span-2">
-                              <DetailItem label="Siblings" value={family.siblings} labelClass="text-green-600" />
+                              <DetailItem label={t('field.siblings')} value={family.siblings} labelClass="text-green-600" />
                            </div>
                            <div className="col-span-2">
-                              <DetailItem label="Native" value={family.nativePlace} labelClass="text-green-600" />
+                               <DetailItem label={t('field.nativePlace')} value={family.nativePlace} labelClass="text-green-600" />
                            </div>
+                           <DetailItem label={t('field.familyType')} value={family.familyType} labelClass="text-green-600" />
+                           <DetailItem label={t('field.values')} value={family.familyValues} labelClass="text-green-600" />
                       </div>
                   </div>
               </div>

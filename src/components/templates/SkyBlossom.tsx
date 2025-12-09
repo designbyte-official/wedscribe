@@ -1,6 +1,6 @@
 import React from 'react';
 import { BiodataProfile } from '@/types';
-import { Phone, Mail, MapPin, User, Star, Calendar, Clock, Ruler, Users, GraduationCap, Briefcase, Globe, Award } from 'lucide-react';
+import { Phone, Mail, MapPin, User, Star, Calendar, Clock, Ruler, Users, GraduationCap, Briefcase, Globe, Award, Activity } from 'lucide-react';
 import { PlaceholderImage, SectionTitle, DetailItem, ContactRow } from './shared';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -40,10 +40,13 @@ export const SkyBlossom: React.FC<Props> = ({ profile }) => {
                           <Star size={18} className="text-sky-400"/> {t('section.habits')}
                       </h2>
                       <div className="space-y-3 text-sm text-sky-100/80">
+                          <p>• {t('field.rashi')}: {personal.rashi}</p>
+                          <p>• {t('field.nakshatra')}: {personal.nakshatra}</p>
                           {personal.manglik === 'Yes' && <p>• {t('field.manglik')}</p>}
                           <p>• {profile.family.familyValues} {t('field.values')}</p>
                           <p>• {profile.family.familyType} {t('field.familyType')}</p>
-                          <p>• {personal.religion}, {personal.caste}</p>
+                          <p>• {personal.religion}, {personal.caste}, {personal.subCaste}</p>
+                          <p>• {t('field.maritalStatus')}: {personal.maritalStatus}</p>
                       </div>
                   </div>
               </div>
@@ -71,7 +74,11 @@ export const SkyBlossom: React.FC<Props> = ({ profile }) => {
                   <div className="grid grid-cols-3 gap-6">
                       <DetailItem label={t('field.dob')} value={`${personal.dateOfBirth}`} icon={Calendar} />
                       <DetailItem label={t('field.tob')} value={personal.timeOfBirth} icon={Clock} />
+                      <DetailItem label={t('field.pob')} value={personal.placeOfBirth} icon={MapPin} />
                       <DetailItem label={t('field.height')} value={personal.height} icon={Ruler} />
+                      <DetailItem label={t('field.weight')} value={personal.weight} icon={Ruler} />
+                      <DetailItem label={t('field.bloodGroup')} value={personal.bloodGroup} icon={Activity} />
+                      <DetailItem label={t('field.complexion')} value={personal.complexion} icon={User} />
                       <DetailItem label={t('field.religion')} value={personal.religion} icon={Star} />
                       <DetailItem label={t('field.caste')} value={personal.caste} icon={Users} />
                       <DetailItem label={t('field.gothra')} value={personal.gothra} icon={User} />
@@ -94,10 +101,11 @@ export const SkyBlossom: React.FC<Props> = ({ profile }) => {
                   <SectionTitle title={t('section.family')} lineClass="bg-sky-100" />
                   <div className="grid grid-cols-2 gap-y-4 gap-x-8">
                       <DetailItem label={t('field.fatherName')} value={family.fatherName} valueClass="font-bold text-sky-900" />
-                      <DetailItem label="Occupation" value={family.fatherOccupation} />
+                      <DetailItem label={t('field.fatherOcc')} value={family.fatherOccupation} />
                       <DetailItem label={t('field.motherName')} value={family.motherName} valueClass="font-bold text-sky-900" />
-                      <DetailItem label="Occupation" value={family.motherOccupation} />
-                      <DetailItem label="Siblings" value={family.siblings} className="col-span-2 mt-2" />
+                      <DetailItem label={t('field.motherOcc')} value={family.motherOccupation} />
+                      <DetailItem label={t('field.siblings')} value={family.siblings} className="col-span-2 mt-2" />
+                      <DetailItem label={t('field.nativePlace')} value={family.nativePlace} className="col-span-2" icon={MapPin} />
                   </div>
               </div>
           </div>

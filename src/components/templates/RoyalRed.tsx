@@ -1,12 +1,14 @@
 import React from 'react';
 import { BiodataProfile } from '@/types';
 import { PlaceholderImage } from './shared';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface Props {
   profile: BiodataProfile;
 }
 
 export const RoyalRed: React.FC<Props> = ({ profile }) => {
+  const { t } = useLanguage();
   const { personal, education, family, contact } = profile;
 
   return (
@@ -21,7 +23,7 @@ export const RoyalRed: React.FC<Props> = ({ profile }) => {
               <div className="absolute bottom-4 right-4 w-24 h-24 border-b-4 border-r-4 border-[#fcd34d] rounded-br-3xl opacity-60"></div>
 
               <div className="text-center z-10 mb-8 mt-4">
-                  <span className="text-[#fcd34d] uppercase tracking-[0.4em] text-xs">|| Shree Ganeshay Namah ||</span>
+                  <span className="text-[#fcd34d] uppercase tracking-[0.4em] text-xs">{t('template.mantra')}</span>
                   <h1 className="font-great-vibes text-6xl mt-4 text-[#fcd34d] drop-shadow-md">{personal.fullName}</h1>
               </div>
 
@@ -29,28 +31,36 @@ export const RoyalRed: React.FC<Props> = ({ profile }) => {
                   {/* Left Column (Details) */}
                   <div className="w-1/2 flex flex-col items-end text-right gap-8 pt-4">
                       <div>
-                           <h3 className="text-[#fcd34d] font-bold uppercase tracking-widest text-sm mb-3 border-b border-[#fcd34d]/30 pb-1 inline-block">Personal</h3>
+                           <h3 className="text-[#fcd34d] font-bold uppercase tracking-widest text-sm mb-3 border-b border-[#fcd34d]/30 pb-1 inline-block">{t('section.personal')}</h3>
                            <div className="space-y-1">
-                              <p>{personal.dateOfBirth}</p>
-                              <p>{personal.height}</p>
-                              <p>{personal.religion}, {personal.caste}</p>
-                              <p>{personal.gothra}</p>
+                               <p>{personal.dateOfBirth}, {personal.timeOfBirth}</p>
+                               <p>{personal.placeOfBirth}</p>
+                               <p>{personal.height}, {personal.weight}</p>
+                               <p>{personal.bloodGroup}, {personal.complexion}</p>
+                               <p>{personal.maritalStatus}</p>
+                               <p>{personal.religion}, {personal.caste}, {personal.subCaste}</p>
+                               <p>{personal.gothra}</p>
+                               <p>{personal.rashi}, {personal.nakshatra}</p>
+                               {personal.manglik === 'Yes' && <p>{t('field.manglik')}</p>}
                            </div>
                       </div>
                       <div>
-                           <h3 className="text-[#fcd34d] font-bold uppercase tracking-widest text-sm mb-3 border-b border-[#fcd34d]/30 pb-1 inline-block">Professional</h3>
+                           <h3 className="text-[#fcd34d] font-bold uppercase tracking-widest text-sm mb-3 border-b border-[#fcd34d]/30 pb-1 inline-block">{t('section.education')}</h3>
                            <div className="space-y-1">
-                              <p className="font-bold whitespace-pre-line">{education.education}</p>
-                              <p>{education.occupation}</p>
-                              <p>{education.company}</p>
+                               <p className="font-bold whitespace-pre-line">{education.education}</p>
+                               <p>{education.occupation}</p>
+                               <p>{education.company}</p>
+                               <p>{education.income}</p>
                            </div>
                       </div>
                       <div>
-                           <h3 className="text-[#fcd34d] font-bold uppercase tracking-widest text-sm mb-3 border-b border-[#fcd34d]/30 pb-1 inline-block">Family</h3>
+                           <h3 className="text-[#fcd34d] font-bold uppercase tracking-widest text-sm mb-3 border-b border-[#fcd34d]/30 pb-1 inline-block">{t('section.family')}</h3>
                            <div className="space-y-1">
-                              <p>Father: {family.fatherName}</p>
-                              <p>Mother: {family.motherName}</p>
-                              <p>{family.nativePlace}</p>
+                               <p>{t('field.fatherName')}: {family.fatherName} ({family.fatherOccupation})</p>
+                               <p>{t('field.motherName')}: {family.motherName} ({family.motherOccupation})</p>
+                               <p>{family.nativePlace}, {family.familyType}</p>
+                               <p>{family.familyValues}</p>
+                               <p className="whitespace-pre-line">{family.siblings}</p>
                            </div>
                       </div>
                   </div>
@@ -65,7 +75,7 @@ export const RoyalRed: React.FC<Props> = ({ profile }) => {
                        </div>
 
                        <div>
-                           <h3 className="text-[#fcd34d] font-bold uppercase tracking-widest text-sm mb-3 border-b border-[#fcd34d]/30 pb-1 inline-block">Contact</h3>
+                           <h3 className="text-[#fcd34d] font-bold uppercase tracking-widest text-sm mb-3 border-b border-[#fcd34d]/30 pb-1 inline-block">{t('section.contact')}</h3>
                            <div className="space-y-1 text-left">
                               <p>{contact.contactNumber}</p>
                               <p>{contact.email}</p>
@@ -76,7 +86,7 @@ export const RoyalRed: React.FC<Props> = ({ profile }) => {
               </div>
               
               <div className="mt-auto pt-8 z-10 text-center opacity-70 text-xs tracking-widest uppercase text-[#fcd34d] pb-4">
-                  Marriage Biodata
+                  {t('common.marriageBiodata')}
               </div>
            </div>
       </div>

@@ -1,12 +1,14 @@
 import React from 'react';
 import { BiodataProfile } from '@/types';
 import { PlaceholderImage, DetailItem } from './shared';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface Props {
   profile: BiodataProfile;
 }
 
 export const Minimalist: React.FC<Props> = ({ profile }) => {
+  const { t } = useLanguage();
   const { personal, education, family, contact } = profile;
 
   return (
@@ -32,17 +34,33 @@ export const Minimalist: React.FC<Props> = ({ profile }) => {
 
                <div className="space-y-6">
                   <div className="border-l-4 border-black pl-4">
-                      <span className="block text-xs font-black uppercase tracking-widest text-gray-400 mb-1">Height</span>
+                      <span className="block text-xs font-black uppercase tracking-widest text-gray-400 mb-1">{t('field.height')}</span>
                       <span className="text-xl font-bold">{personal.height}</span>
                   </div>
                   <div className="border-l-4 border-black pl-4">
-                      <span className="block text-xs font-black uppercase tracking-widest text-gray-400 mb-1">Age</span>
-                      <span className="text-xl font-bold">{new Date().getFullYear() - new Date(personal.dateOfBirth).getFullYear()} Yrs</span>
+                      <span className="block text-xs font-black uppercase tracking-widest text-gray-400 mb-1">{t('field.age')}</span>
+                      <span className="text-xl font-bold">{new Date().getFullYear() - new Date(personal.dateOfBirth).getFullYear()} {t('field.years')}</span>
                   </div>
                   <div className="border-l-4 border-black pl-4">
-                      <span className="block text-xs font-black uppercase tracking-widest text-gray-400 mb-1">Blood</span>
+                      <span className="block text-xs font-black uppercase tracking-widest text-gray-400 mb-1">{t('field.bloodGroup')}</span>
                       <span className="text-xl font-bold">{personal.bloodGroup}</span>
                   </div>
+                   <div className="border-l-4 border-black pl-4">
+                       <span className="block text-xs font-black uppercase tracking-widest text-gray-400 mb-1">{t('field.weight')}</span>
+                       <span className="text-xl font-bold">{personal.weight}</span>
+                   </div>
+                   <div className="border-l-4 border-black pl-4">
+                       <span className="block text-xs font-black uppercase tracking-widest text-gray-400 mb-1">{t('field.complexion')}</span>
+                       <span className="text-xl font-bold">{personal.complexion}</span>
+                   </div>
+                   <div className="border-l-4 border-black pl-4">
+                       <span className="block text-xs font-black uppercase tracking-widest text-gray-400 mb-1">{t('field.maritalStatus')}</span>
+                       <span className="text-xl font-bold truncate">{personal.maritalStatus}</span>
+                   </div>
+                   <div className="border-l-4 border-black pl-4">
+                       <span className="block text-xs font-black uppercase tracking-widest text-gray-400 mb-1">{t('field.rashi')}</span>
+                       <span className="text-lg font-bold">{personal.rashi}</span>
+                   </div>
                </div>
           </div>
 
@@ -56,26 +74,32 @@ export const Minimalist: React.FC<Props> = ({ profile }) => {
               </div>
 
               <div>
-                  <h3 className="bg-black text-white inline-block px-2 py-1 text-xs font-black uppercase tracking-widest mb-6">Education</h3>
+                  <h3 className="bg-black text-white inline-block px-2 py-1 text-xs font-black uppercase tracking-widest mb-6">{t('section.education')}</h3>
                   <div className="space-y-4">
-                      <DetailItem label="Degree" value={education.education} />
-                      <DetailItem label="Profession" value={education.occupation} />
-                      <DetailItem label="Organization" value={education.company} />
+                      <DetailItem label={t('field.education')} value={education.education} />
+                      <DetailItem label={t('field.occupation')} value={education.occupation} />
+                      <DetailItem label={t('field.company')} value={education.company} />
+                       <DetailItem label={t('field.income')} value={education.income} />
                   </div>
               </div>
 
               <div>
-                  <h3 className="bg-black text-white inline-block px-2 py-1 text-xs font-black uppercase tracking-widest mb-6">Family</h3>
+                  <h3 className="bg-black text-white inline-block px-2 py-1 text-xs font-black uppercase tracking-widest mb-6">{t('section.family')}</h3>
                   <div className="space-y-4">
-                      <DetailItem label="Father" value={family.fatherName} />
-                      <DetailItem label="Mother" value={family.motherName} />
-                      <DetailItem label="Residence" value={family.nativePlace} />
+                      <DetailItem label={t('field.fatherName')} value={family.fatherName} />
+                      <DetailItem label={t('field.motherName')} value={family.motherName} />
+                       <DetailItem label={t('field.siblings')} value={family.siblings} />
+                      <DetailItem label={t('field.nativePlace')} value={family.nativePlace} />
+                       <div className="grid grid-cols-2 gap-4">
+                           <DetailItem label={t('field.familyType')} value={family.familyType} />
+                           <DetailItem label={t('field.values')} value={family.familyValues} />
+                       </div>
                   </div>
               </div>
 
               <div className="col-span-2 border-t border-gray-200 pt-8 flex justify-between items-end">
                   <div>
-                      <h3 className="bg-black text-white inline-block px-2 py-1 text-xs font-black uppercase tracking-widest mb-2">Contact</h3>
+                      <h3 className="bg-black text-white inline-block px-2 py-1 text-xs font-black uppercase tracking-widest mb-2">{t('section.contact')}</h3>
                       <p className="font-bold text-lg">{contact.contactNumber}</p>
                       <p className="text-gray-500">{contact.email}</p>
                   </div>
