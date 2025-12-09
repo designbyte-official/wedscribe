@@ -6,6 +6,9 @@ export enum TemplateType {
   MINT_BLOSSOM = 'MINT_BLOSSOM',
   ROYAL_RED = 'ROYAL_RED',
   MINIMALIST = 'MINIMALIST',
+  SACRED_SAFFRON = 'SACRED_SAFFRON',
+  NOOR_CRESCENT = 'NOOR_CRESCENT',
+  GRACEFUL_LILY = 'GRACEFUL_LILY',
 }
 
 export interface PersonalDetails {

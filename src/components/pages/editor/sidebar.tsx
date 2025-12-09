@@ -72,6 +72,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <TemplateCard type={TemplateType.MINT_BLOSSOM} name="Mint Blossom" colorClass="bg-emerald-50 text-emerald-700" />
         <TemplateCard type={TemplateType.ROYAL_RED} name="Royal Red" colorClass="bg-rose-50 text-rose-900" />
         <TemplateCard type={TemplateType.MINIMALIST} name="Minimalist" colorClass="bg-white text-slate-900 border border-slate-100" />
+        <TemplateCard type={TemplateType.SACRED_SAFFRON} name="Sacred Saffron" colorClass="bg-amber-50 text-amber-700" />
+        <TemplateCard type={TemplateType.NOOR_CRESCENT} name="Noor Crescent" colorClass="bg-emerald-50 text-emerald-700" />
+        <TemplateCard type={TemplateType.GRACEFUL_LILY} name="Graceful Lily" colorClass="bg-indigo-50 text-indigo-700" />
     </div>
   );
 
@@ -119,7 +122,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                          <div className="mb-8 flex items-end justify-between">
                              <div>
                                 <h2 className="text-base font-bold text-slate-900 mb-1">Choose Design</h2>
-                                <p className="text-sm text-slate-500">Six premium layouts available.</p>
+                                <p className="text-sm text-slate-500">Nine premium layouts available.</p>
                              </div>
                              <span className="text-xs font-medium text-slate-400 bg-slate-50 px-2 py-1 rounded">V 1.0</span>
                          </div>

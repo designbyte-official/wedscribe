@@ -2,11 +2,12 @@
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# Run and deploy your AI Studio app
+# WedScribe – Built by DesignByte Studio
 
-This contains everything you need to run your app locally.
+This repo contains everything you need to run the WedScribe biodata experience locally.  
+Live preview: https://studio.designbyte.dev
 
-View your app in AI Studio: https://ai.studio/apps/drive/1IOmQFprq4WUFILwwoS3RMolfcTUrsnrx
+Crafted with care by **DesignByte Studio** — tailored flows, refined templates, and a smooth onboarding experience.
 
 ## Run Locally
 

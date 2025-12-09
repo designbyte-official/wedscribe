@@ -6,6 +6,9 @@ import { IvoryLines } from '@/components/templates/IvoryLines';
 import { MintBlossom } from '@/components/templates/MintBlossom';
 import { RoyalRed } from '@/components/templates/RoyalRed';
 import { Minimalist } from '@/components/templates/Minimalist';
+import { SacredSaffron } from '@/components/templates/SacredSaffron';
+import { NoorCrescent } from '@/components/templates/NoorCrescent';
+import { GracefulLily } from '@/components/templates/GracefulLily';
 
 interface Props {
   profile: BiodataProfile;
@@ -26,6 +29,12 @@ export const TemplateRenderer: React.FC<Props> = ({ profile, template }) => {
       return <RoyalRed profile={profile} />;
     case TemplateType.MINIMALIST:
       return <Minimalist profile={profile} />;
+    case TemplateType.SACRED_SAFFRON:
+      return <SacredSaffron profile={profile} />;
+    case TemplateType.NOOR_CRESCENT:
+      return <NoorCrescent profile={profile} />;
+    case TemplateType.GRACEFUL_LILY:
+      return <GracefulLily profile={profile} />;
     default:
       return <div className="p-10 text-center text-gray-500">Select a template</div>;
   }
