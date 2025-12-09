@@ -2,10 +2,12 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Sparkles, Wand2, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { useLanguage } from '@/context/LanguageContext';
 
 export const AISection: React.FC = () => {
     const navigate = useNavigate();
+    const { t } = useLanguage();
 
     return (
         <section className="py-32 bg-slate-900 relative overflow-hidden text-white">
@@ -24,14 +26,14 @@ export const AISection: React.FC = () => {
                         transition={{ duration: 0.8 }}
                     >
                          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-bold uppercase tracking-widest text-purple-300 mb-6 backdrop-blur-md">
-                            <Sparkles size={12} className="text-purple-400" /> AI Powered
+                            <Sparkles size={12} className="text-purple-400" /> {t('home.ai.tag')}
                         </div>
                         <h2 className="text-4xl md:text-5xl font-bold font-serif mb-6 leading-tight">
-                            Writer's Block? <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Not Anymore.</span>
+                            {t('home.ai.title.1')} <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">{t('home.ai.title.2')}</span>
                         </h2>
                         <p className="text-lg text-slate-300 mb-8 font-light leading-relaxed max-w-lg">
-                            Let our advanced AI craft the perfect bio for you. Just enter your basic details and let the magic happen.
+                            {t('home.ai.desc')}
                         </p>
                         
                         <div className="space-y-4 mb-10">
@@ -50,8 +52,10 @@ export const AISection: React.FC = () => {
                             ))}
                         </div>
 
-                        <Button onClick={() => navigate('/editor')} size="lg" className="rounded-full px-8 h-12 bg-white text-slate-900 hover:bg-slate-100 font-semibold text-base">
-                            Try AI Writer <Wand2 size={16} className="ml-2" /> 
+                        <Button asChild size="lg" className="rounded-full px-8 h-12 bg-white text-slate-900 hover:bg-slate-100 font-semibold text-base">
+                            <Link to="/editor">
+                                {t('home.ai.btn')} <Wand2 size={16} className="ml-2" />
+                            </Link> 
                         </Button>
                     </motion.div>
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import { useLanguage } from '@/context/LanguageContext';
 
 const religions = [
   { name: 'Hindu', color: 'bg-orange-100 text-orange-700 border-orange-200' },
@@ -11,6 +12,7 @@ const religions = [
 ];
 
 export const ReligionSelection: React.FC = () => {
+    const { t } = useLanguage();
   return (
     <section className="py-32 bg-white relative">
       <div className="max-w-5xl mx-auto px-6 text-center">
@@ -21,10 +23,10 @@ export const ReligionSelection: React.FC = () => {
            transition={{ duration: 0.5 }}
         >
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-6">
-                Tailored for Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">Traditions</span>
+                {t('home.religion.title')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">{t('home.religion.highlight')}</span>
             </h2>
             <p className="text-lg text-slate-500 font-light mb-12 max-w-2xl mx-auto leading-relaxed">
-                Whether you prefer a traditional format or a modern layout, our templates adapt to the nuances of your community's requirements.
+                {t('home.religion.desc')}
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
@@ -47,7 +49,7 @@ export const ReligionSelection: React.FC = () => {
                     transition={{ delay: 0.3 }}
                     className="px-8 py-3 rounded-full border border-slate-200 text-slate-500 font-medium text-sm bg-slate-50"
                 >
-                    + Your Community
+                    {t('home.religion.community')}
                 </motion.div>
             </div>
         </motion.div>

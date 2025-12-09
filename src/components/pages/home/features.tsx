@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useLanguage } from '@/context/LanguageContext';
 
 const FeatureCard = ({ icon, title, description, delay, className = "" }: { icon: React.ReactNode, title: string, description: string, delay: number, className?: string }) => (
   <motion.div 
@@ -33,6 +34,8 @@ const FeatureCard = ({ icon, title, description, delay, className = "" }: { icon
 );
 
 export const Features: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="features" className="py-32 bg-slate-50 relative overflow-hidden">
       {/* Decorative bg */}
@@ -59,7 +62,7 @@ export const Features: React.FC = () => {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-bold font-serif text-slate-900 mb-6 leading-tight"
           >
-            Designed for the Modern <br /> <span className="text-primary italic">Indian Family</span>
+           {t('home.features.title')}
           </motion.h2>
           
           <motion.p 
@@ -69,29 +72,29 @@ export const Features: React.FC = () => {
             transition={{ delay: 0.2 }}
             className="text-lg text-slate-500 font-light leading-loose"
           >
-            We've reimagined the biodata creation process to be elegant, simple, and respectful of tradition while embracing modern aesthetics.
+            {t('home.features.subtitle')}
           </motion.p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
           <FeatureCard 
             icon={<Shield size={24} />}
-            title="Privacy First"
-            description="Your personal data stays on your device. We use local browser processing to ensure complete confidentiality for your family."
+            title={t('home.feature.3.title')}
+            description={t('home.feature.3.desc')}
             delay={0.1}
             className="md:col-span-1"
           />
           <FeatureCard 
             icon={<Layout size={24} />}
-            title="Curated Typography"
-            description="Our templates use premium font pairings like Montserrat and Playfair Display to ensure legibility and elegance."
+            title={t('home.feature.1.title')}
+            description={t('home.feature.1.desc')}
             delay={0.2}
             className="md:col-span-1"
           />
           <FeatureCard 
             icon={<Printer size={24} />}
-            title="Print Perfection"
-            description="Download high-resolution A4 PDFs optimized for home printing or professional sharing on WhatsApp."
+            title={t('home.feature.4.title')}
+            description={t('home.feature.4.desc')}
             delay={0.3}
             className="md:col-span-1"
           />

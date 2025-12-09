@@ -7,10 +7,12 @@ import {
 } from "@/components/ui/accordion";
 import { motion } from 'motion/react';
 import { HelpCircle } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 export const FAQ: React.FC = () => {
+  const { t } = useLanguage();
   return (
-    <section className="py-32 bg-white relative">
+    <section id="faq" className="py-32 bg-white relative">
       <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-20">
             <div className="inline-flex items-center justify-center p-3 rounded-full bg-slate-100 text-slate-500 mb-6">
@@ -22,9 +24,9 @@ export const FAQ: React.FC = () => {
                 viewport={{ once: true }}
                 className="text-4xl font-bold font-serif text-slate-900 mb-4"
             >
-                Common Questions
+                {t('home.faq.title')}
             </motion.h2>
-            <p className="text-slate-500 font-light text-lg">Everything you need to know before you start.</p>
+            <p className="text-slate-500 font-light text-lg">{t('home.faq.desc')}</p>
         </div>
 
         <motion.div
@@ -36,19 +38,19 @@ export const FAQ: React.FC = () => {
           <Accordion type="single" collapsible className="w-full space-y-4">
             <AccordionItem value="item-1" className="border border-slate-200 rounded-lg px-6 bg-white data-[state=open]:border-primary/50 data-[state=open]:ring-4 data-[state=open]:ring-primary/5 transition-all">
               <AccordionTrigger className="hover:no-underline text-lg font-medium text-slate-700 py-6">
-                  Is my personal data safe?
+                  {t('home.faq.q1')}
               </AccordionTrigger>
               <AccordionContent className="text-slate-500 leading-relaxed pb-6 text-base font-light">
-                Absolutely. WedScribe operates on a <span className="text-slate-900 font-medium">Local-First</span> architecture. This means your data is processed entirely within your browser and never sent to any external server. It stays on your device until you decide to share the final PDF.
+                {t('home.faq.a1')}
               </AccordionContent>
             </AccordionItem>
             
             <AccordionItem value="item-2" className="border border-slate-200 rounded-lg px-6 bg-white data-[state=open]:border-primary/50 data-[state=open]:ring-4 data-[state=open]:ring-primary/5 transition-all">
               <AccordionTrigger className="hover:no-underline text-lg font-medium text-slate-700 py-6">
-                  Is it free to download the PDF?
+                  {t('home.faq.q2')}
               </AccordionTrigger>
               <AccordionContent className="text-slate-500 leading-relaxed pb-6 text-base font-light">
-                Yes, the core biodata creation and standard PDF downloads are completely free. We believe in making this essential step of matchmaking accessible to everyone.
+                {t('home.faq.a2')}
               </AccordionContent>
             </AccordionItem>
 

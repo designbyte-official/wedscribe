@@ -69,6 +69,59 @@ export const translations: Translations = {
 
   // Dropdown Options (Generic fallback)
   'option.select': { en: 'Select...', hi: 'चुनें...' },
+
+  // Home Page - Hero
+  'home.hero.badge': { en: "India's Premium Biodata Maker", hi: "भारत का प्रीमियम बायोडेटा निर्माता" },
+  'home.hero.title.prefix': { en: "Design Your", hi: "अपना" },
+  'home.hero.title.highlight': { en: "Perfect Match", hi: "परफेक्ट मैच" },
+  'home.hero.title.suffix': { en: "Profile", hi: "प्रोफाइल डिज़ाइन करें" },
+  'home.hero.desc': { en: "Create stunning matrimonial biodatas that leave a lasting impression. Professional templates, AI-assisted writing, and instant PDF downloads.", hi: "शानदार वैवाहिक बायोडेटा बनाएं जो अमिट छाप छोड़े। पेशेवर टेम्पलेट्स, एआई लेखन सहायता, और तुरंत पीडीएफ डाउनलोड।" },
+  'home.hero.btn.create': { en: "Create Biodata", hi: "बायोडेटा बनाएँ" },
+  'home.hero.btn.templates': { en: "View Templates", hi: "टेम्पलेट्स देखें" },
+  'home.hero.trusted': { en: "Trusted by", hi: "भरोसा है" },
+  'home.hero.families': { en: "families", hi: "परिवारों का" },
+  'home.hero.status': { en: "Print Ready PDF", hi: "प्रिंट रेडी पीडीएफ" },
+  'home.hero.feature': { en: "AI Writer", hi: "एआई लेखक" },
+
+  // Home Page - Features
+  'home.features.title': { en: "Everything you need", hi: "वह सब कुछ जो आपको चाहिए" },
+  'home.features.subtitle': { en: "Powerful features to help you create the perfect profile.", hi: "परफेक्ट प्रोफाइल बनाने में आपकी मदद करने के लिए शक्तिशाली सुविधाएँ।" },
+  'home.feature.1.title': { en: "Premium Templates", hi: "प्रीमियम टेम्पलेट्स" },
+  'home.feature.1.desc': { en: "Professionally designed layouts.", hi: "पेशेवर रूप से डिज़ाइन किए गए लेआउट।" },
+  'home.feature.2.title': { en: "AI Assistance", hi: "एआई सहायता" },
+  'home.feature.2.desc': { en: "Write better bios instantly.", hi: "तुरंत बेहतर परिचय लिखें।" },
+  'home.feature.3.title': { en: "Privacy First", hi: "गोपनीयता पहले" },
+  'home.feature.3.desc': { en: "Your data stays on your device.", hi: "आपका डेटा आपके डिवाइस पर रहता है।" },
+  'home.feature.4.title': { en: "Instant PDF", hi: "तुरंत पीडीएफ" },
+  'home.feature.4.desc': { en: "Download high-quality PDFs.", hi: "उच्च गुणवत्ता वाले पीडीएफ डाउनलोड करें।" },
+
+  // Home Page - Religion
+  'home.religion.title': { en: "Tailored for Your", hi: "आपकी परंपराओं के" },
+  'home.religion.highlight': { en: "Traditions", hi: "अनुरूप" },
+  'home.religion.desc': { en: "Templates adapted to your community's requirements.", hi: "आपके समुदाय की आवश्यकताओं के अनुरूप टेम्पलेट्स।" },
+  'home.religion.community': { en: "+ Your Community", hi: "+ आपका समुदाय" },
+
+  // Home Page - AI
+  'home.ai.tag': { en: "AI Powered", hi: "एआई संचालित" },
+  'home.ai.title.1': { en: "Writer's Block?", hi: "क्या लिखना है पता नहीं?" },
+  'home.ai.title.2': { en: "Not Anymore.", hi: "अब और नहीं।" },
+  'home.ai.desc': { en: "Let our advanced AI craft the perfect bio for you.", hi: "हमारी उन्नत एआई को आपके लिए सही परिचय लिखने दें।" },
+  'home.ai.btn': { en: "Try AI Writer", hi: "एआई लेखक आज़माएं" },
+
+  // Home Page - FAQ
+  'home.faq.title': { en: "Common Questions", hi: "सामान्य प्रश्न" },
+  'home.faq.desc': { en: "Everything you need to know before you start.", hi: "शुरू करने से पहले आपको जो कुछ भी जानने की जरूरत है।" },
+  'home.faq.q1': { en: "Is my personal data safe?", hi: "क्या मेरा व्यक्तिगत डेटा सुरक्षित है?" },
+  'home.faq.a1': { en: "Yes, completely local-first.", hi: "हां, पूरी तरह से आपके डिवाइस पर सुरक्षित।" },
+  'home.faq.q2': { en: "Is it free?", hi: "क्या यह मुफ़्त है?" },
+  'home.faq.a2': { en: "Yes, core features are free.", hi: "हां, मुख्य सुविधाएँ मुफ़्त हैं।" },
+  
+  // Footer
+  'footer.brand.desc': { en: "Empowering Indian families to create beautiful profiles.", hi: "भारतीय परिवारों को सुंदर प्रोफाइल बनाने के लिए सशक्त बनाना।" },
+  'footer.col.product': { en: "Product", hi: "उत्पाद" },
+  'footer.col.company': { en: "Company", hi: "कंपनी" },
+  'footer.col.contact': { en: "Contact", hi: "संपर्क" },
+  'footer.rights': { en: "All rights reserved.", hi: "सर्वाधिकार सुरक्षित।" },
 };
 
 interface LanguageContextType {
