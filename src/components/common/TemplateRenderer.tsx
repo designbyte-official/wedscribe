@@ -33,6 +33,7 @@ import { MonsoonTeal } from '@/components/templates/MonsoonTeal';
 import { MaroonHeritage } from '@/components/templates/MaroonHeritage';
 import { RoyalMandala } from '@/components/templates/RoyalMandala';
 import { EmeraldCrescent } from '@/components/templates/EmeraldCrescent';
+import { BackgroundShowcase } from '@/components/templates/BackgroundShowcase';
 
 interface Props {
   profile: BiodataProfile;
@@ -108,6 +109,8 @@ export const TemplateRenderer: React.FC<Props> = React.memo(({ profile, template
         return <RoyalMandala profile={profile} />;
       case TemplateType.EMERALD_CRESCENT:
         return <EmeraldCrescent profile={profile} />;
+      case TemplateType.BACKGROUND_SHOWCASE:
+        return <BackgroundShowcase profile={profile} />;
       default:
         return <div className="p-10 text-center text-gray-500">Select a template</div>;
     }

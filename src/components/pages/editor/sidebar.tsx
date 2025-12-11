@@ -99,6 +99,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <TemplateCard type={TemplateType.MAROON_HERITAGE} name="Maroon Heritage" colorClass="bg-rose-900 text-amber-100" badge="Hindu" />
         <TemplateCard type={TemplateType.ROYAL_MANDALA} name="Royal Mandala" colorClass="bg-purple-900 text-amber-100" badge="Hindu" />
         <TemplateCard type={TemplateType.EMERALD_CRESCENT} name="Emerald Crescent" colorClass="bg-emerald-900 text-emerald-50" badge="Muslim" />
+        <TemplateCard type={TemplateType.BACKGROUND_SHOWCASE} name="Background Showcase" colorClass="bg-green-900 text-emerald-100" badge="BG Switcher" />
     </div>
   );
 
@@ -144,7 +145,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                          <div className="mb-6 flex items-end justify-between">
                              <div>
                                 <h2 className="text-base font-bold text-slate-900 mb-0.5">Choose Design</h2>
-                                <p className="text-xs text-slate-500">33 premium layouts</p>
+                                <p className="text-xs text-slate-500">34 premium layouts</p>
                              </div>
                              <span className="text-xs font-medium text-slate-400 bg-slate-50 px-2 py-0.5 rounded">V 1.0</span>
                          </div>
