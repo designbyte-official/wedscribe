@@ -34,6 +34,8 @@ export const EditorPage: React.FC = () => {
   const updateSection = useProfileStore((state) => state.updateSection);
   const activeTemplate = useProfileStore((state) => state.activeTemplate);
   const setActiveTemplate = useProfileStore((state) => state.setActiveTemplate);
+  const backgroundIndex = useProfileStore((state) => state.backgroundIndex);
+  const setBackgroundIndex = useProfileStore((state) => state.setBackgroundIndex);
   const [isGeneratingBio, setIsGeneratingBio] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
   const [showResetDialog, setShowResetDialog] = useState(false);
@@ -308,6 +310,28 @@ export const EditorPage: React.FC = () => {
             <CanvasWorkspace>
                  <TemplateRenderer profile={profile} template={activeTemplate} />
             </CanvasWorkspace>
+
+            {activeTemplate === TemplateType.BACKGROUND_SHOWCASE && (
+              <div className="no-print absolute bottom-8 left-8 z-30 flex items-center gap-2 text-xs font-semibold text-slate-800 bg-white/90 backdrop-blur-md border border-slate-200 shadow-lg rounded-full px-3 py-1.5">
+                <button
+                  onClick={() => setBackgroundIndex((backgroundIndex - 1 + 26) % 26)}
+                  className="px-3 py-1 rounded-full bg-white border border-slate-200 hover:bg-slate-50 transition-colors"
+                  aria-label="Previous background"
+                >
+                  Prev
+                </button>
+                <span className="px-2 font-mono">
+                  {String((backgroundIndex % 26) + 1).padStart(2, '0')}/26
+                </span>
+                <button
+                  onClick={() => setBackgroundIndex((backgroundIndex + 1) % 26)}
+                  className="px-3 py-1 rounded-full bg-white border border-slate-200 hover:bg-slate-50 transition-colors"
+                  aria-label="Next background"
+                >
+                  Next
+                </button>
+              </div>
+            )}
         </main>
 
         {/* MOBILE CONTENT AREAS */}

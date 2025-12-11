@@ -43,6 +43,10 @@ export const translations: Translations = {
   'field.occupation': { en: 'Occupation / Job', hi: 'व्यवसाय / नौकरी' },
   'field.income': { en: 'Annual Income', hi: 'वार्षिक आय' },
   'field.about': { en: 'About Me', hi: 'मेरे बारे में' },
+  'field.aboutMe': { en: 'About Me', hi: 'मेरे बारे में' },
+  'field.maritalStatus': { en: 'Marital Status', hi: 'वैवाहिक स्थिति' },
+  'field.contactNumber': { en: 'Contact Number', hi: 'संपर्क नंबर' },
+  'field.subCaste': { en: 'Sub Caste', hi: 'उप जाति' },
   'btn.generateBio': { en: 'Generate with AI', hi: 'AI के साथ लिखें' },
 
   // Family Details

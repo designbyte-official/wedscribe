@@ -5,9 +5,11 @@ import { BiodataProfile, INITIAL_PROFILE, TemplateType } from '../types';
 interface ProfileStore {
   profile: BiodataProfile;
   activeTemplate: TemplateType;
+  backgroundIndex: number;
   setProfile: (profile: BiodataProfile) => void;
   updateSection: (section: keyof BiodataProfile, field: string, value: string) => void;
   setActiveTemplate: (template: TemplateType) => void;
+  setBackgroundIndex: (index: number) => void;
   resetProfile: () => void;
 }
 
@@ -16,6 +18,7 @@ export const useProfileStore = create<ProfileStore>()(
     (set) => ({
       profile: INITIAL_PROFILE,
       activeTemplate: TemplateType.SKY_BLOSSOM,
+      backgroundIndex: 0,
       setProfile: (profile) => set({ profile }),
       updateSection: (section, field, value) =>
         set((state) => ({
@@ -28,6 +31,7 @@ export const useProfileStore = create<ProfileStore>()(
           },
         })),
       setActiveTemplate: (template) => set({ activeTemplate: template }),
+      setBackgroundIndex: (index) => set({ backgroundIndex: index }),
       resetProfile: () => set({ profile: INITIAL_PROFILE }),
     }),
     {
