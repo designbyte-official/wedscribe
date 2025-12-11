@@ -60,15 +60,15 @@ export const PastelPeony: React.FC<Props> = ({ profile }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-6">
-            <div className="bg-white/80 border border-rose-100 rounded-2xl p-6 space-y-3">
+          <div className="grid grid-cols-2 gap-6 items-stretch">
+            <div className="bg-white/80 border border-rose-100 rounded-2xl p-6 space-y-3 h-full">
               <SectionTitle title={t('section.education')} lineClass="bg-rose-200" />
               <DetailItem label={t('field.education')} value={education.education} />
               <DetailItem label={t('field.occupation')} value={education.occupation} />
               <DetailItem label={t('field.company')} value={education.company} />
               <DetailItem label={t('field.income')} value={education.income} />
             </div>
-            <div className="bg-white/80 border border-rose-100 rounded-2xl p-6 space-y-3">
+            <div className="bg-white/80 border border-rose-100 rounded-2xl p-6 space-y-3 h-full">
               <SectionTitle title={t('field.aboutMe')} lineClass="bg-rose-200" />
               <p className="text-sm text-rose-800 leading-relaxed whitespace-pre-line">{education.aboutMe}</p>
             </div>
@@ -91,3 +91,4 @@ export const PastelPeony: React.FC<Props> = ({ profile }) => {
   );
 };
 
+export default PastelPeony;

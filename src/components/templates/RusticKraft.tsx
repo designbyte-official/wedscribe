@@ -60,15 +60,15 @@ export const RusticKraft: React.FC<Props> = ({ profile }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-6">
-            <div className="bg-white/80 border border-amber-200 rounded-xl p-6 space-y-3">
+          <div className="grid grid-cols-2 gap-6 items-stretch">
+            <div className="bg-white/80 border border-amber-200 rounded-xl p-6 space-y-3 h-full">
               <SectionTitle title={t('section.education')} lineClass="bg-amber-200" />
               <DetailItem label={t('field.education')} value={education.education} />
               <DetailItem label={t('field.occupation')} value={education.occupation} />
               <DetailItem label={t('field.company')} value={education.company} />
               <DetailItem label={t('field.income')} value={education.income} />
             </div>
-            <div className="bg-white/80 border border-amber-200 rounded-xl p-6 space-y-3">
+            <div className="bg-white/80 border border-amber-200 rounded-xl p-6 space-y-3 h-full">
               <SectionTitle title={t('field.aboutMe')} lineClass="bg-amber-200" />
               <p className="text-sm text-stone-700 leading-relaxed whitespace-pre-line">{education.aboutMe}</p>
             </div>
@@ -91,3 +91,4 @@ export const RusticKraft: React.FC<Props> = ({ profile }) => {
   );
 };
 
+export default RusticKraft;
