@@ -32,10 +32,10 @@ export const BackgroundShowcase: React.FC<Props> = ({ profile }) => {
         className="relative w-[210mm] h-[297mm] max-w-full overflow-hidden"
         style={{ backgroundImage: `url(${currentBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
       >
-        <div className="relative px-14 pt-12 pb-12 h-full flex flex-col gap-6">
+        <div className="relative px-16 pt-20 pb-12 h-full flex flex-col gap-6">
           {/* Header with better spacing */}
           <header className="flex items-start gap-6 pb-4 border-b border-slate-300/30">
-            <div className="w-32 h-40 rounded-lg overflow-hidden border-2 border-slate-200 bg-white shadow-sm shrink-0">
+            <div className="w-32 h-40 rounded-sm overflow-hidden border-2 border-slate-200 bg-white shadow-sm shrink-0">
               {personal.photoUrl ? (
                 <img src={personal.photoUrl} alt="Profile" className="w-full h-full object-cover" />
               ) : (
