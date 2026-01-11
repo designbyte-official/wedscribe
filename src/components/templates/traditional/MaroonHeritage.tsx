@@ -11,8 +11,10 @@ export const MaroonHeritage: React.FC<Props> = ({ profile }) => {
   const { t } = useLanguage();
   const { personal, education, family, contact } = profile;
 
-  const labelClass = 'font-semibold text-sm tracking-wide text-amber-100';
-  const valueClass = 'text-amber-50 text-sm leading-relaxed';
+  const labelStyle = { color: '#fef3c7' }; // amber-100
+  const valueStyle = { color: '#fffbeb' }; // amber-50
+  const labelClass = 'font-semibold text-sm tracking-wide';
+  const valueClass = 'text-sm leading-relaxed';
 
   return (
     <div className="w-full h-full bg-[#3d0b2f] text-amber-50 font-serif relative overflow-hidden">
@@ -24,8 +26,8 @@ export const MaroonHeritage: React.FC<Props> = ({ profile }) => {
         }}
       />
       <div className="relative h-full w-full px-10 py-12 flex flex-col items-center gap-8">
-        <div className="flex flex-col items-center gap-3">
-          <p className="text-xl font-extrabold tracking-widest text-amber-100 uppercase">{personal.fullName}</p>
+        <div className="flex flex-col items-center">
+          <p className="text-xl font-extrabold uppercase mb-4" style={{ color: '#fef3c7', letterSpacing: '0.1em' }}>{personal.fullName}</p>
           <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-amber-200 shadow-xl bg-[#2a071f]">
             {personal.photoUrl ? (
               <img src={personal.photoUrl} alt="Profile" className="w-full h-full object-cover" />
@@ -52,31 +54,19 @@ export const MaroonHeritage: React.FC<Props> = ({ profile }) => {
               {t('section.personal')}
             </span>
           </div>
-          <div className="grid grid-cols-2 gap-y-3 gap-x-10">
-            <div className={labelClass}>{t('field.dob')}</div>
-            <div className={valueClass}>{personal.dateOfBirth}</div>
-            <div className={labelClass}>{t('field.tob')}</div>
-            <div className={valueClass}>{personal.timeOfBirth}</div>
-            <div className={labelClass}>{t('field.pob')}</div>
-            <div className={valueClass}>{personal.placeOfBirth}</div>
-            <div className={labelClass}>{t('field.manglik')}</div>
-            <div className={valueClass}>{personal.manglik}</div>
-            <div className={labelClass}>{t('field.height')}</div>
-            <div className={valueClass}>{personal.height}</div>
-            <div className={labelClass}>{t('field.education')}</div>
-            <div className={valueClass}>{education.education}</div>
-            <div className={labelClass}>{t('field.occupation')}</div>
-            <div className={valueClass}>{education.occupation}</div>
-            <div className={labelClass}>{t('field.company')}</div>
-            <div className={valueClass}>{education.company}</div>
-            <div className={labelClass}>{t('field.income')}</div>
-            <div className={valueClass}>{education.income}</div>
-            <div className={labelClass}>{t('field.religion')}</div>
-            <div className={valueClass}>{personal.religion}</div>
-            <div className={labelClass}>{t('field.caste')}</div>
-            <div className={valueClass}>{personal.caste}</div>
-            <div className={labelClass}>{t('field.subCaste')}</div>
-            <div className={valueClass}>{personal.subCaste}</div>
+          <div className="flex flex-row flex-wrap">
+            <div className="w-1/2 flex justify-between pr-5 mb-3"><div className={labelClass} style={labelStyle}>{t('field.dob')}</div><div className={valueClass} style={valueStyle}>{personal.dateOfBirth}</div></div>
+            <div className="w-1/2 flex justify-between pl-5 mb-3"><div className={labelClass} style={labelStyle}>{t('field.tob')}</div><div className={valueClass} style={valueStyle}>{personal.timeOfBirth}</div></div>
+            <div className="w-1/2 flex justify-between pr-5 mb-3"><div className={labelClass} style={labelStyle}>{t('field.pob')}</div><div className={valueClass} style={valueStyle}>{personal.placeOfBirth}</div></div>
+            <div className="w-1/2 flex justify-between pl-5 mb-3"><div className={labelClass} style={labelStyle}>{t('field.manglik')}</div><div className={valueClass} style={valueStyle}>{personal.manglik}</div></div>
+            <div className="w-1/2 flex justify-between pr-5 mb-3"><div className={labelClass} style={labelStyle}>{t('field.height')}</div><div className={valueClass} style={valueStyle}>{personal.height}</div></div>
+            <div className="w-1/2 flex justify-between pl-5 mb-3"><div className={labelClass} style={labelStyle}>{t('field.education')}</div><div className={valueClass} style={valueStyle}>{education.education}</div></div>
+            <div className="w-1/2 flex justify-between pr-5 mb-3"><div className={labelClass} style={labelStyle}>{t('field.occupation')}</div><div className={valueClass} style={valueStyle}>{education.occupation}</div></div>
+            <div className="w-1/2 flex justify-between pl-5 mb-3"><div className={labelClass} style={labelStyle}>{t('field.company')}</div><div className={valueClass} style={valueStyle}>{education.company}</div></div>
+            <div className="w-1/2 flex justify-between pr-5 mb-3"><div className={labelClass} style={labelStyle}>{t('field.income')}</div><div className={valueClass} style={valueStyle}>{education.income}</div></div>
+            <div className="w-1/2 flex justify-between pl-5 mb-3"><div className={labelClass} style={labelStyle}>{t('field.religion')}</div><div className={valueClass} style={valueStyle}>{personal.religion}</div></div>
+            <div className="w-1/2 flex justify-between pr-5 mb-3"><div className={labelClass} style={labelStyle}>{t('field.caste')}</div><div className={valueClass} style={valueStyle}>{personal.caste}</div></div>
+            <div className="w-1/2 flex justify-between pl-5 mb-3"><div className={labelClass} style={labelStyle}>{t('field.subCaste')}</div><div className={valueClass} style={valueStyle}>{personal.subCaste}</div></div>
           </div>
         </section>
 

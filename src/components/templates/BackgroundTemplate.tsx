@@ -67,8 +67,8 @@ export const BackgroundTemplate: React.FC<Props> = ({ profile, styleProps }) => 
 
     const fieldRow = (label: string, value?: string | null) =>
         value ? (
-            <div className={`flex gap-2 text-${fontSize.text} leading-relaxed`} style={{ color: textColor }}>
-                <span className="font-semibold min-w-[110px]" style={{ color: labelColor }}>{label}:</span>
+            <div className={`flex text-${fontSize.text} leading-relaxed mb-1`} style={{ color: textColor }}>
+                <span className="font-semibold min-w-[110px] pr-2" style={{ color: labelColor }}>{label}:</span>
                 <span className="flex-1">{value}</span>
             </div>
         ) : null;
@@ -85,7 +85,7 @@ export const BackgroundTemplate: React.FC<Props> = ({ profile, styleProps }) => 
                 }}
             >
                 <div
-                    className="relative h-full flex flex-col gap-6"
+                    className="relative h-full flex flex-col"
                     style={{
                         paddingTop: padding.top,
                         paddingBottom: padding.bottom,
@@ -95,7 +95,14 @@ export const BackgroundTemplate: React.FC<Props> = ({ profile, styleProps }) => 
                 >
                     {/* Header */}
                     <header className="flex items-start gap-6 pb-4" style={{ borderBottom: `1px solid ${borderColor}` }}>
-                        <div className="w-32 h-40 rounded-sm overflow-hidden border-2 bg-white shadow-sm shrink-0" style={{ borderColor: borderColor }}>
+                        <div
+                            className="w-32 h-40 rounded-sm overflow-hidden shrink-0"
+                            style={{
+                                border: `2px solid ${borderColor}`,
+                                backgroundColor: '#ffffff',
+                                boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' // Explicit shadow-sm
+                            }}
+                        >
                             {personal.photoUrl ? (
                                 <img src={personal.photoUrl} alt="Profile" className="w-full h-full object-cover" />
                             ) : (
@@ -104,14 +111,14 @@ export const BackgroundTemplate: React.FC<Props> = ({ profile, styleProps }) => 
                         </div>
                         <div className="flex-1 space-y-1.5 pt-1">
                             <h1
-                                className={`text-${fontSize.heading} font-bold tracking-tight leading-tight`}
+                                className={`text-${fontSize.heading} font-bold leading-tight`}
                                 style={{ color: headingColor, fontFamily: headingFontFamily }}
                             >
                                 {personal.fullName}
                             </h1>
                             {education.occupation && (
                                 <p
-                                    className={`text-${fontSize.subheading} uppercase tracking-[0.15em] font-medium`}
+                                    className={`text-${fontSize.subheading} uppercase font-medium mt-1`}
                                     style={{ color: labelColor }}
                                 >
                                     {education.occupation}
@@ -121,17 +128,16 @@ export const BackgroundTemplate: React.FC<Props> = ({ profile, styleProps }) => 
                     </header>
 
                     {/* Two Column Grid */}
-                    <div className="grid grid-cols-2 gap-8 flex-1">
-                        {/* Left Column */}
-                        <div className="space-y-5">
-                            <section className="space-y-2.5">
+                    <div className="flex flex-row flex-1">
+                        <div className="w-1/2 pr-4">
+                            <section>
                                 <h2
                                     className={`text-lg font-bold mb-2 pb-1`}
                                     style={{ color: headingColor, borderBottom: `1px solid ${borderColor}` }}
                                 >
                                     {t('section.personal')}
                                 </h2>
-                                <div className="space-y-2">
+                                <div className="space-y-1">
                                     {fieldRow(t('field.dob'), personal.dateOfBirth)}
                                     {fieldRow(t('field.tob'), personal.timeOfBirth)}
                                     {fieldRow(t('field.pob'), personal.placeOfBirth)}
@@ -147,14 +153,14 @@ export const BackgroundTemplate: React.FC<Props> = ({ profile, styleProps }) => 
                                 </div>
                             </section>
 
-                            <section className="space-y-2.5">
+                            <section className="mt-5">
                                 <h2
                                     className={`text-lg font-bold mb-2 pb-1`}
                                     style={{ color: headingColor, borderBottom: `1px solid ${borderColor}` }}
                                 >
                                     {t('section.family')}
                                 </h2>
-                                <div className="space-y-2">
+                                <div className="space-y-1">
                                     {fieldRow(
                                         t('field.fatherName'),
                                         family.fatherName && family.fatherOccupation
@@ -176,8 +182,8 @@ export const BackgroundTemplate: React.FC<Props> = ({ profile, styleProps }) => 
                         </div>
 
                         {/* Right Column */}
-                        <div className="space-y-5">
-                            <section className="space-y-2.5">
+                        <div className="w-1/2 pl-4">
+                            <section className="space-y-2.5 mb-5">
                                 <h2
                                     className={`text-lg font-bold mb-2 pb-1`}
                                     style={{ color: headingColor, borderBottom: `1px solid ${borderColor}` }}
@@ -220,8 +226,8 @@ export const BackgroundTemplate: React.FC<Props> = ({ profile, styleProps }) => 
                                     {fieldRow(t('field.contactNumber') || 'Contact Number', contact.contactNumber)}
                                     {fieldRow(t('field.email') || 'Email', contact.email)}
                                     {contact.address && (
-                                        <div className={`flex gap-2 text-${fontSize.text} leading-relaxed`}>
-                                            <span className="font-semibold min-w-[110px]" style={{ color: labelColor }}>
+                                        <div className={`flex text-${fontSize.text} leading-relaxed`}>
+                                            <span className="font-semibold min-w-[110px] pr-2" style={{ color: labelColor }}>
                                                 {t('field.address') || 'Address'}:
                                             </span>
                                             <span className="flex-1 whitespace-pre-line" style={{ color: textColor }}>
@@ -237,11 +243,10 @@ export const BackgroundTemplate: React.FC<Props> = ({ profile, styleProps }) => 
 
                 {/* Low Opacity Watermark Logo */}
                 <div className="absolute bottom-16 w-full flex justify-center opacity-80 pointer-events-none rounded-full">
-                    <img src="/biodata-generator-logo.png" alt="BioData Generator" className="h-10 object-contain  rounded-full" />
+                    <img src="/biodata-generator-logo.png" alt="BioData Generator" className="h-10 object-contain rounded-full" />
                 </div>
             </div>
         </div>
-
     );
 };
 

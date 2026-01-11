@@ -13,7 +13,7 @@ export const TEMPLATE_CONFIGS: Record<string, TemplateConfig> = {
         id: 'VELVET_ROSE',
         name: 'Velvet Rose',
         badge: 'Elegant',
-        colorClass: 'bg-rose-50 text-rose-900',
+        colorClass: 'bg-[#fff1f2] text-[#881337]',
         styleProps: {
             backgroundIndex: 3,
             fontFamily: "'Playfair Display', serif",
@@ -35,7 +35,7 @@ export const TEMPLATE_CONFIGS: Record<string, TemplateConfig> = {
         id: 'GOLDEN_HERITAGE',
         name: 'Golden Heritage',
         badge: 'Classic',
-        colorClass: 'bg-amber-50 text-amber-900',
+        colorClass: 'bg-[#fffbeb] text-[#78350f]',
         styleProps: {
             backgroundIndex: 15,
             fontFamily: "'Cormorant Garamond', serif",
@@ -57,7 +57,7 @@ export const TEMPLATE_CONFIGS: Record<string, TemplateConfig> = {
         id: 'PHOOL_MALA',
         name: 'Phool Mala',
         badge: 'Festive',
-        colorClass: 'bg-orange-50 text-orange-900',
+        colorClass: 'bg-[#fff7ed] text-[#7c2d12]',
         styleProps: {
             backgroundIndex: 28, // bg-29 (flower garland background)
             fontFamily: "'Crimson Pro', serif",
@@ -85,7 +85,7 @@ export const TEMPLATE_CONFIGS: Record<string, TemplateConfig> = {
         id: 'SUVARNA_MANDALA',
         name: 'Suvarna Mandala',
         badge: 'Elegant',
-        colorClass: 'bg-amber-50 text-amber-900',
+        colorClass: 'bg-[#fffbeb] text-[#78350f]',
         styleProps: {
             backgroundIndex: 29, // bg-30 (cream/gold mandala background)
             fontFamily: "'Crimson Pro', serif",
@@ -113,7 +113,7 @@ export const TEMPLATE_CONFIGS: Record<string, TemplateConfig> = {
         id: 'LAAL_PHOOL',
         name: 'Laal Phool',
         badge: 'Traditional',
-        colorClass: 'bg-red-900 text-amber-50',
+        colorClass: 'bg-[#7f1d1d] text-[#fffbeb]',
         styleProps: {
             backgroundIndex: 30, // bg-31 (red border with cream center)
             fontFamily: "'Outfit', sans-serif",
@@ -144,11 +144,11 @@ export const TEMPLATE_CONFIGS: Record<string, TemplateConfig> = {
 const generateBackgroundConfigs = () => {
     const configs: Record<string, TemplateConfig> = {};
     const styles = [
-        { font: "'Fraunces', serif", color: '#831843', text: '#4a1c2e', border: '#fda4af', bg: 'bg-rose-50 text-rose-900', badge: 'Floral' },
-        { font: "'Cormorant Garamond', serif", color: '#78350f', text: '#451a03', border: '#fbbf24', bg: 'bg-amber-50 text-amber-900', badge: 'Classic' },
-        { font: "'Crimson Pro', serif", color: '#14532d', text: '#052e16', border: '#4ade80', bg: 'bg-green-50 text-green-900', badge: 'Nature' },
-        { font: "'Playfair Display', serif", color: '#7c2d12', text: '#431407', border: '#fdba74', bg: 'bg-orange-50 text-orange-900', badge: 'Royal' },
-        { font: "'Cinzel', serif", color: '#1e3a8a', text: '#172554', border: '#93c5fd', bg: 'bg-blue-50 text-blue-900', badge: 'Modern' },
+        { font: "'Fraunces', serif", color: '#831843', text: '#4a1c2e', border: '#fda4af', bg: 'bg-[#fff1f2] text-[#881337]', badge: 'Floral' },
+        { font: "'Cormorant Garamond', serif", color: '#78350f', text: '#451a03', border: '#fbbf24', bg: 'bg-[#fffbeb] text-[#78350f]', badge: 'Classic' },
+        { font: "'Crimson Pro', serif", color: '#14532d', text: '#052e16', border: '#4ade80', bg: 'bg-[#f0fdf4] text-[#14532d]', badge: 'Nature' },
+        { font: "'Playfair Display', serif", color: '#7c2d12', text: '#431407', border: '#fdba74', bg: 'bg-[#fff7ed] text-[#7c2d12]', badge: 'Royal' },
+        { font: "'Cinzel', serif", color: '#1e3a8a', text: '#172554', border: '#93c5fd', bg: 'bg-[#eff6ff] text-[#1e3a8a]', badge: 'Modern' },
     ];
 
     for (let i = 1; i <= 31; i++) {

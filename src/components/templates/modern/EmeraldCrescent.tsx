@@ -62,23 +62,39 @@ export const EmeraldCrescent: React.FC<Props> = ({ profile }) => {
               {t('section.personal')}
             </span>
           </div>
-          <div className="grid grid-cols-2 gap-y-2 gap-x-8">
-            <span className={label} style={labelStyle}>{t('field.dob')}</span>
-            <span className={value} style={valueStyle}>{personal.dateOfBirth}</span>
-            <span className={label} style={labelStyle}>{t('field.tob')}</span>
-            <span className={value} style={valueStyle}>{personal.timeOfBirth}</span>
-            <span className={label} style={labelStyle}>{t('field.pob')}</span>
-            <span className={value} style={valueStyle}>{personal.placeOfBirth}</span>
-            <span className={label} style={labelStyle}>{t('field.height')}</span>
-            <span className={value} style={valueStyle}>{personal.height}</span>
-            <span className={label} style={labelStyle}>{t('field.weight')}</span>
-            <span className={value} style={valueStyle}>{personal.weight}</span>
-            <span className={label} style={labelStyle}>{t('field.bloodGroup')}</span>
-            <span className={value} style={valueStyle}>{personal.bloodGroup}</span>
-            <span className={label} style={labelStyle}>{t('field.manglik')}</span>
-            <span className={value} style={valueStyle}>{personal.manglik}</span>
-            <span className={label} style={labelStyle}>{t('field.religion')}</span>
-            <span className={value} style={valueStyle}>{personal.religion}</span>
+          <div className="flex flex-row flex-wrap">
+            <div className="w-1/2 flex justify-between pr-4 mb-2">
+              <span className={label} style={labelStyle}>{t('field.dob')}</span>
+              <span className={value} style={valueStyle}>{personal.dateOfBirth}</span>
+            </div>
+            <div className="w-1/2 flex justify-between pl-4 mb-2">
+              <span className={label} style={labelStyle}>{t('field.tob')}</span>
+              <span className={value} style={valueStyle}>{personal.timeOfBirth}</span>
+            </div>
+            <div className="w-1/2 flex justify-between pr-4 mb-2">
+              <span className={label} style={labelStyle}>{t('field.pob')}</span>
+              <span className={value} style={valueStyle}>{personal.placeOfBirth}</span>
+            </div>
+            <div className="w-1/2 flex justify-between pl-4 mb-2">
+              <span className={label} style={labelStyle}>{t('field.height')}</span>
+              <span className={value} style={valueStyle}>{personal.height}</span>
+            </div>
+            <div className="w-1/2 flex justify-between pr-4 mb-2">
+              <span className={label} style={labelStyle}>{t('field.weight')}</span>
+              <span className={value} style={valueStyle}>{personal.weight}</span>
+            </div>
+            <div className="w-1/2 flex justify-between pl-4 mb-2">
+              <span className={label} style={labelStyle}>{t('field.bloodGroup')}</span>
+              <span className={value} style={valueStyle}>{personal.bloodGroup}</span>
+            </div>
+            <div className="w-1/2 flex justify-between pr-4 mb-2">
+              <span className={label} style={labelStyle}>{t('field.manglik')}</span>
+              <span className={value} style={valueStyle}>{personal.manglik}</span>
+            </div>
+            <div className="w-1/2 flex justify-between pl-4 mb-2">
+              <span className={label} style={labelStyle}>{t('field.religion')}</span>
+              <span className={value} style={valueStyle}>{personal.religion}</span>
+            </div>
           </div>
         </section>
 
@@ -89,15 +105,23 @@ export const EmeraldCrescent: React.FC<Props> = ({ profile }) => {
               {t('section.education')}
             </span>
           </div>
-          <div className="grid grid-cols-2 gap-y-2 gap-x-8">
-            <span className={label} style={labelStyle}>{t('field.education')}</span>
-            <span className={value} style={valueStyle}>{education.education}</span>
-            <span className={label} style={labelStyle}>{t('field.occupation')}</span>
-            <span className={value} style={valueStyle}>{education.occupation}</span>
-            <span className={label} style={labelStyle}>{t('field.company')}</span>
-            <span className={value} style={valueStyle}>{education.company}</span>
-            <span className={label} style={labelStyle}>{t('field.income')}</span>
-            <span className={value} style={valueStyle}>{education.income}</span>
+          <div className="flex flex-row flex-wrap">
+            <div className="w-1/2 flex justify-between pr-4 mb-2">
+              <span className={label} style={labelStyle}>{t('field.education')}</span>
+              <span className={value} style={valueStyle}>{education.education}</span>
+            </div>
+            <div className="w-1/2 flex justify-between pl-4 mb-2">
+              <span className={label} style={labelStyle}>{t('field.occupation')}</span>
+              <span className={value} style={valueStyle}>{education.occupation}</span>
+            </div>
+            <div className="w-1/2 flex justify-between pr-4 mb-2">
+              <span className={label} style={labelStyle}>{t('field.company')}</span>
+              <span className={value} style={valueStyle}>{education.company}</span>
+            </div>
+            <div className="w-1/2 flex justify-between pl-4 mb-2">
+              <span className={label} style={labelStyle}>{t('field.income')}</span>
+              <span className={value} style={valueStyle}>{education.income}</span>
+            </div>
           </div>
         </section>
 

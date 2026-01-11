@@ -78,11 +78,19 @@ export const IvoryLines: React.FC<Props> = ({ profile }) => {
                         <h3 className="font-playfair font-bold text-xl mb-6 flex items-center gap-2">
                             <span className="w-2 h-2 rotate-45" style={{ backgroundColor: '#292524' }}></span> {t('section.education')}
                         </h3>
-                        <div className="grid grid-cols-2 gap-6 align-top">
-                            <DetailItem label={t('field.education')} value={education.education} labelClass="text-[#a8a29e]" />
-                            <DetailItem label={t('field.occupation')} value={education.occupation} labelClass="text-[#a8a29e]" />
-                            <DetailItem label={t('field.company')} value={education.company} labelClass="text-[#a8a29e]" />
-                            <DetailItem label={t('field.income')} value={education.income} labelClass="text-[#a8a29e]" />
+                        <div className="flex flex-row flex-wrap">
+                            <div className="w-1/2 pr-3 mb-6">
+                                <DetailItem label={t('field.education')} value={education.education} labelClass="text-[#a8a29e]" />
+                            </div>
+                            <div className="w-1/2 pl-3 mb-6">
+                                <DetailItem label={t('field.occupation')} value={education.occupation} labelClass="text-[#a8a29e]" />
+                            </div>
+                            <div className="w-1/2 pr-3 mb-6">
+                                <DetailItem label={t('field.company')} value={education.company} labelClass="text-[#a8a29e]" />
+                            </div>
+                            <div className="w-1/2 pl-3 mb-6">
+                                <DetailItem label={t('field.income')} value={education.income} labelClass="text-[#a8a29e]" />
+                            </div>
                         </div>
                     </section>
 
@@ -90,17 +98,19 @@ export const IvoryLines: React.FC<Props> = ({ profile }) => {
                         <h3 className="font-playfair font-bold text-xl mb-6 flex items-center gap-2">
                             <span className="w-2 h-2 rotate-45" style={{ backgroundColor: '#292524' }}></span> {t('section.family')}
                         </h3>
-                        <div className="p-6 border grid grid-cols-2 gap-y-6 gap-x-8" style={{ backgroundColor: '#fafaf9', borderColor: '#f5f5f4' }}>
-                            <DetailItem label={t('field.fatherName')} value={family.fatherName} valueClass="font-bold" />
-                            <DetailItem label="Job" value={family.fatherOccupation} />
-                            <DetailItem label={t('field.motherName')} value={family.motherName} valueClass="font-bold" />
-                            <DetailItem label="Job" value={family.motherOccupation} />
-                            <DetailItem label={t('field.familyType')} value={family.familyType} />
-                            <DetailItem label={t('field.values')} value={family.familyValues} />
-                            <div className="col-span-2 pt-2 border-t mt-2" style={{ borderColor: '#e7e5e4' }}>
-                                <DetailItem label={t('field.siblings')} value={family.siblings} />
+                        <div className="p-6 border" style={{ backgroundColor: '#fafaf9', borderColor: '#f5f5f4' }}>
+                            <div className="flex flex-row flex-wrap">
+                                <div className="w-1/2 pr-4 mb-6"><DetailItem label={t('field.fatherName')} value={family.fatherName} valueClass="font-bold" /></div>
+                                <div className="w-1/2 pl-4 mb-6"><DetailItem label="Job" value={family.fatherOccupation} /></div>
+                                <div className="w-1/2 pr-4 mb-6"><DetailItem label={t('field.motherName')} value={family.motherName} valueClass="font-bold" /></div>
+                                <div className="w-1/2 pl-4 mb-6"><DetailItem label="Job" value={family.motherOccupation} /></div>
+                                <div className="w-1/2 pr-4 mb-6"><DetailItem label={t('field.familyType')} value={family.familyType} /></div>
+                                <div className="w-1/2 pl-4 mb-6"><DetailItem label={t('field.values')} value={family.familyValues} /></div>
                             </div>
-                            <div className="col-span-2">
+                            <div className="pt-2 border-t mt-2" style={{ borderColor: '#e7e5e4' }}>
+                                <div className="mb-4">
+                                    <DetailItem label={t('field.siblings')} value={family.siblings} />
+                                </div>
                                 <DetailItem label={t('field.nativePlace')} value={family.nativePlace} />
                             </div>
                         </div>
