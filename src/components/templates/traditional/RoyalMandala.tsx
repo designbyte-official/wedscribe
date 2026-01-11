@@ -49,21 +49,35 @@ export const RoyalMandala: React.FC<Props> = ({ profile }) => {
               {t('section.personal')}
             </span>
           </div>
-          <div className="grid grid-cols-2 gap-y-3 gap-x-10">
-            <span className={labelClass} style={labelStyle}>{t('field.dob')}</span>
-            <span className={valueClass} style={valueStyle}>{personal.dateOfBirth}</span>
-            <span className={labelClass} style={labelStyle}>{t('field.tob')}</span>
-            <span className={valueClass} style={valueStyle}>{personal.timeOfBirth}</span>
-            <span className={labelClass} style={labelStyle}>{t('field.pob')}</span>
-            <span className={valueClass} style={valueStyle}>{personal.placeOfBirth}</span>
-            <span className={labelClass} style={labelStyle}>{t('field.manglik')}</span>
-            <span className={valueClass} style={valueStyle}>{personal.manglik}</span>
-            <span className={labelClass} style={labelStyle}>{t('field.height')}</span>
-            <span className={valueClass} style={valueStyle}>{personal.height}</span>
-            <span className={labelClass} style={labelStyle}>{t('field.bloodGroup')}</span>
-            <span className={valueClass} style={valueStyle}>{personal.bloodGroup}</span>
-            <span className={labelClass} style={labelStyle}>{t('field.religion')}</span>
-            <span className={valueClass} style={valueStyle}>{personal.religion}</span>
+          <div className="flex flex-row flex-wrap">
+            <div className="w-1/2 flex justify-between pr-5 mb-3">
+              <span className={labelClass} style={labelStyle}>{t('field.dob')}</span>
+              <span className={valueClass} style={valueStyle}>{personal.dateOfBirth}</span>
+            </div>
+            <div className="w-1/2 flex justify-between pl-5 mb-3">
+              <span className={labelClass} style={labelStyle}>{t('field.tob')}</span>
+              <span className={valueClass} style={valueStyle}>{personal.timeOfBirth}</span>
+            </div>
+            <div className="w-1/2 flex justify-between pr-5 mb-3">
+              <span className={labelClass} style={labelStyle}>{t('field.pob')}</span>
+              <span className={valueClass} style={valueStyle}>{personal.placeOfBirth}</span>
+            </div>
+            <div className="w-1/2 flex justify-between pl-5 mb-3">
+              <span className={labelClass} style={labelStyle}>{t('field.manglik')}</span>
+              <span className={valueClass} style={valueStyle}>{personal.manglik}</span>
+            </div>
+            <div className="w-1/2 flex justify-between pr-5 mb-3">
+              <span className={labelClass} style={labelStyle}>{t('field.height')}</span>
+              <span className={valueClass} style={valueStyle}>{personal.height}</span>
+            </div>
+            <div className="w-1/2 flex justify-between pl-5 mb-3">
+              <span className={labelClass} style={labelStyle}>{t('field.bloodGroup')}</span>
+              <span className={valueClass} style={valueStyle}>{personal.bloodGroup}</span>
+            </div>
+            <div className="col-span-2 w-full flex justify-center mt-2">
+              <span className={labelClass} style={labelStyle}>{t('field.religion')}: </span>
+              <span className={valueClass} style={{ ...valueStyle, marginLeft: '8px' }}>{personal.religion}</span>
+            </div>
           </div>
         </section>
 
@@ -74,15 +88,23 @@ export const RoyalMandala: React.FC<Props> = ({ profile }) => {
               {t('section.education')}
             </span>
           </div>
-          <div className="grid grid-cols-2 gap-y-3 gap-x-10">
-            <span className={labelClass} style={labelStyle}>{t('field.education')}</span>
-            <span className={valueClass} style={valueStyle}>{education.education}</span>
-            <span className={labelClass} style={labelStyle}>{t('field.occupation')}</span>
-            <span className={valueClass} style={valueStyle}>{education.occupation}</span>
-            <span className={labelClass} style={labelStyle}>{t('field.company')}</span>
-            <span className={valueClass} style={valueStyle}>{education.company}</span>
-            <span className={labelClass} style={labelStyle}>{t('field.income')}</span>
-            <span className={valueClass} style={valueStyle}>{education.income}</span>
+          <div className="flex flex-row flex-wrap">
+            <div className="w-1/2 flex justify-between pr-5 mb-3">
+              <span className={labelClass} style={labelStyle}>{t('field.education')}</span>
+              <span className={valueClass} style={valueStyle}>{education.education}</span>
+            </div>
+            <div className="w-1/2 flex justify-between pl-5 mb-3">
+              <span className={labelClass} style={labelStyle}>{t('field.occupation')}</span>
+              <span className={valueClass} style={valueStyle}>{education.occupation}</span>
+            </div>
+            <div className="w-1/2 flex justify-between pr-5 mb-3">
+              <span className={labelClass} style={labelStyle}>{t('field.company')}</span>
+              <span className={valueClass} style={valueStyle}>{education.company}</span>
+            </div>
+            <div className="w-1/2 flex justify-between pl-5 mb-3">
+              <span className={labelClass} style={labelStyle}>{t('field.income')}</span>
+              <span className={valueClass} style={valueStyle}>{education.income}</span>
+            </div>
           </div>
           {education.aboutMe && (
             <div className="pt-3">

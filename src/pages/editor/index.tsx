@@ -125,44 +125,12 @@ export const EditorPage: React.FC = () => {
         download(dataUrl, `biodata-${profile.personal.fullName || 'untitled'}.png`);
         toast.success("Image downloaded successfully!");
       } else if (type === 'pdf') {
-        // Use html2canvas - browser already converts oklch to RGB for computed styles
-        const canvas = await html2canvas(element, {
-          scale: 2,
-          useCORS: true,
-          backgroundColor: '#ffffff',
-          logging: false,
-          allowTaint: false,
-          onclone: (clonedDoc) => {
-            // Inject CSS to override oklch CSS variables with hex equivalents for better PDF rendering
-            const style = clonedDoc.createElement('style');
-            style.textContent = `
-                :root, :root * {
-                  --background: #ffffff !important;
-                  --foreground: #0a0a0a !important;
-                  --card: #fafafa !important;
-                  --card-foreground: #0a0a0a !important;
-                  --popover: #ffffff !important;
-                  --popover-foreground: #0a0a0a !important;
-                  --primary: #6366f1 !important;
-                  --primary-foreground: #ffffff !important;
-                  --secondary: #0a0a0a !important;
-                  --secondary-foreground: #ffffff !important;
-                  --muted: #f4f4f5 !important;
-                  --muted-foreground: #0a0a0a !important;
-                  --accent: #f4f4f5 !important;
-                  --accent-foreground: #6366f1 !important;
-                  --destructive: #ef4444 !important;
-                  --destructive-foreground: #ffffff !important;
-                  --border: #e4e4e7 !important;
-                  --input: #fafafa !important;
-                  --ring: #6366f1 !important;
-                }
-              `;
-            clonedDoc.head.insertBefore(style, clonedDoc.head.firstChild);
-          }
+        const imgData = await htmlToImage.toJpeg(element, {
+          quality: 0.95,
+          pixelRatio: 2,
+          backgroundColor: '#ffffff'
         });
 
-        const imgData = canvas.toDataURL('image/png');
         const pdf = new jsPDF({
           orientation: 'portrait',
           unit: 'mm',
@@ -171,13 +139,23 @@ export const EditorPage: React.FC = () => {
 
         const pdfWidth = pdf.internal.pageSize.getWidth();
         const pdfHeight = pdf.internal.pageSize.getHeight();
-        const imgWidth = canvas.width;
-        const imgHeight = canvas.height;
-        const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
-        const imgX = (pdfWidth - imgWidth * ratio) / 2;
-        const imgY = 0;
 
-        pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
+        // Load image to get dimensions for correct aspect ratio in PDF
+        const img = new Image();
+        img.src = imgData;
+        await new Promise((resolve) => { img.onload = resolve; });
+
+        const imgWidthPx = img.width || 1;
+        const imgHeightPx = img.height || 1;
+
+        const ratio = Math.min(pdfWidth / imgWidthPx, pdfHeight / imgHeightPx);
+        const finalWidth = imgWidthPx * ratio;
+        const finalHeight = imgHeightPx * ratio;
+
+        const imgX = (pdfWidth - finalWidth) / 2;
+        const imgY = (pdfHeight - finalHeight) / 2;
+
+        pdf.addImage(imgData, 'JPEG', imgX, imgY, finalWidth, finalHeight);
         pdf.save(`biodata-${profile.personal.fullName || 'untitled'}.pdf`);
         toast.success("PDF downloaded successfully!");
       }
