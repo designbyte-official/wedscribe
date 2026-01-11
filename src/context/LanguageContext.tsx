@@ -119,7 +119,7 @@ export const translations: Translations = {
 
   // Home Page - Hero
   'home.hero.badge': { en: "Premium Marriage Biodata Maker", hi: "प्रीमियम वैवाहिक बायोडेटा निर्माता" },
-  'home.hero.title.prefix': { en: "Design Your", hi: "अपना" },
+  'home.hero.title.prefix': { en: "Create Your", hi: "अपना" },
   'home.hero.title.highlight': { en: "Perfect", hi: "परफेक्ट" },
   'home.hero.title.suffix': { en: "Marriage Biodata", hi: "विवाह बायोडाटा" },
   'home.hero.desc': { en: "Make a great first impression. Create a premium Marriage Biodata for yourself or your loved ones in minutes. Perfect for sharing on WhatsApp.", hi: "एक शानदार पहली छाप छोड़ें। मिनटों में अपने या अपने प्रियजनों के लिए एक प्रीमियम विवाह बायोडाटा बनाएं। व्हाट्सएप पर शेयर करने के लिए बेहतरीन।" },
