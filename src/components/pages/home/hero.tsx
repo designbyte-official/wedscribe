@@ -130,12 +130,12 @@ export const Hero: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
-            <Button onClick={() => document.getElementById('templates')?.scrollIntoView({ behavior: 'smooth' })} variant="outline" size="lg" className="rounded-full px-10 h-14 sm:h-16 text-lg font-semibold border-border bg-background/50 backdrop-blur-md hover:bg-muted/50 hover:border-border transition-all shadow-sm order-2 sm:order-1">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-6">
+            <Button onClick={() => document.getElementById('templates')?.scrollIntoView({ behavior: 'smooth' })} variant="outline" size="lg" className="rounded-full px-12 h-16 text-lg font-semibold border-border bg-background/50 backdrop-blur-md hover:bg-muted/50 hover:border-primary/20 transition-all shadow-lg hover:shadow-xl order-2 sm:order-1 ring-offset-2 hover:ring-2 hover:ring-primary/10">
               {t('home.hero.btn.templates')}
             </Button>
 
-            <Button asChild size="lg" className="rounded-full px-10 h-14 sm:h-16 text-lg font-semibold shadow-2xl shadow-primary/25 hover:shadow-primary/40 transition-all hover:scale-[1.03] active:scale-[0.98] bg-primary hover:bg-primary/90 order-1 sm:order-2">
+            <Button asChild size="lg" className="rounded-full px-12 h-16 text-lg font-semibold shadow-xl shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 transition-all hover:scale-[1.03] active:scale-[0.98] bg-primary hover:bg-primary/95 order-1 sm:order-2 ring-offset-2 hover:ring-2 hover:ring-primary/20">
               <Link to="/editor">
                 {t('home.hero.btn.create')} <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
@@ -177,7 +177,7 @@ export const Hero: React.FC = () => {
                 </div>
                 <div>
                   <div className="font-bold text-foreground text-xs sm:text-sm">{t('home.hero.status')}</div>
-                  <div className="text-[10px] sm:text-xs text-muted-foreground font-medium">Professional Layouts</div>
+                  <div className="text-[10px] sm:text-xs text-muted-foreground font-medium">Premium Bio Data Layouts</div>
                 </div>
               </motion.div>
 
@@ -193,7 +193,7 @@ export const Hero: React.FC = () => {
                 </div>
                 <div>
                   <div className="font-bold text-foreground text-xs sm:text-sm">{t('home.hero.feature')}</div>
-                  <div className="text-[10px] sm:text-xs text-muted-foreground font-medium">End-to-end Privacy</div>
+                  <div className="text-[10px] sm:text-xs text-muted-foreground font-medium">Secure Bio Data Privacy</div>
                 </div>
               </motion.div>
 

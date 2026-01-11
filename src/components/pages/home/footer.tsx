@@ -106,7 +106,7 @@ export const Footer: React.FC = () => {
             © 2024 <span className="text-foreground font-bold">WedScribe</span>. {t('footer.rights')}
           </p>
           <div className="flex items-center gap-2 text-xs text-muted-foreground font-medium bg-card px-3 py-1.5 rounded-full shadow-sm border border-border/40">
-            Made with <Heart size={12} className="text-rose-500 fill-rose-500" /> by <a href="https://designbyte.dev" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">DesignByte Studio</a> in <span className="text-foreground font-bold uppercase tracking-widest text-[10px]">India</span>
+            Made with <Heart size={12} className="text-rose-500 fill-rose-500" /> by <a href="https://designbyte.dev" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">DesignByte Studio</a>
           </div>
         </div>
       </div>

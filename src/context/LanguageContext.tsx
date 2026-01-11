@@ -17,14 +17,14 @@ export const translations: Translations = {
   'nav.faq': { en: 'FAQ', hi: 'सामान्य प्रश्न' },
   'nav.create': { en: 'Create Now', hi: 'अभी बनाएँ' },
   'nav.login': { en: 'Login', hi: 'लॉग इन' },
-  
+
   // Editor Headers
   'editor.back': { en: 'Back', hi: 'वापस' },
   'editor.reset': { en: 'Reset', hi: 'रीसेट' },
   'editor.print': { en: 'Print / PDF', hi: 'प्रिंट / पीडीएफ' },
   'editor.tab.templates': { en: 'Templates', hi: 'टेम्पलेट्स' },
   'editor.tab.edit': { en: 'Edit Biodata', hi: 'बायोडेटा संपादित करें' },
-  
+
   // Personal Details
   'section.personal': { en: 'Personal Details', hi: 'व्यक्तिगत विवरण' },
   'field.name': { en: 'Full Name', hi: 'पूरा नाम' },
@@ -81,7 +81,7 @@ export const translations: Translations = {
   'section.astrology': { en: 'Astrology', hi: 'ज्योतिष' },
   'common.marriageBiodata': { en: 'Marriage Biodata', hi: 'विवाह बायोडाटा' },
   'template.mantra': { en: '|| Shree Ganeshay Namah ||', hi: '|| श्री गणेशाय नमः ||' },
-  
+
   // Editor Labels & Sections
   'label.photo': { en: 'Profile Photo', hi: 'प्रोफ़ाइल फोटो' },
   'label.changePhoto': { en: 'Change Photo', hi: 'फोटो बदलें' },
@@ -118,50 +118,50 @@ export const translations: Translations = {
   'option.dontKnow': { en: "Don't Know", hi: 'पता नहीं' },
 
   // Home Page - Hero
-  'home.hero.badge': { en: "Secure & Private Biodata Maker", hi: "सुरक्षित और निजी बायोडेटा निर्माता" },
+  'home.hero.badge': { en: "Premium Marriage Biodata Maker", hi: "प्रीमियम वैवाहिक बायोडेटा निर्माता" },
   'home.hero.title.prefix': { en: "Design Your", hi: "अपना" },
-  'home.hero.title.highlight': { en: "Perfect Match", hi: "परफेक्ट मैच" },
-  'home.hero.title.suffix': { en: "Profile", hi: "प्रोफाइल डिज़ाइन करें" },
-  'home.hero.desc': { en: "Create beautiful Indian matrimonial biodatas with ease. Choose from our premium templates and download instantly.", hi: "आसानी से सुंदर भारतीय वैवाहिक बायोडेटा बनाएं। हमारे प्रीमियम टेम्पलेट्स में से चुनें और तुरंत डाउनलोड करें।" },
+  'home.hero.title.highlight': { en: "Perfect", hi: "परफेक्ट" },
+  'home.hero.title.suffix': { en: "Marriage Biodata", hi: "विवाह बायोडाटा" },
+  'home.hero.desc': { en: "Make a great first impression. Create a premium Marriage Biodata for yourself or your loved ones in minutes. Perfect for sharing on WhatsApp.", hi: "एक शानदार पहली छाप छोड़ें। मिनटों में अपने या अपने प्रियजनों के लिए एक प्रीमियम विवाह बायोडाटा बनाएं। व्हाट्सएप पर शेयर करने के लिए बेहतरीन।" },
   'home.hero.btn.create': { en: "Create Biodata", hi: "बायोडेटा बनाएँ" },
-  'home.hero.btn.templates': { en: "View Templates", hi: "टेम्पलेट्स देखें" },
+  'home.hero.btn.templates': { en: "View Designs", hi: "डिज़ाइन देखें" },
   'home.hero.trusted': { en: "Trusted by", hi: "भरोसा है" },
-  'home.hero.families': { en: "families", hi: "परिवारों का" },
+  'home.hero.families': { en: "Indian families", hi: "भारतीय परिवारों का" },
   'home.hero.status': { en: "Print Ready PDF", hi: "प्रिंट रेडी पीडीएफ" },
   'home.hero.feature': { en: "Privacy First", hi: "गोपनीयता पहले" },
 
   // Home Page - Features
-  'home.features.title': { en: "Everything you need", hi: "वह सब कुछ जो आपको चाहिए" },
-  'home.features.subtitle': { en: "Professional features to help you create a dignified profile.", hi: "एक प्रतिष्ठित प्रोफाइल बनाने में आपकी मदद करने के लिए पेशेवर सुविधाएँ।" },
-  'home.feature.1.title': { en: "Premium Templates", hi: "प्रीमियम टेम्पलेट्स" },
-  'home.feature.1.desc': { en: "Professionally designed layouts.", hi: "पेशेवर रूप से डिज़ाइन किए गए लेआउट।" },
-  'home.feature.2.title': { en: "Easy Editing", hi: "आसान संपादन" },
-  'home.feature.2.desc': { en: "Simple interface for everyone.", hi: "सभी के लिए सरल इंटरफ़ेस।" },
-  'home.feature.3.title': { en: "Privacy Focused", hi: "गोपनीयता केंद्रित" },
-  'home.feature.3.desc': { en: "Your data stays on your device.", hi: "आपका डेटा आपके डिवाइस पर रहता है।" },
-  'home.feature.4.title': { en: "Instant Download", hi: "तुरंत डाउनलोड" },
-  'home.feature.4.desc': { en: "High-quality PDF output.", hi: "उच्च गुणवत्ता वाले पीडीएफ आउटपुट।" },
+  'home.features.title': { en: "Why Choose WedScribe?", hi: "वेडस्क्राइब क्यों चुनें?" },
+  'home.features.subtitle': { en: "Features designed for modern Indian match-making.", hi: "आधुनिक भारतीय वैवाहिक जरूरतों के लिए डिज़ाइन की गई सुविधाएँ।" },
+  'home.feature.1.title': { en: "Premium Designs", hi: "प्रीमियम डिज़ाइन" },
+  'home.feature.1.desc': { en: "Elegant layouts that look great on phone & print.", hi: "सुरुचिपूर्ण लेआउट जो फोन और प्रिंट दोनों पर अच्छे लगते हैं।" },
+  'home.feature.2.title': { en: "WhatsApp Ready", hi: "व्हाट्सएप के लिए तैयार" },
+  'home.feature.2.desc': { en: "Share your PDF directly on WhatsApp/Email.", hi: "अपना पीडीएफ सीधे व्हाट्सएप/ईमेल पर शेयर करें।" },
+  'home.feature.3.title': { en: "100% Private", hi: "100% निजी" },
+  'home.feature.3.desc': { en: "Your photos & data never leave your phone.", hi: "आपकी तस्वीरें और डेटा कभी भी आपके फोन से बाहर नहीं जाते।" },
+  'home.feature.4.title': { en: "All Communities", hi: "सभी समुदाय" },
+  'home.feature.4.desc': { en: "Formats suitable for all castes & religions.", hi: "सभी जातियों और धर्मों के लिए उपयुक्त प्रारूप।" },
 
   // Home Page - Religion Selection
-  'home.religion.title': { en: "Select your", hi: "अपना" },
-  'home.religion.highlight': { en: "Religion", hi: "धर्म चुनें" },
-  'home.religion.desc': { en: "Find the perfect biodata format that matches your cultural traditions.", hi: "अपनी सांस्कृतिक परंपराओं से मेल खाने वाला सही बायोडेटा प्रारूप खोजें।" },
-  'home.religion.community': { en: "All communities supported", hi: "सभी समुदायों का समर्थन" },
+  'home.religion.title': { en: "Biodata for every", hi: "हर" },
+  'home.religion.highlight': { en: "Community", hi: "समुदाय के लिए" },
+  'home.religion.desc': { en: "Whether you need a traditional Hindu format or a modern professional layout, we have it all.", hi: "चाहे आपको पारंपरिक हिंदू प्रारूप चाहिए या आधुनिक पेशेवर लेआउट, हमारे पास सब कुछ है।" },
+  'home.religion.community': { en: "Used by 10,000+ Indians", hi: "10,000+ भारतीयों द्वारा उपयोग किया गया" },
 
   // Home Page - FAQ
   'home.faq.title': { en: "Common Questions", hi: "सामान्य प्रश्न" },
-  'home.faq.desc': { en: "Everything you need to know before you start.", hi: "शुरू करने से पहले आपको जो कुछ भी जानने की जरूरत है।" },
-  'home.faq.q1': { en: "Is my personal data safe?", hi: "क्या मेरा व्यक्तिगत डेटा सुरक्षित है?" },
-  'home.faq.a1': { en: "Yes, completely local-first.", hi: "हां, पूरी तरह से आपके डिवाइस पर सुरक्षित।" },
-  'home.faq.q2': { en: "Is it free?", hi: "क्या यह मुफ़्त है?" },
-  'home.faq.a2': { en: "Yes, core features are free.", hi: "हां, मुख्य सुविधाएँ मुफ़्त हैं।" },
-  
+  'home.faq.desc': { en: "Everything you need to know about creating your biodata.", hi: "अपना बायोडेटा बनाने के बारे में आपको जो कुछ भी जानने की जरूरत है।" },
+  'home.faq.q1': { en: "Is my photo and data safe?", hi: "क्या मेरी फोटो और डेटा सुरक्षित है?" },
+  'home.faq.a1': { en: "Yes. We do not store your data. It stays securely on your device.", hi: "हाँ। हम आपका डेटा स्टोर नहीं करते हैं। यह आपके डिवाइस पर सुरक्षित रहता है।" },
+  'home.faq.q2': { en: "Can I share this on WhatsApp?", hi: "क्या मैं इसे व्हाट्सएप पर शेयर कर सकता हूँ?" },
+  'home.faq.a2': { en: "Absolutely. The downloaded PDF is optimized for easy sharing on WhatsApp.", hi: "बिल्कुल। डाउनलोड किया गया पीडीएफ व्हाट्सएप पर आसानी से शेयर करने के लिए ऑप्टिमाइज़ किया गया है।" },
+
   // Footer
-  'footer.brand.desc': { en: "Empowering Indian families to create beautiful profiles.", hi: "भारतीय परिवारों को सुंदर प्रोफाइल बनाने के लिए सशक्त बनाना।" },
+  'footer.brand.desc': { en: " helping Indian families find their perfect match with dignified, beautiful Biodatas.", hi: "भारतीय परिवारों को प्रतिष्ठित और सुंदर बायोडेटा के साथ अपना सही जीवनसाथी खोजने में मदद करना।" },
   'footer.col.product': { en: "Product", hi: "उत्पाद" },
   'footer.col.company': { en: "Company", hi: "कंपनी" },
   'footer.col.contact': { en: "Contact", hi: "संपर्क" },
-  'footer.rights': { en: "All rights reserved.", hi: "सर्वाधिकार सुरक्षित।" },
+  'footer.rights': { en: "Made for India.", hi: "भारत के लिए बनाया गया।" },
 };
 
 interface LanguageContextType {
