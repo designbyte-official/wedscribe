@@ -66,7 +66,7 @@ src/
 
 ## Templates
 
-WedScribe includes 30+ professionally designed templates:
+BioData Generator includes 30+ professionally designed templates:
 
 - **Modern**: Sky Blossom, Mint Blossom, Minimalist, Ivory Modern
 - **Royal**: Regal Anvika, Royal Red, Classic Gold

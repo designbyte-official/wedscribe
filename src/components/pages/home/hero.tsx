@@ -204,7 +204,7 @@ export const Hero: React.FC = () => {
                 transition={{ delay: 1.2, type: "spring", stiffness: 200 }}
                 className="absolute top-1/2 -right-6 lg:-right-8 translate-x-1/2 -translate-y-1/2 w-16 h-16 lg:w-20 lg:h-20 bg-background p-3 rounded-full shadow-2xl z-30 flex items-center justify-center group"
               >
-                <img src="/wedscribe-logo.png" alt="WedScribe" className="w-full h-full object-contain group-hover:rotate-12 transition-transform duration-500" />
+                <img src="/biodata-generator-logo.png" alt="BioData Generator" className="w-full h-full object-contain group-hover:rotate-12 transition-transform duration-500" />
               </motion.div>
             </div>
           </div>

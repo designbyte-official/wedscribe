@@ -20,9 +20,9 @@ export const BackgroundShowcase: React.FC<Props> = ({ profile }) => {
 
   const fieldRow = (label: string, value?: string | null) =>
     value ? (
-      <div className="flex gap-2 text-[13px] leading-relaxed text-slate-900">
+      <div className="flex gap-2 text-[13px] leading-relaxed" style={{ color: '#0f172a' }}>
         <span className="font-semibold min-w-[110px]">{label}:</span>
-        <span className="text-slate-800 flex-1">{value}</span>
+        <span className="flex-1" style={{ color: '#1e293b' }}>{value}</span>
       </div>
     ) : null;
 
@@ -34,18 +34,18 @@ export const BackgroundShowcase: React.FC<Props> = ({ profile }) => {
       >
         <div className="relative px-16 pt-20 pb-12 h-full flex flex-col gap-6">
           {/* Header with better spacing */}
-          <header className="flex items-start gap-6 pb-4 border-b border-slate-300/30">
-            <div className="w-32 h-40 rounded-sm overflow-hidden border-2 border-slate-200 bg-white shadow-sm shrink-0">
+          <header className="flex items-start gap-6 pb-4" style={{ borderBottom: '1px solid rgba(203, 213, 225, 0.3)' }}>
+            <div className="w-32 h-40 rounded-sm overflow-hidden border-2 bg-white shadow-sm shrink-0" style={{ borderColor: '#e2e8f0' }}>
               {personal.photoUrl ? (
                 <img src={personal.photoUrl} alt="Profile" className="w-full h-full object-cover" />
               ) : (
-                <PlaceholderImage className="w-full h-full text-slate-300" />
+                <PlaceholderImage className="w-full h-full text-[#cbd5e1]" />
               )}
             </div>
             <div className="flex-1 space-y-1.5 pt-1">
-              <h1 className="text-4xl font-bold text-slate-900 tracking-tight leading-tight">{personal.fullName}</h1>
+              <h1 className="text-4xl font-bold tracking-tight leading-tight" style={{ color: '#0f172a' }}>{personal.fullName}</h1>
               {education.occupation && (
-                <p className="text-base uppercase tracking-[0.15em] text-slate-700 font-medium">{education.occupation}</p>
+                <p className="text-base uppercase tracking-[0.15em] font-medium" style={{ color: '#334155' }}>{education.occupation}</p>
               )}
             </div>
           </header>
@@ -55,7 +55,7 @@ export const BackgroundShowcase: React.FC<Props> = ({ profile }) => {
             {/* Left Column */}
             <div className="space-y-5">
               <section className="space-y-2.5">
-                <h2 className="text-lg font-bold text-slate-900 mb-2 border-b border-slate-200 pb-1">{t('section.personal')}</h2>
+                <h2 className="text-lg font-bold mb-2 pb-1" style={{ color: '#0f172a', borderBottom: '1px solid #e2e8f0' }}>{t('section.personal')}</h2>
                 <div className="space-y-2">
                   {fieldRow(t('field.dob'), personal.dateOfBirth)}
                   {fieldRow(t('field.tob'), personal.timeOfBirth)}
@@ -73,7 +73,7 @@ export const BackgroundShowcase: React.FC<Props> = ({ profile }) => {
               </section>
 
               <section className="space-y-2.5">
-                <h2 className="text-lg font-bold text-slate-900 mb-2 border-b border-slate-200 pb-1">{t('section.family')}</h2>
+                <h2 className="text-lg font-bold mb-2 pb-1" style={{ color: '#0f172a', borderBottom: '1px solid #e2e8f0' }}>{t('section.family')}</h2>
                 <div className="space-y-2">
                   {fieldRow(
                     t('field.fatherName'),
@@ -98,7 +98,7 @@ export const BackgroundShowcase: React.FC<Props> = ({ profile }) => {
             {/* Right Column */}
             <div className="space-y-5">
               <section className="space-y-2.5">
-                <h2 className="text-lg font-bold text-slate-900 mb-2 border-b border-slate-200 pb-1">{t('section.education')}</h2>
+                <h2 className="text-lg font-bold mb-2 pb-1" style={{ color: '#0f172a', borderBottom: '1px solid #e2e8f0' }}>{t('section.education')}</h2>
                 <div className="space-y-2">
                   {fieldRow(t('field.education'), education.education)}
                   {fieldRow(t('field.occupation'), education.occupation)}
@@ -109,20 +109,20 @@ export const BackgroundShowcase: React.FC<Props> = ({ profile }) => {
 
               {education.aboutMe && (
                 <section className="space-y-2.5">
-                  <h2 className="text-lg font-bold text-slate-900 mb-2 border-b border-slate-200 pb-1">{t('field.aboutMe')}</h2>
-                  <p className="text-[13px] text-slate-800 leading-relaxed whitespace-pre-line">{education.aboutMe}</p>
+                  <h2 className="text-lg font-bold mb-2 pb-1" style={{ color: '#0f172a', borderBottom: '1px solid #e2e8f0' }}>{t('field.aboutMe')}</h2>
+                  <p className="text-[13px] leading-relaxed whitespace-pre-line" style={{ color: '#1e293b' }}>{education.aboutMe}</p>
                 </section>
               )}
 
               <section className="space-y-2.5">
-                <h2 className="text-lg font-bold text-slate-900 mb-2 border-b border-slate-200 pb-1">{t('section.contact')}</h2>
+                <h2 className="text-lg font-bold mb-2 pb-1" style={{ color: '#0f172a', borderBottom: '1px solid #e2e8f0' }}>{t('section.contact')}</h2>
                 <div className="space-y-2">
                   {fieldRow(t('field.contactNumber') || 'Contact Number', contact.contactNumber)}
                   {fieldRow(t('field.email') || 'Email', contact.email)}
                   {contact.address && (
                     <div className="flex gap-2 text-[13px] leading-relaxed">
-                      <span className="font-semibold text-slate-900 min-w-[110px]">{t('field.address') || 'Address'}:</span>
-                      <span className="text-slate-800 flex-1 whitespace-pre-line">{contact.address}</span>
+                      <span className="font-semibold min-w-[110px]" style={{ color: '#0f172a' }}>{t('field.address') || 'Address'}:</span>
+                      <span className="flex-1 whitespace-pre-line" style={{ color: '#1e293b' }}>{contact.address}</span>
                     </div>
                   )}
                 </div>
