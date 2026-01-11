@@ -193,12 +193,12 @@ export const ALL_TEMPLATE_CONFIGS = { ...TEMPLATE_CONFIGS, ...BG_CONFIGS };
 
 // List of templates to display in UI (in order)
 export const TEMPLATE_DISPLAY_LIST: TemplateConfig[] = [
-    // Add specifically named manual configs if you want them to appear first/separately
-    TEMPLATE_CONFIGS.VELVET_ROSE,
-    TEMPLATE_CONFIGS.GOLDEN_HERITAGE,
+    // Priority Templates (Requested by user)
+    BG_CONFIGS['BG_TEMPLATE_29'],
+    BG_CONFIGS['BG_TEMPLATE_30'],
 
-    // Spread all generated background templates
-    ...Object.values(BG_CONFIGS)
+    // Spread all other generated background templates (excluding priority ones)
+    ...Object.values(BG_CONFIGS).filter(c => c.id !== 'BG_TEMPLATE_29' && c.id !== 'BG_TEMPLATE_30')
 ];
 
 // Helper function to get template config

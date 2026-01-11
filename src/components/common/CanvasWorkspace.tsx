@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ZoomIn, ZoomOut, Maximize, RotateCcw } from 'lucide-react';
+import { CanvasControls } from '../pages/editor/CanvasControls';
 
 interface Props {
     children: React.ReactNode;
@@ -10,63 +10,66 @@ export const CanvasWorkspace: React.FC<Props> = ({ children }) => {
     const [pan, setPan] = useState({ x: 0, y: 0 });
     const [isDragging, setIsDragging] = useState(false);
     const [lastMousePos, setLastMousePos] = useState({ x: 0, y: 0 });
+    const [showStyleMenu, setShowStyleMenu] = useState(false);
+
     const containerRef = useRef<HTMLDivElement>(null);
 
-    // Initial Center on mount
+    // Auto-Scale Logic
+    const autoScale = () => {
+        if (!containerRef.current) return;
+        const containerWidth = containerRef.current.clientWidth;
+        const containerHeight = containerRef.current.clientHeight;
+
+        // A4 Dimensions in px (approx at 96dpi)
+        const A4_WIDTH = 794; // 210mm
+        const A4_HEIGHT = 1123; // 297mm
+
+        const padding = window.innerWidth < 768 ? 20 : 80;
+
+        const scaleX = (containerWidth - padding) / A4_WIDTH;
+        const scaleY = (containerHeight - padding) / A4_HEIGHT;
+
+        // Use the smaller scale to fit entirely, but clamp min/max
+        const fitScale = Math.min(scaleX, scaleY);
+
+        setZoom(Math.max(0.3, Math.min(fitScale, 1.5)));
+        setPan({ x: 0, y: window.innerWidth < 768 ? 10 : 20 });
+    };
+
+    // Initial Scale & Resize Listener
     useEffect(() => {
-        // Simple centering for desktop defaults
-        if (window.innerWidth > 768) {
-            setPan({ x: 0, y: 40 });
-        } else {
-            // Mobile fit
-            setZoom(0.45);
-            setPan({ x: 0, y: 10 });
-        }
-    }, []);
-
-    // Prevent browser zoom when using wheel over canvas
-    useEffect(() => {
-        const container = containerRef.current;
-        if (!container) return;
-
-        const handleWheelCapture = (e: WheelEvent) => {
-            // Prevent browser zoom when Ctrl/Cmd is pressed
-            if (e.ctrlKey || e.metaKey) {
-                e.preventDefault();
-            }
-        };
-
-        // Add non-passive listener to allow preventDefault
-        container.addEventListener('wheel', handleWheelCapture, { passive: false });
-
-        return () => {
-            container.removeEventListener('wheel', handleWheelCapture);
-        };
+        autoScale();
+        window.addEventListener('resize', autoScale);
+        return () => window.removeEventListener('resize', autoScale);
     }, []);
 
     const handleWheel = (e: React.WheelEvent) => {
-        // Always prevent default browser zoom behavior when over canvas
         if (e.ctrlKey || e.metaKey) {
             e.preventDefault();
             const delta = e.deltaY > 0 ? -0.05 : 0.05;
-            const newZoom = Math.min(Math.max(0.2, zoom + delta), 3.0);
-            setZoom(newZoom);
+            setZoom(Math.min(Math.max(0.2, zoom + delta), 3.0));
         } else {
-            // Allow normal scrolling if not zooming, or pan if zoomed in? 
-            // Best practice for canvas apps: Wheel pans vertically, Shift+Wheel pans horizontally
-            // But for this "infinite canvas" feel, we'll map wheel to pan.
             setPan(prev => ({ x: prev.x - e.deltaX, y: prev.y - e.deltaY }));
         }
     };
 
     const handleMouseDown = (e: React.MouseEvent) => {
-        // Allow middle click or left click if holding space (common design tool UX)
-        // Or just simple left click drag for this consumer app
         if (e.button === 0 || e.button === 1) {
             setIsDragging(true);
             setLastMousePos({ x: e.clientX, y: e.clientY });
         }
     };
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        if (isDragging) {
+            const dx = e.clientX - lastMousePos.x;
+            const dy = e.clientY - lastMousePos.y;
+            setPan(prev => ({ x: prev.x + dx, y: prev.y + dy }));
+            setLastMousePos({ x: e.clientX, y: e.clientY });
+        }
+    };
+
+    const handleMouseUp = () => setIsDragging(false);
 
     const handleTouchStart = (e: React.TouchEvent) => {
         if (e.touches.length === 1) {
@@ -75,35 +78,13 @@ export const CanvasWorkspace: React.FC<Props> = ({ children }) => {
         }
     };
 
-    const handleMove = (clientX: number, clientY: number) => {
-        if (isDragging) {
-            const dx = clientX - lastMousePos.x;
-            const dy = clientY - lastMousePos.y;
-            setPan(prev => ({ x: prev.x + dx, y: prev.y + dy }));
-            setLastMousePos({ x: clientX, y: clientY });
-        }
-    };
-
-    const handleMouseMove = (e: React.MouseEvent) => {
-        handleMove(e.clientX, e.clientY);
-    };
-
     const handleTouchMove = (e: React.TouchEvent) => {
-        // Prevent scrolling the page while dragging canvas
-        // e.preventDefault(); // Warning: Passive event listener
         if (e.touches.length === 1) {
-            handleMove(e.touches[0].clientX, e.touches[0].clientY);
+            const dx = e.touches[0].clientX - lastMousePos.x;
+            const dy = e.touches[0].clientY - lastMousePos.y;
+            setPan(prev => ({ x: prev.x + dx, y: prev.y + dy }));
+            setLastMousePos({ x: e.touches[0].clientX, y: e.touches[0].clientY });
         }
-    };
-
-    const handleEnd = () => {
-        setIsDragging(false);
-    };
-
-    const fitToScreen = () => {
-        const isMobile = window.innerWidth < 768;
-        setZoom(isMobile ? 0.45 : 0.65);
-        setPan({ x: 0, y: isMobile ? 10 : 40 });
     };
 
     return (
@@ -112,61 +93,34 @@ export const CanvasWorkspace: React.FC<Props> = ({ children }) => {
             onWheel={handleWheel}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
-            onMouseUp={handleEnd}
-            onMouseLeave={handleEnd}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
-            onTouchEnd={handleEnd}
+            onTouchEnd={handleMouseUp}
             ref={containerRef}
             style={{
                 backgroundImage: 'radial-gradient(#94a3b8 1px, transparent 1px)',
                 backgroundSize: '24px 24px',
-                opacity: 1,
-                cursor: isDragging ? 'grabbing' : 'grab'
             }}
         >
-            {/* Floating Toolbar */}
-            <div
-                className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full shadow-2xl border border-white/50 ring-1 ring-slate-900/5 text-slate-600 transition-all hover:scale-105"
-                onMouseDown={(e) => e.stopPropagation()}
-                onTouchStart={(e) => e.stopPropagation()}
-            >
-                <button
-                    onClick={() => setZoom(Math.max(0.2, zoom - 0.1))}
-                    className="p-1.5 hover:bg-slate-100 rounded-full transition-colors active:scale-95 text-slate-500 hover:text-slate-800"
-                    title="Zoom Out"
-                >
-                    <ZoomOut size={18} />
-                </button>
-                <span className="text-xs font-mono w-12 text-center font-bold text-slate-800">{Math.round(zoom * 100)}%</span>
-                <button
-                    onClick={() => setZoom(Math.min(3.0, zoom + 0.1))}
-                    className="p-1.5 hover:bg-slate-100 rounded-full transition-colors active:scale-95 text-slate-500 hover:text-slate-800"
-                    title="Zoom In"
-                >
-                    <ZoomIn size={18} />
-                </button>
-                <div className="w-px h-4 bg-slate-200 mx-1"></div>
-                <button
-                    onClick={fitToScreen}
-                    className="p-1.5 hover:bg-slate-100 rounded-full transition-colors text-slate-500 hover:text-slate-800 active:scale-95"
-                    title="Fit to Screen"
-                >
-                    <RotateCcw size={16} />
-                </button>
-            </div>
+            <CanvasControls
+                zoom={zoom}
+                setZoom={setZoom}
+                autoScale={autoScale}
+                showStyleMenu={showStyleMenu}
+                setShowStyleMenu={setShowStyleMenu}
+            />
 
             {/* Transform Container */}
             <div className="w-full h-full flex items-center justify-center pointer-events-none">
                 <div
                     style={{
                         transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
-                        transition: isDragging ? 'none' : 'transform 0.2s cubic-bezier(0.1, 0.7, 1.0, 0.1)',
                         width: '210mm',
-                        height: '297mm', // A4 portrait dimensions
-                        willChange: 'transform' // Hardware acceleration hint
+                        height: '297mm',
                     }}
-                    className="bg-white shadow-[0_32px_64px_-12px_rgba(0,0,0,0.1)] ring-1 ring-slate-900/5 origin-center pointer-events-auto print:shadow-none print:transform-none"
+                    className="bg-white shadow-2xl ring-1 ring-slate-900/5 origin-center pointer-events-auto print:shadow-none print:transform-none transition-transform duration-200 ease-out"
                     id="canvas-container"
                 >
                     {children}

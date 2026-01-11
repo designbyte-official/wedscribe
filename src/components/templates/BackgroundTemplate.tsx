@@ -1,6 +1,7 @@
 import React from 'react';
 import { BiodataProfile } from '@/types';
 import { PlaceholderImage } from './shared';
+import { useProfileStore } from '@/store/profileStore';
 import { useLanguage } from '@/context/LanguageContext';
 
 const BG_COUNT = 31;
@@ -36,6 +37,7 @@ interface Props {
 
 export const BackgroundTemplate: React.FC<Props> = ({ profile, styleProps }) => {
     const { t } = useLanguage();
+    const { customStyles } = useProfileStore();
     const { personal, education, family, contact } = profile;
 
     const {
@@ -59,7 +61,7 @@ export const BackgroundTemplate: React.FC<Props> = ({ profile, styleProps }) => 
             right: '64px'
         },
         photoPosition = 'header-left'
-    } = styleProps;
+    } = { ...styleProps, ...customStyles }; // Merge custom styles over defaults
 
     const currentBg = backgrounds[backgroundIndex % BG_COUNT];
 
