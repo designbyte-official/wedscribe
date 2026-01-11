@@ -67,13 +67,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
     const TemplatesGrid = () => (
         <div className="grid grid-cols-2 gap-x-4 gap-y-6 pb-6">
-            {/* Legacy templates - manually added */}
-            <TemplateCard type={TemplateType.SKY_BLOSSOM} name="Sky Blossom" colorClass="bg-sky-50 text-sky-600" badge="Modern" />
-            <TemplateCard type={TemplateType.REGAL_ANVIKA} name="Regal Anvika" colorClass="bg-amber-50 text-amber-700" badge="Royal" />
-            <TemplateCard type={TemplateType.IVORY_LINES} name="Ivory Lines" colorClass="bg-stone-50 text-stone-600" badge="Minimal" />
-            <TemplateCard type={TemplateType.ROYAL_RED} name="Royal Red" colorClass="bg-rose-50 text-rose-900" badge="Festive" />
-            <TemplateCard type={TemplateType.MINIMALIST} name="Minimalist" colorClass="bg-white text-slate-900 border border-slate-100" badge="Clean" />
-
             {/* Config-based templates - automatically rendered from TEMPLATE_DISPLAY_LIST */}
             {TEMPLATE_DISPLAY_LIST.map((template) => (
                 <React.Fragment key={template.id}>
