@@ -131,7 +131,7 @@ export const translations: Translations = {
   'home.hero.feature': { en: "Privacy First", hi: "गोपनीयता पहले" },
 
   // Home Page - Features
-  'home.features.title': { en: "Why Choose WedScribe?", hi: "वेडस्क्राइब क्यों चुनें?" },
+  'home.features.title': { en: "Why Choose BioData Generator?", hi: "बायोडेटा जेनरेटर क्यों चुनें?" },
   'home.features.subtitle': { en: "Features designed for modern Indian match-making.", hi: "आधुनिक भारतीय वैवाहिक जरूरतों के लिए डिज़ाइन की गई सुविधाएँ।" },
   'home.feature.1.title': { en: "Premium Designs", hi: "प्रीमियम डिज़ाइन" },
   'home.feature.1.desc': { en: "Elegant layouts that look great on phone & print.", hi: "सुरुचिपूर्ण लेआउट जो फोन और प्रिंट दोनों पर अच्छे लगते हैं।" },

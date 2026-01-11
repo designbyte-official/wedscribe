@@ -74,7 +74,7 @@ export const BackgroundTemplate: React.FC<Props> = ({ profile, styleProps }) => 
         ) : null;
 
     return (
-        <div className="relative w-full h-full flex items-center justify-center py-2 px-2" style={{ backgroundColor: '#f5f5f5' }}>
+        <div className="relative w-full h-full flex items-center justify-center" style={{ backgroundColor: '#f5f5f5' }}>
             <div
                 className="relative w-[210mm] h-[297mm] max-w-full overflow-hidden"
                 style={{

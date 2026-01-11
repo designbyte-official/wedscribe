@@ -68,7 +68,7 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-background pt-32 sm:pt-40 pb-20 sm:pb-32">
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-background pt-28 sm:pt-32 pb-20 sm:pb-32">
       {/* Background Elements - Refined Blobs */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <motion.div

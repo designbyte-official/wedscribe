@@ -20,7 +20,7 @@ export const Logo: React.FC<LogoProps> = ({ className, textClassName, iconClassN
       </div>
       <div className="flex flex-col leading-none">
         <span className={cn("text-xl font-bold font-serif tracking-tight text-foreground", textClassName)}>
-          WedScribe
+          BioData Generator
         </span>
       </div>
     </div>

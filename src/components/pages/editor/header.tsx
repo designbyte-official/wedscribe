@@ -27,7 +27,7 @@ export const Header: React.FC<HeaderProps> = ({ onBack, onReset, onPrint, onDown
           <span className="hidden sm:inline">{t('editor.back')}</span>
         </Button>
         <div className="h-6 w-px bg-slate-200 hidden sm:block" />
-        <h1 className="font-serif text-xl font-bold text-slate-900 hidden md:block">WedScribe</h1>
+        <h1 className="font-serif text-xl font-bold text-slate-900 hidden md:block">BioData Generator</h1>
       </div>
 
       <div className="flex items-center gap-2">
@@ -49,31 +49,31 @@ export const Header: React.FC<HeaderProps> = ({ onBack, onReset, onPrint, onDown
         </DropdownMenu>
 
         <Button variant="outline" size="sm" onClick={onReset} className="gap-2 hidden sm:flex text-slate-600">
-            <RotateCcw size={16} />
-            {t('editor.reset')}
+          <RotateCcw size={16} />
+          {t('editor.reset')}
         </Button>
 
         <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-                <Button size="sm" className="gap-2 shadow-lg shadow-primary/20">
-                    <Download size={16} />
-                    <span className="hidden sm:inline">Download</span>
-                </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => onDownload('png')} className="gap-2 cursor-pointer">
-                    <FileImage size={16} className="text-blue-500" />
-                    <span>Download Image (PNG)</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => onDownload('pdf')} className="gap-2 cursor-pointer">
-                    <FileText size={16} className="text-red-500" />
-                    <span>Download PDF</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={onPrint} className="gap-2 cursor-pointer">
-                    <Printer size={16} className="text-slate-500" />
-                    <span>Print Ready</span>
-                </DropdownMenuItem>
-            </DropdownMenuContent>
+          <DropdownMenuTrigger asChild>
+            <Button size="sm" className="gap-2 shadow-lg shadow-primary/20">
+              <Download size={16} />
+              <span className="hidden sm:inline">Download</span>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem onClick={() => onDownload('png')} className="gap-2 cursor-pointer">
+              <FileImage size={16} className="text-blue-500" />
+              <span>Download Image (PNG)</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => onDownload('pdf')} className="gap-2 cursor-pointer">
+              <FileText size={16} className="text-red-500" />
+              <span>Download PDF</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={onPrint} className="gap-2 cursor-pointer">
+              <Printer size={16} className="text-slate-500" />
+              <span>Print Ready</span>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
         </DropdownMenu>
       </div>
     </header>

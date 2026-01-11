@@ -35,14 +35,14 @@ export const Navbar: React.FC = () => {
   const handleStart = () => navigate('/editor');
 
   return (
-    <motion.nav 
+    <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300 border-b",
-        scrolled 
-          ? "bg-white/70 backdrop-blur-xl shadow-sm border-slate-200/50 py-2 support-[backdrop-filter]:bg-white/50" 
+        scrolled
+          ? "bg-white/70 backdrop-blur-xl shadow-sm border-slate-200/50 py-2 support-[backdrop-filter]:bg-white/50"
           : "bg-transparent border-transparent py-4"
       )}
     >
@@ -75,7 +75,7 @@ export const Navbar: React.FC = () => {
 
           <LanguageSwitcher className="ml-2" triggerClassName="rounded-full" />
 
-          <Button 
+          <Button
             asChild
             size="sm"
             className="gap-2 group ml-4 rounded-full px-6 h-10 shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all hover:-translate-y-0.5"
@@ -96,7 +96,7 @@ export const Navbar: React.FC = () => {
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px]">
               <SheetHeader>
-                <SheetTitle className="font-serif text-2xl text-left">WedScribe</SheetTitle>
+                <SheetTitle className="font-serif text-2xl text-left">BioData Generator</SheetTitle>
               </SheetHeader>
               <div className="flex flex-col gap-6 mt-8">
                 <LanguageSwitcher className="flex justify-end" triggerClassName="rounded-full w-full justify-between px-3" showLabel />

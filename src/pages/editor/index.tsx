@@ -274,8 +274,8 @@ export const EditorPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Create Biodata - WedScribe Editor | Premium Biodata Maker"
-        description="Create and customize your wedding biodata with WedScribe editor. Choose from 30+ premium templates, edit details, and download as PDF or PNG instantly."
+        title="Create Biodata - BioData Generator Editor | Premium Biodata Maker"
+        description="Create and customize your wedding biodata with BioData Generator editor. Choose from 30+ premium templates, edit details, and download as PDF or PNG instantly."
         canonical="/editor"
         noindex={true}
       />
