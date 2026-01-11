@@ -1,16 +1,16 @@
 import React from 'react';
 import { BiodataProfile, TemplateType } from '../../types';
-import { SkyBlossom } from '@/components/templates/SkyBlossom';
-import { RegalAnvika } from '@/components/templates/RegalAnvika';
-import { IvoryLines } from '@/components/templates/IvoryLines';
-import { RoyalRed } from '@/components/templates/RoyalRed';
-import { Minimalist } from '@/components/templates/Minimalist';
-import { MaroonHeritage } from '@/components/templates/MaroonHeritage';
-import { RoyalMandala } from '@/components/templates/RoyalMandala';
-import { EmeraldCrescent } from '@/components/templates/EmeraldCrescent';
+import { SkyBlossom } from '@/components/templates/modern/SkyBlossom';
+import { RegalAnvika } from '@/components/templates/modern/RegalAnvika';
+import { IvoryLines } from '@/components/templates/minimalist/IvoryLines';
+import { RoyalRed } from '@/components/templates/traditional/RoyalRed';
+import { Minimalist } from '@/components/templates/minimalist/Minimalist';
+import { MaroonHeritage } from '@/components/templates/traditional/MaroonHeritage';
+import { RoyalMandala } from '@/components/templates/traditional/RoyalMandala';
+import { EmeraldCrescent } from '@/components/templates/modern/EmeraldCrescent';
 import { BackgroundShowcase } from '@/components/templates/BackgroundShowcase';
-import { ShubhVivah } from '@/components/templates/ShubhVivah';
-import { MangalSutra } from '@/components/templates/MangalSutra';
+import { ShubhVivah } from '@/components/templates/traditional/ShubhVivah';
+import { MangalSutra } from '@/components/templates/traditional/MangalSutra';
 import { BackgroundTemplate } from '@/components/templates/BackgroundTemplate';
 import { getTemplateConfig } from '@/templateConfigs';
 

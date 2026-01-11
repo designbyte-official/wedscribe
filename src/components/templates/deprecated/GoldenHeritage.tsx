@@ -1,6 +1,6 @@
 import React from 'react';
 import { BiodataProfile } from '@/types';
-import { BackgroundTemplate } from './BackgroundTemplate';
+import { BackgroundTemplate } from '../BackgroundTemplate';
 import { getTemplateConfig } from '@/templateConfigs';
 
 interface Props {

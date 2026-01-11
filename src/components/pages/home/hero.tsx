@@ -4,10 +4,11 @@ import { Shield, ArrowRight, PenTool, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { motion, AnimatePresence } from 'motion/react';
+import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
 import { useEffect, useState } from 'react';
 
-const slidess = [
+const slides = [
   "/biodata-Aayush Kumar (2).png",
   "/biodata-Aayush Kumar (3).png",
   "/biodata-Aayush Kumar (6).png",
@@ -20,26 +21,41 @@ const HeroSlider = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % slidess.length);
+      setIndex((prev) => (prev + 1) % slides.length);
     }, 4000);
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className="relative w-full h-auto aspect-[3/4] overflow-hidden rounded-xl shadow-inner bg-slate-50">
-      <AnimatePresence mode="popLayout">
-        <motion.img
+    <div className="relative w-full h-auto aspect-[3/4] overflow-hidden rounded-2xl shadow-2xl bg-card/50 backdrop-blur-sm group">
+      <AnimatePresence mode="wait">
+        <motion.div
           key={index}
-          src={slidess[index]}
-          alt="Biodata Template Preview"
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
-          transition={{ duration: 0.5 }}
-          className="absolute inset-0 w-full h-full object-contain"
-        />
+          initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
+          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          exit={{ opacity: 0, scale: 1.05, filter: "blur(10px)" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute inset-0 w-full h-full"
+        >
+          <img
+            src={slides[index]}
+            alt="Biodata Template Preview"
+            className="w-full h-full object-contain p-4 md:p-6 transition-transform duration-700 group-hover:scale-105"
+          />
+        </motion.div>
       </AnimatePresence>
-    </div>
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+        {slides.map((_, i) => (
+          <div
+            key={i}
+            className={cn(
+              "w-1.5 h-1.5 rounded-full transition-all duration-300",
+              index === i ? "bg-primary w-4" : "bg-primary/20"
+            )}
+          />
+        ))}
+      </div>
+    </div >
   );
 };
 
@@ -52,47 +68,77 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-[85vh] sm:min-h-[90vh] flex items-center justify-center overflow-hidden bg-background pt-24 sm:pt-32 pb-16 sm:pb-24">
-      {/* Background Elements */}
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-background pt-32 sm:pt-40 pb-20 sm:pb-32">
+      {/* Background Elements - Refined Blobs */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-10%] right-[-5%] w-[60%] h-[60%] bg-primary/10 rounded-full blur-[80px] sm:blur-[120px] mix-blend-multiply animate-blob"></div>
-        <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-amber-100/40 rounded-full blur-[60px] sm:blur-[100px] mix-blend-multiply animate-blob animation-delay-2000"></div>
-        <div className="absolute top-[20%] left-[20%] w-[40%] h-[40%] bg-rose-100/30 rounded-full blur-[60px] sm:blur-[100px] mix-blend-multiply animate-blob animation-delay-4000"></div>
+        <motion.div
+          animate={{
+            scale: [1, 1.1, 1],
+            opacity: [0.4, 0.6, 0.4],
+            x: [0, 30, 0],
+            y: [0, -20, 0]
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[-10%] right-[-5%] w-[60%] h-[60%] bg-primary/20 rounded-full blur-[100px] sm:blur-[150px] mix-blend-multiply"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+            x: [0, -40, 0],
+            y: [0, 30, 0]
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-amber-200/40 rounded-full blur-[80px] sm:blur-[120px] mix-blend-multiply"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.15, 1],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute top-[20%] left-[20%] w-[40%] h-[40%] bg-rose-200/30 rounded-full blur-[80px] sm:blur-[120px] mix-blend-multiply"
+        />
       </div>
 
-      <div className="container relative z-10 mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 xl:max-w-7xl grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
         {/* Left Content */}
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center lg:text-left"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-7 text-center lg:text-left space-y-8 sm:space-y-10"
         >
-          <Badge variant="secondary" className="mb-6 sm:mb-8 px-3 sm:px-4 py-1.5 sm:py-2 bg-background/80 backdrop-blur border border-border text-primary shadow-sm rounded-full gap-2 hover:bg-accent/50 select-none">
-            <Sparkles size={12} className="sm:w-[14px] sm:h-[14px] fill-primary/20 text-primary" />
-            <span className="tracking-wide text-[9px] sm:text-[10px] md:text-xs font-bold uppercase">{t('home.hero.badge')}</span>
+          <Badge variant="outline" className="px-4 py-2 bg-background/50 backdrop-blur-md border-transparent text-primary shadow-sm rounded-full gap-2.5 hover:bg-background/80 transition-colors select-none font-medium text-xs tracking-wider uppercase">
+            <Sparkles size={14} className="fill-primary/20 text-primary animate-pulse" />
+            <span>{t('home.hero.badge')}</span>
           </Badge>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-serif text-foreground leading-[1.1] sm:leading-[1.05] mb-6 sm:mb-8 tracking-tight">
-            {t('home.hero.title.prefix')} <br className="hidden sm:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-amber-500 italic pr-2 animate-gradient bg-300%">{t('home.hero.title.highlight')}</span>
-            {t('home.hero.title.suffix')}
-          </h1>
+          <div className="space-y-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold font-serif text-foreground leading-[1.05] tracking-tight">
+              {t('home.hero.title.prefix')} <br className="hidden sm:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-500 to-amber-500 italic pr-2">
+                {t('home.hero.title.highlight')}
+              </span>
+              <br className="hidden xl:block" />
+              {t('home.hero.title.suffix')}
+            </h1>
 
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed mb-8 sm:mb-10 max-w-lg mx-auto lg:mx-0 font-light">
-            {t('home.hero.desc')}
-          </p>
+            <p className="text-lg sm:text-xl md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0 font-light">
+              {t('home.hero.desc')}
+            </p>
+          </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
-            <Button asChild size="lg" className="rounded-full px-6 sm:px-8 h-11 sm:h-12 md:h-14 text-sm sm:text-base font-medium shadow-xl shadow-primary/20 hover:shadow-primary/30 transition-all hover:scale-105 active:scale-95 w-full sm:w-auto">
-              <Link to="/editor">
-                {t('home.hero.btn.create')} <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
-              </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+            <Button onClick={() => document.getElementById('templates')?.scrollIntoView({ behavior: 'smooth' })} variant="outline" size="lg" className="rounded-full px-10 h-14 sm:h-16 text-lg font-semibold border-border bg-background/50 backdrop-blur-md hover:bg-muted/50 hover:border-border transition-all shadow-sm order-2 sm:order-1">
+              {t('home.hero.btn.templates')}
             </Button>
 
-            <Button onClick={() => document.getElementById('templates')?.scrollIntoView({ behavior: 'smooth' })} variant="outline" size="lg" className="rounded-full px-6 sm:px-8 h-11 sm:h-12 md:h-14 text-sm sm:text-base font-medium border-border hover:bg-accent hover:text-accent-foreground transition-all w-full sm:w-auto">
-              {t('home.hero.btn.templates')}
+            <Button asChild size="lg" className="rounded-full px-10 h-14 sm:h-16 text-lg font-semibold shadow-2xl shadow-primary/25 hover:shadow-primary/40 transition-all hover:scale-[1.03] active:scale-[0.98] bg-primary hover:bg-primary/90 order-1 sm:order-2">
+              <Link to="/editor">
+                {t('home.hero.btn.create')} <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </Button>
           </div>
 
@@ -108,61 +154,65 @@ export const Hero: React.FC = () => {
 
         {/* Right Visual */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 50 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative h-[400px] sm:h-[500px] lg:h-[650px] hidden lg:flex items-center justify-center perspective-1000"
+          initial={{ opacity: 0, scale: 0.9, x: 20 }}
+          animate={{ opacity: 1, scale: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-5 relative hidden lg:flex items-center justify-center perspective-1000"
         >
           {/* Main Template Card Visual - Slider */}
-          <div className="relative z-10 w-full max-w-md transform rotate-y-[-5deg] rotate-x-[2deg] hover:rotate-0 transition-transform duration-700 ease-out">
-            <div className="relative rounded-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)] bg-white p-3 border border-border/50 backdrop-blur-sm">
+          <div className="relative z-10 w-full max-w-[420px] transform transition-all duration-700 hover:scale-[1.02] hover:-rotate-1">
+            <div className="relative p-2.5 sm:p-4 rounded-[2rem] bg-background/40 border-transparent backdrop-blur-md shadow-2xl overflow-visible">
 
               <HeroSlider />
 
-              {/* Floating Badge 1 */}
+              {/* Floating Badge 1 - Design */}
               <motion.div
-                animate={{ y: [0, -15, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-4 -right-4 xl:-top-6 xl:-right-6 w-auto bg-white p-2 xl:p-3 rounded-xl shadow-xl border border-border z-20 flex items-center gap-2 xl:gap-3"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.8, duration: 0.8 }}
+                className="absolute -top-6 -right-6 lg:-top-10 lg:-right-10 w-auto bg-card/90 backdrop-blur-md p-3 sm:p-4 rounded-2xl shadow-xl z-20 flex items-center gap-3"
               >
-                <div className="p-1.5 xl:p-2 bg-emerald-50 rounded-lg text-emerald-600">
-                  <PenTool size={16} className="xl:w-[18px] xl:h-[18px]" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:rotate-12 transition-transform">
+                  <PenTool size={20} className="sm:w-6 sm:h-6" />
                 </div>
                 <div>
-                  <div className="font-bold text-foreground text-[10px] xl:text-xs">{t('home.hero.status')}</div>
+                  <div className="font-bold text-foreground text-xs sm:text-sm">{t('home.hero.status')}</div>
+                  <div className="text-[10px] sm:text-xs text-muted-foreground font-medium">Professional Layouts</div>
                 </div>
               </motion.div>
 
               {/* Floating Badge 2 - Privacy */}
               <motion.div
-                animate={{ y: [0, 15, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute -bottom-6 -left-6 xl:-bottom-8 xl:-left-8 w-auto bg-white p-2 xl:p-3 rounded-xl shadow-xl border border-border z-20 flex items-center gap-2 xl:gap-3"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1, duration: 0.8 }}
+                className="absolute -bottom-8 -left-8 lg:-bottom-12 lg:-left-12 w-auto bg-card/90 backdrop-blur-md p-3 sm:p-4 rounded-2xl shadow-xl z-20 flex items-center gap-3"
               >
-                <div className="p-1.5 xl:p-2 bg-amber-50 rounded-lg text-amber-600">
-                  <Shield size={16} className="xl:w-[18px] xl:h-[18px]" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-600">
+                  <Shield size={20} className="sm:w-6 sm:h-6" />
                 </div>
                 <div>
-                  <div className="font-bold text-foreground text-[10px] xl:text-xs">{t('home.hero.feature')}</div>
+                  <div className="font-bold text-foreground text-xs sm:text-sm">{t('home.hero.feature')}</div>
+                  <div className="text-[10px] sm:text-xs text-muted-foreground font-medium">End-to-end Privacy</div>
                 </div>
               </motion.div>
 
               {/* Floating Logo Badge */}
               <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute top-1/2 -right-12 xl:-right-16 w-12 h-12 xl:w-16 xl:h-16 bg-white p-1.5 xl:p-2 rounded-full shadow-2xl border border-border z-30 flex items-center justify-center"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.2, type: "spring", stiffness: 200 }}
+                className="absolute top-1/2 -right-6 lg:-right-8 translate-x-1/2 -translate-y-1/2 w-16 h-16 lg:w-20 lg:h-20 bg-background p-3 rounded-full shadow-2xl z-30 flex items-center justify-center group"
               >
-                <img src="/wedscribe-logo.png" alt="WedScribe" className="w-full h-full object-contain" />
+                <img src="/wedscribe-logo.png" alt="WedScribe" className="w-full h-full object-contain group-hover:rotate-12 transition-transform duration-500" />
               </motion.div>
             </div>
           </div>
 
-          {/* Decorative blob behind */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-accent/30 via-transparent to-primary/5 rounded-full blur-[80px] -z-10"></div>
-
+          {/* Decorative background circle */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-gradient-to-tr from-primary/5 via-primary/10 to-transparent rounded-full blur-[100px] -z-10 animate-pulse" />
         </motion.div>
-      </div>
-    </section>
+      </div >
+    </section >
   );
 };

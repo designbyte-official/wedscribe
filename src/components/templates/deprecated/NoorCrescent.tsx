@@ -1,6 +1,6 @@
 import React from 'react';
 import { BiodataProfile } from '@/types';
-import { PlaceholderImage, DetailItem, ContactRow, SectionTitle } from './shared';
+import { PlaceholderImage, DetailItem, ContactRow, SectionTitle } from '../shared';
 import { Moon, Phone, Mail, MapPin } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 

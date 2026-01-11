@@ -11,7 +11,7 @@ import { useLanguage } from '@/context/LanguageContext';
 
 export const FAQ: React.FC = () => {
   const { t } = useLanguage();
-  
+
   const faqs = [
     {
       question: t('home.faq.q1'),
@@ -40,47 +40,45 @@ export const FAQ: React.FC = () => {
   ];
 
   return (
-    <section id="faq" className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-white via-slate-50/30 to-white relative overflow-hidden">
-      {/* Animated Background Blobs */}
-      <div className="absolute top-0 right-0 w-64 h-64 sm:w-96 sm:h-96 bg-amber-100/20 rounded-full blur-2xl sm:blur-3xl pointer-events-none animate-blob" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 sm:w-96 sm:h-96 bg-rose-100/20 rounded-full blur-2xl sm:blur-3xl pointer-events-none animate-blob animation-delay-2000" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] bg-indigo-50/10 rounded-full blur-2xl sm:blur-3xl pointer-events-none animate-blob animation-delay-4000" />
-      
+    <section id="faq" className="py-24 sm:py-32 md:py-48 bg-background relative overflow-hidden" style={{ paddingBlock: 'var(--section-gap)' }}>
+      {/* Animated Background Blobs - Refined */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[100px] pointer-events-none animate-blob" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] pointer-events-none animate-blob animation-delay-2000" />
+
       <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12 sm:mb-16"
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-20 sm:mb-24"
         >
-          {/* Icon with orange border - matching image description */}
-          <motion.div 
+          <motion.div
             initial={{ scale: 0, rotate: -180 }}
             whileInView={{ scale: 1, rotate: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, type: "spring" }}
-            className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-amber-500 bg-white mb-4 sm:mb-6 shadow-sm"
+            transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
+            className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-card mb-8 shadow-sm text-amber-500"
           >
-            <HelpCircle size={24} className="sm:w-[28px] sm:h-[28px] text-amber-500" strokeWidth={2} />
+            <HelpCircle size={32} strokeWidth={1.5} />
           </motion.div>
-          
-          <motion.h2 
+
+          <motion.h2
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1, duration: 0.6 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-3 sm:mb-4 tracking-tight px-4"
+            transition={{ delay: 0.1, duration: 0.8 }}
+            className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-foreground mb-6 tracking-tight"
           >
             {t('home.faq.title')}
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-slate-600 font-light text-base sm:text-lg md:text-xl max-w-2xl mx-auto px-4"
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-light max-w-2xl mx-auto"
           >
             {t('home.faq.desc')}
           </motion.p>
@@ -90,26 +88,26 @@ export const FAQ: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="space-y-3"
+          transition={{ delay: 0.3, duration: 0.8 }}
+          className="space-y-4"
         >
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion type="single" collapsible className="w-full space-y-4">
             {faqs.map((faq, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.4 + index * 0.1, duration: 0.4 }}
+                transition={{ delay: 0.4 + index * 0.1, duration: 0.6 }}
               >
-                <AccordionItem 
-                  value={`item-${index}`} 
-                  className="border border-slate-200 rounded-lg sm:rounded-xl px-4 sm:px-6 py-2 bg-white/90 backdrop-blur-sm data-[state=open]:border-amber-500/50 data-[state=open]:bg-white data-[state=open]:shadow-lg data-[state=open]:shadow-amber-500/5 data-[state=open]:ring-2 data-[state=open]:ring-amber-500/10 transition-all duration-300 hover:border-slate-300 hover:shadow-md"
+                <AccordionItem
+                  value={`item-${index}`}
+                  className="border border-border/40 rounded-2xl px-6 bg-card shadow-sm data-[state=open]:shadow-md transition-all duration-300"
                 >
-                  <AccordionTrigger className="hover:no-underline text-sm sm:text-base md:text-lg font-semibold text-slate-800 py-4 sm:py-5 data-[state=open]:text-amber-600 transition-colors duration-300 text-left">
+                  <AccordionTrigger className="hover:no-underline text-lg font-medium text-foreground py-4 text-left">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-slate-600 leading-relaxed pb-4 sm:pb-5 text-xs sm:text-sm md:text-base font-light data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+                  <AccordionContent className="text-muted-foreground leading-relaxed pb-6 text-base">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>

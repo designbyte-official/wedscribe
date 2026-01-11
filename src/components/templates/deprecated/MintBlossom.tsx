@@ -1,7 +1,7 @@
 import React from 'react';
 import { BiodataProfile } from '@/types';
 import { Phone, Mail, MapPin } from 'lucide-react';
-import { PlaceholderImage, DetailItem } from './shared';
+import { PlaceholderImage, DetailItem } from '../shared';
 import { useLanguage } from '@/context/LanguageContext';
 
 interface Props {

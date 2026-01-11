@@ -1,6 +1,6 @@
 import React from 'react';
 import { BiodataProfile } from '@/types';
-import { PlaceholderImage } from './shared';
+import { PlaceholderImage } from '../shared';
 import { useLanguage } from '@/context/LanguageContext';
 
 interface Props {

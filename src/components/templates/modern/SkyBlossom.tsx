@@ -1,7 +1,7 @@
 import React from 'react';
 import { BiodataProfile } from '@/types';
 import { Phone, Mail, MapPin, User, Star, Calendar, Clock, Ruler, Users, GraduationCap, Briefcase, Globe, Award, Activity } from 'lucide-react';
-import { PlaceholderImage, SectionTitle, DetailItem, ContactRow } from './shared';
+import { PlaceholderImage, SectionTitle, DetailItem, ContactRow } from '../shared';
 import { useLanguage } from '@/context/LanguageContext';
 
 interface Props {
