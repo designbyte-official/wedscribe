@@ -9,6 +9,12 @@ interface CustomStyles {
   headingColor?: string;
   labelColor?: string;
   borderColor?: string;
+  padding?: {
+    top: string;
+    bottom: string;
+    left: string;
+    right: string;
+  };
 }
 
 interface ProfileStore {

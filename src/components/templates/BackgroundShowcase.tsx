@@ -14,7 +14,17 @@ interface Props {
 export const BackgroundShowcase: React.FC<Props> = ({ profile }) => {
   const { t } = useLanguage();
   const { personal, education, family, contact } = profile;
+  const { customStyles } = useProfileStore();
   const bgIndex = useProfileStore((s) => s.backgroundIndex);
+
+  const {
+    padding = {
+      top: '80px',
+      bottom: '48px',
+      left: '64px',
+      right: '64px'
+    }
+  } = customStyles;
 
   const currentBg = useMemo(() => backgrounds[bgIndex % BG_COUNT], [bgIndex]);
 
@@ -32,7 +42,15 @@ export const BackgroundShowcase: React.FC<Props> = ({ profile }) => {
         className="relative w-[210mm] h-[297mm] max-w-full overflow-hidden"
         style={{ backgroundImage: `url(${currentBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
       >
-        <div className="relative px-16 pt-20 pb-12 h-full flex flex-col gap-6">
+        <div
+          className="relative h-full flex flex-col gap-6"
+          style={{
+            paddingTop: padding.top,
+            paddingBottom: padding.bottom,
+            paddingLeft: padding.left,
+            paddingRight: padding.right
+          }}
+        >
           {/* Header with better spacing */}
           <header className="flex items-start gap-6 pb-4" style={{ borderBottom: '1px solid rgba(203, 213, 225, 0.3)' }}>
             <div className="w-32 h-40 rounded-sm overflow-hidden border-2 bg-white shadow-sm shrink-0" style={{ borderColor: '#e2e8f0' }}>
