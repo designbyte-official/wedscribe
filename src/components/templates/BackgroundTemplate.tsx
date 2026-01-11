@@ -99,7 +99,7 @@ export const BackgroundTemplate: React.FC<Props> = ({ profile, styleProps }) => 
                             {personal.photoUrl ? (
                                 <img src={personal.photoUrl} alt="Profile" className="w-full h-full object-cover" />
                             ) : (
-                                <PlaceholderImage className="w-full h-full text-slate-300" />
+                                <PlaceholderImage className="w-full h-full text-[#cbd5e1]" />
                             )}
                         </div>
                         <div className="flex-1 space-y-1.5 pt-1">
