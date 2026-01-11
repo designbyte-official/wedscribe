@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Manrope:wght@200..800&display=swap');
-
 @import "tailwindcss";
 
 @plugin "tailwindcss-animate";
@@ -39,7 +37,7 @@
   --sidebar-accent-foreground: oklch(0.6379 0.2527 351.3302);
   --sidebar-border: oklch(0.9213 0.0160 341.4136);
   --sidebar-ring: oklch(0.6407 0.2555 350.2393);
-  --font-sans: "Manrope", sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-serif: "Fraunces", serif;
   --font-mono: Menlo, monospace;
   --radius: 1.3rem;
@@ -177,8 +175,11 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
     font-family: var(--font-sans);
+    font-feature-settings: "cv05", "cv08";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     touch-action: pan-x pan-y;
   }
 }
@@ -271,6 +272,8 @@
 
   body {
     background: white;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   .no-print {
@@ -281,12 +284,19 @@
     display: block !important;
   }
 
-  #canvas-container {
-    transform: none !important;
-    width: 100% !important;
-    height: 100% !important;
+  /* Force A4 dimensions on the print container */
+  #template-content {
+    width: 210mm !important;
+    min-height: 297mm !important;
     margin: 0 !important;
     padding: 0 !important;
-    box-shadow: none !important;
+    overflow: hidden !important;
+    page-break-after: always;
+  }
+
+  /* Ensure background colors print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 }

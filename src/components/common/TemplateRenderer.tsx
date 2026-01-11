@@ -63,8 +63,11 @@ export const TemplateRenderer: React.FC<Props> = React.memo(({ profile, template
   })();
 
   return (
-    <div id="template-content" className="w-full">
-      {templateElement}
+    <div id="template-content" className="w-full flex justify-center">
+      {/* Wrapper to enforce A4 size on legacy templates */}
+      <div className="w-[210mm] min-h-[297mm] bg-white shadow-lg print:shadow-none overflow-hidden">
+        {templateElement}
+      </div>
     </div>
   );
 });
