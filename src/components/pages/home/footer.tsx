@@ -35,7 +35,7 @@ export const Footer: React.FC = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-secondary/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-white hover:shadow-sm transition-all"
+                  className="w-10 h-10 rounded-full bg-muted/50 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-white hover:shadow-md hover:shadow-primary/20 transition-all duration-300 transform hover:-translate-y-1"
                   aria-label={social.label}
                 >
                   <social.icon size={18} />
