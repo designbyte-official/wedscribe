@@ -234,8 +234,14 @@ export const BackgroundTemplate: React.FC<Props> = ({ profile, styleProps }) => 
                         </div>
                     </div>
                 </div>
+
+                {/* Low Opacity Watermark Logo */}
+                <div className="absolute bottom-16 w-full flex justify-center opacity-80 pointer-events-none rounded-full">
+                    <img src="/biodata-generator-logo.png" alt="BioData Generator" className="h-10 object-contain  rounded-full" />
+                </div>
             </div>
         </div>
+
     );
 };
 

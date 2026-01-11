@@ -147,6 +147,11 @@ export const BackgroundShowcase: React.FC<Props> = ({ profile }) => {
               </section>
             </div>
           </div>
+
+          {/* Low Opacity Watermark Logo */}
+          <div className="absolute bottom-6 w-full flex justify-center opacity-30 pointer-events-none">
+            <img src="/biodata-generator-logo.png" alt="BioData Generator" className="h-6 object-contain grayscale" />
+          </div>
         </div>
       </div>
     </div>
