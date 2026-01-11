@@ -1,5 +1,5 @@
-import React from 'react';
-import { ZoomIn, ZoomOut, RotateCcw, Palette, X, Check } from 'lucide-react';
+import React, { useState } from 'react';
+import { ZoomIn, ZoomOut, RotateCcw, Palette, X, Check, RefreshCw } from 'lucide-react';
 import { useProfileStore } from '@/store/profileStore';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -18,9 +18,13 @@ const FONTS = [
     { name: 'Cormorant', value: "'Cormorant Garamond', serif" },
     { name: 'Cinzel', value: "'Cinzel', serif" },
     { name: 'Crimson', value: "'Crimson Pro', serif" },
+    { name: 'Great Vibes', value: "'Great Vibes', cursive" },
+    { name: 'Montserrat', value: "'Montserrat', sans-serif" },
+    { name: 'Lato', value: "'Lato', sans-serif" },
+    { name: 'Merriweather', value: "'Merriweather', serif" },
 ];
 
-const COLORS = [
+const PRESET_COLORS = [
     '#831843', '#9d174d', '#78350f', '#92400e', '#14532d', '#15803d',
     '#1e3a8a', '#1e40af', '#4a1c2e', '#451a03', '#000000', '#333333'
 ];
@@ -34,6 +38,17 @@ export const CanvasControls: React.FC<CanvasControlsProps> = ({
 }) => {
     const { updateCustomStyle, customStyles } = useProfileStore();
 
+    const handleReset = () => {
+        updateCustomStyle({
+            fontFamily: undefined,
+            headingFontFamily: undefined,
+            headingColor: undefined,
+            labelColor: undefined,
+            borderColor: undefined,
+            textColor: undefined
+        });
+    };
+
     return (
         <>
             {/* Style Editor Overlay */}
@@ -43,24 +58,36 @@ export const CanvasControls: React.FC<CanvasControlsProps> = ({
                         initial={{ opacity: 0, y: 20, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.95 }}
-                        className="absolute bottom-24 left-1/2 -translate-x-1/2 z-30 bg-white/95 backdrop-blur-xl p-4 rounded-2xl shadow-2xl border border-white/20 ring-1 ring-black/5 w-[90%] max-w-sm"
+                        // Lifted higher on mobile (bottom-24) to avoid nav overlap
+                        className="absolute bottom-24 md:bottom-28 left-1/2 -translate-x-1/2 z-30 bg-white/95 backdrop-blur-xl p-4 rounded-2xl shadow-2xl border border-white/20 ring-1 ring-black/5 w-[90%] max-w-sm max-h-[60vh] overflow-y-auto"
                         onMouseDown={(e) => e.stopPropagation()}
                         onTouchStart={(e) => e.stopPropagation()}
                     >
-                        <div className="flex justify-between items-center mb-4">
+                        <div className="flex justify-between items-center mb-4 sticky top-0 bg-white/95 backdrop-blur-sm z-10 pb-2 border-b border-slate-100">
                             <h3 className="font-bold text-slate-800 text-sm">Customize Style</h3>
-                            <button onClick={() => setShowStyleMenu(false)} className="p-1 hover:bg-slate-100 rounded-full"><X size={16} /></button>
+                            <div className="flex gap-2">
+                                <button
+                                    onClick={handleReset}
+                                    className="p-1.5 hover:bg-slate-100 rounded-full text-slate-500 hover:text-slate-800 transition-colors"
+                                    title="Reset to Default"
+                                >
+                                    <RefreshCw size={14} />
+                                </button>
+                                <button onClick={() => setShowStyleMenu(false)} className="p-1 hover:bg-slate-100 rounded-full"><X size={16} /></button>
+                            </div>
                         </div>
 
-                        <div className="space-y-4">
+                        <div className="space-y-6">
+                            {/* Fonts */}
                             <div>
                                 <label className="text-[10px] uppercase font-bold text-slate-400 mb-2 block">Typography</label>
-                                <div className="grid grid-cols-3 gap-2">
+                                <div className="grid grid-cols-2 gap-2">
                                     {FONTS.map(f => (
                                         <button
                                             key={f.name}
                                             onClick={() => updateCustomStyle({ fontFamily: f.value, headingFontFamily: f.value })}
-                                            className={`text-xs p-2 rounded border transition-all ${customStyles.fontFamily === f.value ? 'border-indigo-600 bg-indigo-50 text-indigo-700' : 'border-slate-200 hover:border-slate-300'}`}
+                                            className={`text-xs p-2 rounded border transition-all truncate ${customStyles.fontFamily === f.value ? 'border-indigo-600 bg-indigo-50 text-indigo-700 font-medium' : 'border-slate-200 hover:border-slate-300 text-slate-600'}`}
+                                            style={{ fontFamily: f.value }}
                                         >
                                             {f.name}
                                         </button>
@@ -68,10 +95,11 @@ export const CanvasControls: React.FC<CanvasControlsProps> = ({
                                 </div>
                             </div>
 
+                            {/* Colors */}
                             <div>
                                 <label className="text-[10px] uppercase font-bold text-slate-400 mb-2 block">Theme Colors</label>
-                                <div className="flex flex-wrap gap-2">
-                                    {COLORS.map(c => (
+                                <div className="flex flex-wrap gap-2 mb-3">
+                                    {PRESET_COLORS.map(c => (
                                         <button
                                             key={c}
                                             onClick={() => updateCustomStyle({ headingColor: c, labelColor: c, borderColor: c })}
@@ -82,15 +110,26 @@ export const CanvasControls: React.FC<CanvasControlsProps> = ({
                                         </button>
                                     ))}
                                 </div>
+
+                                {/* Custom Color Picker */}
+                                <div className="flex items-center gap-2 p-2 bg-slate-50 rounded-lg border border-slate-200">
+                                    <input
+                                        type="color"
+                                        value={customStyles.headingColor || '#000000'}
+                                        onChange={(e) => updateCustomStyle({ headingColor: e.target.value, labelColor: e.target.value, borderColor: e.target.value })}
+                                        className="w-8 h-8 rounded cursor-pointer bg-transparent border-0 p-0"
+                                    />
+                                    <span className="text-xs font-medium text-slate-600">Custom Color</span>
+                                </div>
                             </div>
                         </div>
                     </motion.div>
                 )}
             </AnimatePresence>
 
-            {/* Floating Toolbar */}
+            {/* Floating Toolbar - Higher on Mobile */}
             <div
-                className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full shadow-2xl border border-white/50 ring-1 ring-slate-900/5 text-slate-600"
+                className="absolute bottom-20 md:bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full shadow-2xl border border-white/50 ring-1 ring-slate-900/5 text-slate-600"
                 onMouseDown={(e) => e.stopPropagation()}
                 onTouchStart={(e) => e.stopPropagation()}
             >
