@@ -86,7 +86,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 </React.Fragment>
             ))}
 
-            <TemplateCard type={TemplateType.BACKGROUND_SHOWCASE} name="Background Showcase" colorClass="bg-green-900 text-emerald-100" badge="BG Switcher" />
         </div>
     );
 
