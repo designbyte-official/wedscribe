@@ -40,7 +40,7 @@ const religions = [
 export const ReligionSelection: React.FC = () => {
   const { t } = useLanguage();
   return (
-    <section className="py-24 sm:py-32 md:py-48 bg-slate-50 relative overflow-hidden" style={{ paddingBlock: 'var(--section-gap)' }}>
+    <section className="py-24 sm:py-32 md:py-48 bg-slate-50 relative overflow-hidden">
       {/* Background Decorative Elements */}
       <div className="absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-white to-transparent" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-primary/5 via-transparent to-amber-500/5 blur-[120px] -z-10 animate-pulse" />

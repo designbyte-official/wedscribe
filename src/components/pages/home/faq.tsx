@@ -40,7 +40,7 @@ export const FAQ: React.FC = () => {
   ];
 
   return (
-    <section id="faq" className="py-24 sm:py-32 md:py-48 bg-background relative overflow-hidden" style={{ paddingBlock: 'var(--section-gap)' }}>
+    <section id="faq" className="py-24 sm:py-32 md:py-48 bg-background relative overflow-hidden">
       {/* Animated Background Blobs - Refined */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[100px] pointer-events-none animate-blob" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] pointer-events-none animate-blob animation-delay-2000" />
