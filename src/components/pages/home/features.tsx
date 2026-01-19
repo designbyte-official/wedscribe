@@ -101,7 +101,7 @@ export const Features: React.FC = () => {
   ];
 
   return (
-    <section id="features" className="py-24 sm:py-32 md:py-48 bg-slate-50 relative overflow-hidden" style={{ paddingBlock: 'var(--section-gap)' }}>
+    <section id="features" className="py-24 sm:py-32 md:py-48 bg-slate-50 relative overflow-hidden">
       {/* Decorative bg - Refined */}
       <div className="absolute inset-0 opacity-40 pointer-events-none">
         <div className="absolute top-[10%] left-[-5%] w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] animate-blob" />
